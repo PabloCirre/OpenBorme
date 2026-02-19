@@ -6,12 +6,12 @@
  * It fetches the data for "today" and appends it to the global repository file.
  */
 
-require_once 'BormeDownloader.php';
-require_once 'ParserPdf.php';
-require_once 'ParserXml.php';
+require_once __DIR__ . '/ingest/BormeDownloader.php';
+require_once __DIR__ . '/extract/ParserPdf.php';
+require_once __DIR__ . '/ingest/ParserXml.php';
 
-$storage_dir = __DIR__ . "/data";
-$repo_dir = __DIR__ . "/repo"; // Repository root
+$storage_dir = __DIR__ . "/../data";
+$repo_dir = __DIR__ . "/../repo"; // Repository root
 
 // 1. Initialize Downloader for the latest 1 day
 $downloader = new BormeDownloader($storage_dir);

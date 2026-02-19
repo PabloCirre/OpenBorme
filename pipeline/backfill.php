@@ -5,7 +5,7 @@
  * Example: php backfill.php 2020-01-01 2020-01-31
  */
 
-require_once __DIR__ . '/../core/BormeDownloader.php';
+require_once __DIR__ . '/ingest/BormeDownloader.php';
 
 $startDate = $argv[1] ?? '2020-01-01';
 $endDate = $argv[2] ?? date('Y-m-d');
