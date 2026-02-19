@@ -13,8 +13,10 @@
     <header class="inst-header" style="height: 72px; position: sticky; top: 0; z-index: 1000;">
         <div class="container"
             style="height: 100%; display: flex; align-items: center; justify-content: space-between;">
-            <a href="/" class="brand-logo"
-                style="font-size: 1.5rem; font-weight: 800; color: var(--brand-primary); text-decoration: none; letter-spacing: -0.05em; text-transform: uppercase;">OpenBorme</a>
+            <a href="/" class="logo-container">
+                <div class="logo-emblem">OB</div>
+                <div class="logo-text">OpenBorme</div>
+            </a>
 
             <div class="header-search-wrap"
                 style="flex: 1; max-width: 520px; margin: 0 var(--space-6); position: relative;">
