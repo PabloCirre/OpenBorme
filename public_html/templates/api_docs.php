@@ -37,32 +37,27 @@ include 'header.php';
         <!-- Main Content -->
         <main class="main-content">
             <section class="card" style="margin-bottom: var(--space-6);">
-                <h2 style="font-size: 20px; margin-bottom: var(--space-3);">Búsqueda por Texto / CIF</h2>
+                <h2 style="font-size: 20px; margin-bottom: var(--space-3);">Búsqueda Programática</h2>
                 <div style="display: flex; gap: var(--space-3); align-items: center; margin-bottom: var(--space-3);">
                     <span class="badge" style="background: var(--accent); color: white; border: none;">GET</span>
-                    <code class="mono" style="font-weight: 700;">/api/v1/search</code>
+                    <code class="mono" style="font-weight: 700;">/api.php?action=search</code>
                 </div>
-                <p style="font-size: 14px; margin-bottom: var(--space-4);">Realiza consultas elástico-estructuradas
-                    filtrando por provincia o fecha.</p>
-
-                <div
-                    style="background: #111827; color: #f9fafb; padding: var(--space-4); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 13px;">
-                    ?q=inditex&provincia=coruña&limit=10
-                </div>
+                <p style="font-size: 14px; margin-bottom: var(--space-4);">Endpoint actualmente en desarrollo. Para
+                    búsquedas masivas, recomendamos el uso de los volcados diarios.</p>
             </section>
 
             <section class="card" style="margin-bottom: var(--space-6);">
                 <h2 style="font-size: 20px; margin-bottom: var(--space-3);">Detalle de un Acto</h2>
                 <div style="display: flex; gap: var(--space-3); align-items: center; margin-bottom: var(--space-3);">
                     <span class="badge" style="background: var(--accent); color: white; border: none;">GET</span>
-                    <code class="mono" style="font-weight: 700;">/api/v1/act/{id}</code>
+                    <code class="mono" style="font-weight: 700;">/api.php?action=get_act&id={ID}</code>
                 </div>
                 <p style="font-size: 14px; margin-bottom: var(--space-4);">Obtén el objeto JSON completo de un evento
-                    individual identificado por su ID BORME.</p>
+                    individual identificado por su ID BORME (Hash MD5 o Identificador de Acto).</p>
 
                 <div
                     style="background: #111827; color: #f9fafb; padding: var(--space-4); border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 13px;">
-                    /api/v1/act/BORME-A-2026-3024
+                    /api.php?action=get_act&id=BORME-A-2024-12-28-1234
                 </div>
             </section>
 

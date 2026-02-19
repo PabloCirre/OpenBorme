@@ -54,7 +54,7 @@ $sections = [
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--space-4);">
                         <?php foreach ($items as $item): ?>
-                            <a href="/borme/doc/<?= $item['id'] ?>" class="inst-card"
+                            <a href="/borme/doc/<?= $item['id'] ?>?date=<?= $date ?>" class="inst-card"
                                 style="padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
                                 <div style="display: flex; flex-direction: column; gap: 4px;">
                                     <span class="mono"

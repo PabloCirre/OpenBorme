@@ -4,11 +4,13 @@ Bienvenido a la guía técnica de **OpenBorme**, la plataforma abierta para el a
 
 ## 🌍 Arquitectura del Proyecto
 
-OpenBorme utiliza una **Arquitectura Híbrida** para optimizar el rendimiento y la estabilidad:
+OpenBorme utiliza una **Arquitectura Híbrida "On-the-Fly"** para optimizar el rendimiento y minimizar el uso de disco:
 
-1. **Extractor Local (Python)**: Ubicado en `core/extractor/`, es el motor de "fuerza bruta" encargado de descargar PDFs/XMLs y extraer datos estructurados.
-2. **Visualizador Remoto (PHP)**: La interfaz web desplegada en `openborme.es` que sirve los datos de forma rápida y accesible.
-3. **Sincronización**: Los datos procesados se suben al servidor mediante scripts de FTP (`scripts/sync_data.py`).
+1. **Extractor Efímero (Python)**: Ubicado en `pipeline/extract/`, descarga y procesa los PDFs en memoria o archivos temporales que **se destruyen inmediatamente** tras la extracción.
+    - **Cero Almacenamiento**: No se guarda copia local de los PDFs (ahora ~50GB).
+    - **Solo Datos**: Solo se persiste la información estructurada en `borme_data.csv` o base de datos.
+2. **Visualizador Remoto (PHP)**: La interfaz web desplegada en `openborme.es`.
+3. **Sincronización**: Subida de datos procesados vía FTP.
 
 ---
 

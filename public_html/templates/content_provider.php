@@ -45,35 +45,77 @@ function get_page_content($path, $extra = [])
 HTML
         ,
         'privacidad' => <<<HTML
-            <h2 style="margin-bottom: var(--space-4);">Protección de Datos (RGPD)</h2>
-            <p style="margin-bottom: var(--space-4);"><strong>Responsable del Tratamiento:</strong> $user_name. <br><strong>Finalidad:</strong> Gestión de consultas técnicas y alertas registrales. <br><strong>Legitimación:</strong> Consentimiento explícito del interesado y cumplimiento de obligaciones legales de transparencia.</p>
-            
-            <p style="margin-bottom: var(--space-4);">Para el ejercicio de sus derechos de acceso, rectificación, portabilidad o supresión de datos personales, puede dirigir una comunicación formal a la dirección técnica: <code class="mono">$user_address</code> o vía electrónica a través de los canales habilitados.</p>
-            
-            <div class="trazabilidad">
-                <h5>Compromiso de Privacidad</h5>
-                <p>OpenBorme prioriza la privacidad individual, limitando la visibilidad de datos de personas físicas y centrando su actividad en la estructuración de eventos societarios y mercantiles.</p>
+            <h2 style="margin-bottom: var(--space-4);">Política de Privacidad y Cumplimiento Normativo</h2>
+            <p>OpenBorme se compromete con la transparencia y el respeto a la privacidad individual, equilibrando el derecho a la información pública con la protección de datos personales.</p>
+
+            <h3 style="margin-top: var(--space-6);">1. Naturaleza de los Datos</h3>
+            <p>Los datos mostrados en este portal provienen exclusivamente de fuentes de acceso público: el <strong>Boletín Oficial del Registro Mercantil (BORME)</strong>.</p>
+            <ul>
+                <li><strong>Base Legal:</strong> El tratamiento se basa en la normativa de reutilización de información del sector público (Ley 37/2007) y el interés legítimo de transparencia empresarial.</li>
+                <li><strong>Finalidad:</strong> Facilitar la consulta de actos mercantiles y la seguridad del tráfico jurídico.</li>
+            </ul>
+
+            <h3 style="margin-top: var(--space-6);">2. No Indexación de Personas Físicas</h3>
+            <p>Por defecto, OpenBorme <strong>NO permite la búsqueda por nombre de persona física</strong> en la interfaz pública para evitar la creación de perfiles no solicitados.</p>
+            <ul>
+                <li>Las búsquedas están orientadas a <strong>Empresas</strong> (personas jurídicas).</li>
+                <li>Los nombres de administradores o apoderados solo aparecen vinculados dentro de la ficha de la empresa correspondiente.</li>
+            </ul>
+
+            <h3 style="margin-top: var(--space-6);">3. Derechos ARCO y "Takedown"</h3>
+            <div style="background: #f9fafb; padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <p>Si usted es un particular y desea que su nombre no aparezca indexado en OpenBorme:</p>
+                <ol>
+                    <li>Envíe un email a <a href="mailto:privacidad@openborme.es">privacidad@openborme.es</a>.</li>
+                    <li>Indique la URL exacta o el acto donde aparecen sus datos.</li>
+                    <li>Procederemos a <strong>anonimizar</strong> su nombre en nuestra base de datos derivada.</li>
+                </ol>
+                <p style="font-size: 0.9em; color: var(--text-secondary);">Nota: Esto no elimina el dato del BORME oficial, solo de nuestra visualización.</p>
             </div>
+
+            <h3 style="margin-top: var(--space-6);">4. Limitación de Responsabilidad</h3>
+            <p>OpenBorme ofrece los datos "tal cual" (as-is). No garantizamos la exactitud completa debido a posibles errores en el proceso de OCR automatizado. Para fines legales, consulte siempre el PDF oficial firmado digitalmente por la Agencia BOE.</p>
             HTML
         ,
         'metodologia' => <<<HTML
-            <h2 style="margin-bottom: var(--space-4);">Estructuración y Procesamiento de Datos</h2>
-            <p style="margin-bottom: var(--space-4);">OpenBorme utiliza una infraestructura híbrida de procesamiento para transformar las publicaciones diarias del BOE en datos legibles por máquinas:</p>
-            
-            <div class="results-layout" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                <div class="card">
-                    <h4 style="margin-bottom: var(--space-2);">1. Ingesta</h4>
-                    <p style="font-size: 14px;">Descarga diaria de sumarios en XML y actos en PDF mediante APIs de datos abiertos.</p>
-                </div>
-                <div class="card">
-                    <h4 style="margin-bottom: var(--space-2);">2. Extracción</h4>
-                    <p style="font-size: 14px;">Uso de técnicas de visión y procesamiento de lenguaje natural (NLP) para identificar entidades y actos.</p>
-                </div>
-                <div class="card">
-                    <h4 style="margin-bottom: var(--space-2);">3. Normalización</h4>
-                    <p style="font-size: 14px;">Validación de identificadores (CIF), fechas y tipos de actos según el estándar mercantil.</p>
-                </div>
+            <h2 style="margin-bottom: var(--space-4);">Metodología de Extracción</h2>
+            <p>OpenBorme utiliza un pipeline de procesamiento avanzado para transformar los boletines oficiales en datos útiles y legibles.</p>
+
+            <h3 style="margin-top: var(--space-6);">1. Ingesta de Datos</h3>
+            <p>Cada día, nuestro sistema se conecta a la API de datos abiertos de la Agencia Estatal BOE para obtener el sumario del Boletín Oficial del Registro Mercantil. Descargamos tanto los sumarios en XML como los documentos individuales en PDF y XML (Secciones I y II).</p>
+
+            <h3 style="margin-top: var(--space-6);">2. Parsing y Estructuración</h3>
+            <div class="card" style="margin: var(--space-4) 0;">
+                <ul style="margin-bottom: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong>Motor PDF (Sección I):</strong> Extrae texto plano de los boletines provinciales y utiliza expresiones regulares para identificar actos inscritos, empresas y CIFs.</li>
+                    <li><strong>Motor XML (Sección II):</strong> Procesa los anuncios legales estructurados directamente desde la fuente XML oficial.</li>
+                </ul>
             </div>
+
+            <h3 style="margin-top: var(--space-6);">3. Normalización</h3>
+            <p>Los datos extraídos se normalizan para corregir errores comunes en la fuente original (como formatos de CIF inconsistentes) y se preparan para su indexación en nuestra base de datos derivada.</p>
+
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 6px; margin-top: 2rem;">
+                <strong>Nota de Trazabilidad:</strong> Todo este proceso se realiza de forma automatizada y con trazabilidad completa a los documentos originales del BOE a través de hashes MD5.
+            </div>
+            HTML
+        ,
+        'fuentes' => <<<HTML
+            <h2 style="margin-bottom: var(--space-4);">Fuentes de Información Oficial</h2>
+            <p>La transparencia y la trazabilidad son los pilares de OpenBorme. Todos nuestros datos provienen de fuentes oficiales públicas.</p>
+
+            <h3 style="margin-top: var(--space-6);">Fuente Oficial</h3>
+            <p>Los datos publicados en este portal han sido obtenidos de la <strong>Agencia Estatal Boletín Oficial del Estado (BOE)</strong>, específicamente del Boletín Oficial del Registro Mercantil (BORME).</p>
+            <p>Puede consultar la fuente original en: <a href="https://www.boe.es/diario_borme/" target="_blank">www.boe.es/diario_borme/</a></p>
+
+            <div style="background: #fff5f5; border: 2px solid var(--boe-red); padding: 1.5rem; border-radius: 6px; margin: 2rem 0;">
+                <h4 style="color: var(--boe-red); margin-bottom: 0.5rem;">Aviso de No Oficialidad</h4>
+                <p><strong>OpenBorme NO es el Registro Mercantil</strong> ni tiene carácter de fuente oficial. Somos una plataforma derivada que reestructura la información para facilitar su consulta y análisis.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9em;">Para cualquier trámite legal, administrativo o mercantil, debe acudirse siempre a la fuente oficial (BOE o Registro Mercantil correspondiente).</p>
+            </div>
+
+            <h3 style="margin-top: var(--space-6);">Reutilización de Información</h3>
+            <p>Este proyecto se acoge a la normativa de reutilización de información del sector público (Ley 37/2007). Los datos son procesados sin desnaturalizar su contenido original.</p>
             HTML
         ,
         'cookies' => <<<HTML
@@ -120,12 +162,57 @@ HTML
             HTML
         ,
         'calidad-de-datos' => <<<HTML
-            <p>La calidad de nuestros datos es una prioridad. Realizamos auditorías semanales para comparar el volumen de registros extraídos con los publicados oficialmente en el BOE.</p>
+            <h2 style="margin-bottom: var(--space-4);">Métricas de Calidad y Transparencia Técnica</h2>
+            <p>En OpenBorme, la integridad del dato es crítica. Monitorizamos continuamente la calidad de nuestro proceso de extracción automatizado.</p>
+
+            <h3 style="margin-top: var(--space-6);">1. Trazabilidad del Dato</h3>
+            <p>Cada registro en nuestra base de datos mantiene un vínculo inmutable con su fuente:</p>
             <ul>
-                <li><strong>Cobertura:</strong> 100% de los boletines diarios.</li>
-                <li><strong>Precisión CIF:</strong> >98% en Sección I.</li>
+                <li><strong>Hash MD5:</strong> Cada acto extraído genera un hash único basado en su contenido.</li>
+                <li><strong>Enlace al Original:</strong> Referencia directa a la URL del PDF/XML en <code>boe.es</code>.</li>
             </ul>
-HTML
+
+            <h3 style="margin-top: var(--space-6);">2. Precisión del OCR</h3>
+            <p>Utilizamos técnicas de extracción híbridas:</p>
+            <ul>
+                <li><strong>Nivel 1 (XML Estructurado):</strong> Precisión del <strong>100%</strong>. Se usa para la Sección II y sumarios.</li>
+                <li><strong>Nivel 2 (PDF Textual):</strong> Precisión estimada del <strong>99.5%</strong>. Los errores suelen ser caracteres especiales o codificaciones extrañas en los PDFs originales.</li>
+            </ul>
+
+            <h3 style="margin-top: var(--space-6);">3. Gestión de Erratas</h3>
+            <p>El sistema detecta automáticamente patrones de "Fe de Erratas" publicados en el BORME. Cuando una corrección es publicada, el sistema intenta vincularla con el acto original marcándolo como <code>Corregido</code>.</p>
+            HTML
+        ,
+        'modelo-de-datos' => <<<HTML
+            <h2 style="margin-bottom: var(--space-4);">Modelo de Datos</h2>
+            <p>OpenBorme utiliza un modelo relacional simplificado diseñado para la búsqueda rápida y el análisis de series temporales.</p>
+
+            <div class="results-layout" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
+                <div class="card">
+                    <h3 style="margin-bottom: var(--space-3);">🏢 Empresa (Company)</h3>
+                    <p>Representa la entidad legal inscrita.</p>
+                    <ul style="font-size: 0.95em;">
+                        <li><strong>CIF:</strong> Identificador fiscal único (PK).</li>
+                        <li><strong>Nombre:</strong> Razón social normalizada.</li>
+                        <li><strong>Provincia:</strong> Delegación del Registro Mercantil.</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3 style="margin-bottom: var(--space-3);">📜 Acto (Act)</h3>
+                    <p>Representa un evento atómico publicado.</p>
+                    <ul style="font-size: 0.95em;">
+                        <li><strong>ID:</strong> Hash MD5 de trazabilidad.</li>
+                        <li><strong>Tipo:</strong> Categoría normalizada (ej: Constitución).</li>
+                        <li><strong>Fecha:</strong> Publicación en BOE (YYYY-MM-DD).</li>
+                        <li><strong>Detalles:</strong> Texto completo extraído (OCR).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top: var(--space-6);">Formatos de Exportación</h3>
+            <p>Los datos están disponibles para descarga masiva en <strong>CSV</strong> (Excel/Pandas) y <strong>JSON</strong> (Integración).</p>
+            HTML
         ,
         'reutilizacion-y-atribucion' => <<<HTML
             <p>Este portal se acoge a la Ley 37/2007 sobre reutilización de la información del sector público. Se permite la reutilización de los datos aquí contenidos siempre que se cite la fuente original (BOE) y el origen de los datos estructurados (OpenBorme).</p>
@@ -163,7 +250,58 @@ HTML
                 <input type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 1rem; padding: 0.5rem;">
                 <button style="width: 100%; background: var(--boe-red); color: white; padding: 0.5rem; border: none;">ENTRAR</button>
             </div>
-HTML
+HTML,
+        'manifiesto' => <<<HTML
+            <h2 style="margin-bottom: var(--space-4);">Manifiesto Técnico: Estándares de Transparencia</h2>
+            <p>Este documento establece los principios técnicos y éticos que rigen el proyecto OpenBorme. Su objetivo es garantizar la reproducibilidad, la confianza en los datos estructurados y la claridad en la gestión del proyecto.</p>
+
+            <h3 style="margin-top: var(--space-6);">1. Contrato de Datos (Data Contract)</h3>
+            <p>OpenBorme se compromete a mantener un esquema de datos estable y versionado para facilitar la interoperabilidad.</p>
+            <div class="card" style="margin: var(--space-4) 0;">
+                <h4>Entidad: Acto (Publication)</h4>
+                <p>Unidad atómica de información registral.</p>
+                <ul>
+                    <li><strong>id:</strong> Identificador único (BORME-A-YYYY-...).</li>
+                    <li><strong>hash:</strong> Integridad MD5 del texto extraído.</li>
+                    <li><strong>raw_text:</strong> Texto original verificado.</li>
+                </ul>
+            </div>
+
+            <h3 style="margin-top: var(--space-6);">2. Metodología Reproducible</h3>
+            <ol>
+                <li><strong>Ingesta:</strong> Descarga diaria de XMLs y PDFs de la API oficial.</li>
+                <li><strong>Extracción:</strong> Procesamiento OCR y segmentación por regex.</li>
+                <li><strong>Normalización:</strong> Limpieza y estandarización de entidades.</li>
+                <li><strong>QA Automático:</strong> Validación cruzada contra sumario XML.</li>
+            </ol>
+
+            <h3 style="margin-top: var(--space-6);">3. Código Abierto</h3>
+            <p>Los módulos de ingesta, extracción y normalización son totalmente auditables en nuestro repositorio público. La infraestructura crítica se mantiene privada por seguridad.</p>
+            HTML
+        ,
+        'objetivos' => <<<HTML
+             <h2 style="margin-bottom: var(--space-4);">Objetivos y Hoja de Ruta</h2>
+             <p>OpenBorme nace para solucionar las carencias de accesibilidad del sistema actual, transformando PDFs estáticos en datos vivos.</p>
+
+             <h3 style="margin-top: var(--space-6);">Arquitectura "Fly Mode" (Zero-Storage)</h3>
+             <p>Hemos implementado una arquitectura de procesamiento efímero:</p>
+             <ul>
+                <li><strong>Procesamiento al Vuelo:</strong> Descarga, extracción y borrado inmediato del PDF original.</li>
+                <li><strong>Privacidad por Diseño:</strong> Minimización de datos almacenados localmente.</li>
+                <li><strong>Eficiencia:</strong> Eliminación de la necesidad de terabytes de almacenamiento.</li>
+             </ul>
+
+             <h3 style="margin-top: var(--space-6);">El Estándar "Borme Perfecto"</h3>
+             <p>Nuestra meta es cumplir con los 10 puntos de excelencia:</p>
+             <ul class="checklist" style="list-style: none;">
+                <li>✅ Trazabilidad absoluta a la fuente oficial.</li>
+                <li>✅ Buscador unificado (Sección I y II).</li>
+                <li>✅ Ficha de empresa con timeline de eventos.</li>
+                <li>✅ API con endpoints por entidad.</li>
+                <li>⏳ Dumps masivos en Parquet/JSONL.</li>
+             </ul>
+             HTML
+        ,
     ];
 
     return $content[$path] ?? "

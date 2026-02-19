@@ -29,8 +29,8 @@ $routes = [
     'descargas' => ['template' => 'descargas.php', 'index' => 'index'],
     'api' => ['template' => 'api_landing.php', 'index' => 'index'],
     'api/documentacion' => ['template' => 'api_docs.php', 'index' => 'index'],
-    'metodologia' => ['template' => 'metodologia.php', 'index' => 'index'],
-    'fuentes' => ['template' => 'fuentes.php', 'index' => 'index'],
+    'metodologia' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Metodología de Extracción'],
+    'fuentes' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Fuentes de Información'],
     'aviso-legal' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Aviso Legal'],
     'terminos-de-uso' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Términos de Uso'],
     'exencion-responsabilidad' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Exención de Responsabilidad'],
@@ -42,6 +42,9 @@ $routes = [
     'reutilizacion-y-atribucion' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Reutilización y Atribución'],
     'canal-de-rectificacion' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Canal de Rectificación'],
     'proteccion-de-datos/derechos' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Ejercicio de Derechos'],
+    'modelo-de-datos' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Modelo de Datos'],
+    'manifiesto' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Manifiesto Técnico'],
+    'objetivos' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Objetivos y Roadmap'],
     'status' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Estado del Servicio']
 ];
 

@@ -7,11 +7,15 @@ Este documento detalla los fallos del sistema BORME actual y establece la hoja d
 - **Horizonte Temporal**: Consolidación y extracción completa de datos desde el **1 de enero de 2020**.
 - **Estimación**: ~25 GB de datos acumulados para este periodo.
 
-## Arquitectura Híbrida (Extractor Local vs. Presentación Remota)
+## Arquitectura "Fly Mode" (Zero-Storage)
 
-- **Local (PC del Usuario)**: Actúa como el **Extractor Pesado**. Aquí se descargan los PDFs (25GB), se procesan y se generan los datos estructurados.
-- **Remoto (openborme.es)**: Actúa como el **Visualizador Optimizado**. No descarga archivos masivos. Recibe solo los datos procesados y los archivos finales que el usuario decida sincronizar.
-- **Flujo de Trabajo**: Descarga Local -> Extracción Local -> Sincronización de Datos -> Publicación Web.
+- **Local (Procesador Efímero)**: Actúa como el **Extractor al Vuelo**.
+  - Descarga el PDF a `/tmp`.
+  - Extrae el texto y normaliza.
+  - **Borra el PDF**.
+  - Guarda el registro en la BBDD.
+- **Ventaja**: Elimina la necesidad de 50GB+ de almacenamiento local.
+- **Remoto (openborme.es)**: Visualizador optimizado de los datos extraídos.
 
 ## Fallos posibles del BORME (como producto, como dato y como “infra”)
 

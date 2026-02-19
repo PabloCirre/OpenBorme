@@ -30,6 +30,22 @@ class BormeDownloader:
             print(f"  [!] Error descargando {url}: {e}")
             return False
 
+    def download_file_to_path(self, url: str, target_path: str) -> bool:
+        """Downloads a file to a specific path, overriding the default storage structure."""
+        if os.path.exists(target_path):
+            return True
+        try:
+            response = self.session.get(url, stream=True, timeout=30)
+            response.raise_for_status()
+            os.makedirs(os.path.dirname(target_path), exist_ok=True)
+            with open(target_path, "wb") as f:
+                for chunk in response.iter_content(chunk_size=8192):
+                    f.write(chunk)
+            return True
+        except Exception as e:
+            print(f"  [!] Error descargando {url}: {e}")
+            return False
+
     def get_summary(self, date_str: str) -> Optional[str]:
         url = f"{BASE_API_URL}{date_str}"
         try:
