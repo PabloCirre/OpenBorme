@@ -44,11 +44,14 @@ python ops/git_sync.py
 
 ## Gestión de Credenciales (Sin Ventanas de Login)
 
-Hemos configurado `credential.helper manager-core`. Esto significa que:
+Hemos configurado el sistema para que sea totalmente silencioso:
 
-- La primera vez que hagas push, Git te pedirá las credenciales (si no están guardadas).
-- Una vez introducidas, **Windows las recordará de forma segura**.
-- En los siguientes despliegues, no volverá a aparecer ninguna ventana interactiva.
+1. **Helper Manager**: `git config --global credential.helper manager` (Gestiona las claves en Windows).
+2. **Usuario por Defecto**: `git config --global credential.https://github.com.username PabloCirre` (Evita que Git pregunte qué usuario elegir si tienes varios).
+
+### ¿Qué hacer si vuelve a aparecer?
+
+Si la ventana de "Elegir usuario" vuelve a aparecer, asegúrate de seleccionar tu cuenta de GitHub y marcar la casilla de **"Recordar siempre"** o **"Remember me"**. A partir de ahí, el script `ops/git_sync.py` no te volverá a preguntar.
 
 ---
 
