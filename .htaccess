@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /
+
+# 1. Protect internal directories
+RewriteRule ^(core|data|templates|scripts)/ - [F,L]
+
+# 2. Allow existing files and directories (CSS, JS, Images, etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# 3. Handle Special BOE compatibility redirects
+RewriteRule ^diario_borme/ultimo.php$ /?action=ultimo [L,R=302]
+
+# 4. Global Router: Send everything else to index.php
+RewriteRule ^ index.php [L,QSA]

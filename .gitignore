@@ -1,0 +1,23 @@
+# System & Deps
+vendor/
+node_modules/
+__pycache__/
+*.pyc
+
+# Data & Builds
+data/
+dumps/
+*.log
+*.tmp
+.ds_store
+
+# Config & Secrets
+.env
+ops/env.production
+web/config.php
+
+# Large files (should use LFS if needed, but ignored for now)
+*.csv
+*.xlsx
+*.parquet
+legacy/
