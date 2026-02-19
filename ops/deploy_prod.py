@@ -8,8 +8,7 @@ user = 'branvan3000@openborme.es'
 password = '5000Razones2.0'
 
 # Paths
-LOCAL_WEB_ROOT = r'd:\Pycharm\OpenBorme\web'
-LOCAL_ROOT = r'd:\Pycharm\OpenBorme'
+LOCAL_WEB_ROOT = r'd:\Pycharm\OpenBorme\public_html'
 
 def upload_item(ftp, local_path, remote_item):
     if ".git" in remote_item or "__pycache__" in remote_item or ".pdf" in remote_item.lower():
@@ -35,18 +34,11 @@ def deploy():
         ftp.login(user, password)
         print("Connected successfuly.")
         
-        # 1. Upload everything from web/ to root
-        print("Deploying web files...")
+        # 1. Upload everything from public_html/ to root
+        print("Deploying public files...")
         for item in os.listdir(LOCAL_WEB_ROOT):
             local_path = os.path.join(LOCAL_WEB_ROOT, item)
             upload_item(ftp, local_path, item)
-            
-        # 2. Upload root config files
-        config_files = ['.htaccess', 'robots.txt']
-        for cfg in config_files:
-            local_path = os.path.join(LOCAL_ROOT, cfg)
-            if os.path.exists(local_path):
-                upload_item(ftp, local_path, cfg)
                 
         ftp.quit()
         print("Deployment successful.")

@@ -23,27 +23,22 @@ Puedes visualizar y probar el proyecto en los siguientes entornos:
 * **Trazabilidad**: Generación de hashes MD5 para garantizar la integridad del texto extraído frente al original.
 * **Frontend Ligero**: Interfaz web PHP sobria y rápida, sin rastreadores ni publicidad.
 
-## 🛠️ Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
-```bash
-/pipeline   # Scripts de ingestión, extracción y normalización (Core)
-/web        # Frontend PHP (Interfaz pública)
-/docs       # Manifiesto técnico, métricas y guías
-/schema     # Modelos de datos y migraciones SQL
-/ops        # Scripts de despliegue y sincronización
-/samples    # Datos de muestra para auditoría y pruebas
-```
+* **`pipeline/`**: Motor de extracción y procesamiento (Python).
+* **`public_html/`**: Interfaz web y API (PHP/CSS).
+* **`ops/`**: Scripts de despliegue y mantenimiento.
+* **`docs/`**: Documentación técnica y estratégica.
+* **`data/`**: Almacenamiento local de documentos BORME (vía `pipeline`).
 
-## 📦 Instalación
+## 🛠️ Instalación (Local)
 
-### Requisitos
+1. **Requisitos**: PHP 8.x, Python 3.10+.
+2. **Web**: Sirve el directorio `public_html`.
 
-* PHP 8.0+
-* Python 3.9+
-* Pipenv o virtualenv
-* Composer
-
-### Configuración Local
+    ```bash
+    php -S localhost:8000 -t public_html
+    ```
 
 1. Clonar el repositorio:
 
@@ -52,20 +47,20 @@ Puedes visualizar y probar el proyecto en los siguientes entornos:
     cd OpenBorme
     ```
 
-2. Instalar dependencias de Python (Pipeline):
+4. Instalar dependencias de Python (Pipeline):
 
     ```bash
     cd pipeline
     pip install -r requirements.txt
     ```
 
-3. Instalar dependencias de PHP (Web/Parsers):
+5. Instalar dependencias de PHP (Web/Parsers):
 
     ```bash
     composer install
     ```
 
-4. Configurar entorno:
+6. Configurar entorno:
 
     ```bash
     cp ops/env.example .env
