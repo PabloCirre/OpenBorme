@@ -83,6 +83,23 @@ Esto subirá el archivo `borme_data.csv` al servidor remoto.
 
 ---
 
+## 🧪 Entornos de Prueba
+
+Como desarrollador, dispones de dos entornos principales para verificar cambios:
+
+### 1. Entorno de Producción (Live)
+
+- **URL**: [https://openborme.es/](https://openborme.es/)
+- **Uso**: Verificación final de datos sincronizados y rendimiento en servidor real.
+
+### 2. Entorno Local (Desarrollo)
+
+- **URL**: Depende de tu configuración local (ej: `http://localhost:8080`).
+- **Uso**: Pruebas de nuevos parsers, cambios en el CSS/UI y depuración del pipeline.
+- **Ventaja**: Permite ver los logs de error de PHP y las trazas del motor de extracción en tiempo real.
+
+---
+
 ## 🤝 Contribución
 
 1. **Mejora de Parsers**: Si encuentras un formato de acto que no se extrae bien, edita `parser_pdf.py` o `parser_xml.py`.

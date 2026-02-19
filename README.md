@@ -8,6 +8,13 @@ Nuestro objetivo es democratizar el acceso a la información empresarial mediant
 [![Licencia](https://img.shields.io/badge/Licencia-MIT-blue)](LICENSE)
 [![Datos](https://img.shields.io/badge/Datos-ODbL-green)](http://opendatacommons.org/licenses/odbl/)
 
+## 🌐 Entornos y Pruebas
+
+Puedes visualizar y probar el proyecto en los siguientes entornos:
+
+* **Producción**: [openborme.es](https://openborme.es/) (Versión estable y pública).
+* **Local**: Sigue los pasos de instalación abajo para ejecutar una instancia local en `http://localhost:8000`.
+
 ## 🚀 Características
 
 * **Ingesta Automática**: Descarga diaria de sumarios XML y PDFs de la [Agencia Estatal BOE](https://www.boe.es).

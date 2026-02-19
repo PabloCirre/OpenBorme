@@ -38,15 +38,16 @@ $data = [
                 <p class="mono" style="color: var(--text-muted);">BORME ID: <?= $id ?></p>
             </div>
 
-            <article class="card" style="line-height: 1.8; font-size: 17px; white-space: pre-wrap;">
+            <article class="inst-card"
+                style="line-height: 2; font-size: 1.1rem; white-space: pre-wrap; padding: var(--space-6); background: white;">
                 <?= $data['Details'] ?>
             </article>
 
             <!-- Trazabilidad block (Discrete, as per spec) -->
-            <div class="trazabilidad">
+            <div class="trazabilidad" style="padding-top: var(--space-6); border-top: 2px solid var(--border-subtle);">
                 <h5>Trazabilidad</h5>
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-3);">
+                <div class="inst-card"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-3); padding: var(--space-4); background: var(--bg-alt);">
                     <div>
                         <p class="meta" style="font-size: 12px; margin-bottom: 4px;">Fuente Oficial</p>
                         <a href="<?= $source_url ?>" target="_blank" class="btn btn-ghost btn-s"

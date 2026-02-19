@@ -53,16 +53,17 @@ $sections = [
                     </h3>
 
                     <div
-                        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--space-3);">
+                        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--space-4);">
                         <?php foreach ($items as $item): ?>
-                            <a href="/borme/doc/<?= $item['id'] ?>" class="card"
-                                style="padding: var(--space-3); display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
+                            <a href="/borme/doc/<?= $item['id'] ?>" class="inst-card"
+                                style="padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
                                 <div style="display: flex; flex-direction: column; gap: 4px;">
-                                    <span class="mono" style="font-size: 11px; color: var(--text-muted);"><?= $item['id'] ?></span>
+                                    <span class="mono"
+                                        style="font-size: 0.75rem; color: var(--text-muted);"><?= $item['id'] ?></span>
                                     <span
-                                        style="font-size: 14px; font-weight: 600; color: var(--text-primary);"><?= $item['label'] ?></span>
+                                        style="font-size: 1rem; font-weight: 700; color: var(--text-main);"><?= $item['label'] ?></span>
                                 </div>
-                                <span style="font-size: 12px; color: var(--accent); font-weight: 700;">VER &rarr;</span>
+                                <span style="font-size: 0.8rem; color: var(--brand-primary); font-weight: 800;">VER &rarr;</span>
                             </a>
                         <?php endforeach; ?>
                     </div>
