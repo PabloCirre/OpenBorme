@@ -14,8 +14,8 @@
         <div class="container"
             style="height: 100%; display: flex; align-items: center; justify-content: space-between;">
             <a href="/" class="logo-container">
-                <div class="logo-emblem">OB</div>
-                <div class="logo-text">OpenBorme</div>
+                <span class="logo-open">Open</span>
+                <span class="logo-borme-box">Borme</span>
             </a>
 
             <div class="header-search-wrap"

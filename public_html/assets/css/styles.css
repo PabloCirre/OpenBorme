@@ -71,38 +71,36 @@
 .logo-container {
     display: flex;
     align-items: center;
-    gap: var(--space-3);
+    gap: 0;
     text-decoration: none;
     transition: opacity 0.2s;
+    font-family: var(--font-ui);
 }
 
 .logo-container:hover {
-    opacity: 0.9;
+    opacity: 0.95;
 }
 
-.logo-emblem {
-    width: 38px;
-    height: 38px;
-    background: var(--brand-primary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    border-radius: var(--radius-sm);
-    letter-spacing: -0.05em;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-}
-
-.logo-text {
+.logo-open {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-main);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
+    padding-right: 4px;
+}
+
+.logo-borme-box {
+    background: var(--brand-primary);
+    color: white;
+    padding: 2px 8px;
+    font-weight: 800;
+    font-size: 1.4rem;
+    border-radius: var(--radius-sm);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+    display: inline-block;
 }
 
 /* Global Reset */
