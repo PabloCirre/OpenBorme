@@ -1,5 +1,3 @@
-<?php include 'header.php'; ?>
-
 <main class="container" style="padding: var(--space-8) 0;">
     <div class="hero-section" style="text-align: center; max-width: 900px; margin: 0 auto var(--space-8);">
         <h1 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Visualiza el Registro Mercantil <br>como
@@ -61,5 +59,3 @@
         </section>
     </div>
 </main>
-
-<?php include 'footer.php'; ?>

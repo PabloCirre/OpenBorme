@@ -1,6 +1,5 @@
 <?php
 // sumario.php - Structured Daily Summary
-include 'header.php';
 
 $date = $_GET['date'] ?? '2026-02-11';
 $formatted_date = date('d/m/Y', strtotime($date));
@@ -81,5 +80,3 @@ $sections = [
         </p>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>

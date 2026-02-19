@@ -1,6 +1,5 @@
 <?php
 // viewer.php - Refined Document Viewer
-include 'header.php';
 
 // Mock/Logic to fetch data (already existing in previous version)
 $id = $_GET['id'] ?? 'BORME-A-2026-3024';
@@ -106,5 +105,3 @@ $data = [
         </aside>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>
