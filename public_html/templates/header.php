@@ -4,7 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenBorme - Empresa y Registro Mercantil</title>
+    <title><?= htmlspecialchars($page_title ?? 'OpenBorme | Registro Mercantil') ?></title>
+    <meta name="description"
+        content="<?= htmlspecialchars($page_description ?? 'Buscador abierto y gratuito del Boletín Oficial del Registro Mercantil (BORME). Consulta empresas, cargos e historial mercantil.') ?>">
+
+    <!-- Open Graph for Social Media Sharing -->
+    <meta property="og:title" content="<?= htmlspecialchars($page_title ?? 'OpenBorme | Registro Mercantil') ?>">
+    <meta property="og:description"
+        content="<?= htmlspecialchars($page_description ?? 'Explora los registros del BORME de manera rápida y sencilla.') ?>">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="/assets/css/styles.css">
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
 </head>
@@ -28,8 +37,13 @@
                 </form>
             </div>
 
-            <nav class="header-nav" style="display: flex; gap: var(--space-2);">
-                <a href="/sumario" class="btn btn-ghost btn-s">Diario</a>
+            <button class="mobile-menu-btn" onclick="document.getElementById('nav-menu').classList.toggle('active')">
+                ☰
+            </button>
+
+            <nav id="nav-menu" class="header-nav" style="display: flex; gap: var(--space-2);">
+                <a href="/borme/dias" class="btn btn-ghost btn-s">Diario</a>
+                <a href="/provincias" class="btn btn-ghost btn-s">Provincias</a>
                 <a href="/empresas" class="btn btn-ghost btn-s">Empresas</a>
                 <a href="/descargas" class="btn btn-ghost btn-s">Descargas</a>
                 <a href="/api" class="btn btn-primary btn-s" style="border-radius: var(--radius-sm);">API</a>

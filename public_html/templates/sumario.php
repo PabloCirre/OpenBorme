@@ -1,38 +1,69 @@
 <?php
 // sumario.php - Structured Daily Summary
+// Fetches and parses the daily index from BOE.es
 
-$date = $_GET['date'] ?? '2026-02-11';
-$formatted_date = date('d/m/Y', strtotime($date));
+$date = $_GET['date'] ?? date('Ymd');
+$year = substr($date, 0, 4);
+$month = substr($date, 4, 2);
+$day = substr($date, 6, 2);
+$formatted_date = "$day/$month/$year";
 
-// Mock Data grouped by Section and Province
-$sections = [
-    'SECCIÓN PRIMERA: Empresarios - Actos Inscritos' => [
-        'MADRID' => [
-            ['id' => 'BORME-A-2026-3024', 'label' => 'SOLUCIONES TECNOLÓGICAS SL'],
-            ['id' => 'BORME-A-2026-3025', 'label' => 'LOGÍSTICA AVANZADA SA'],
-        ],
-        'BARCELONA' => [
-            ['id' => 'BORME-A-2026-3026', 'label' => 'MEDITERRÁNEA DE SERVICIOS SL'],
-        ]
-    ],
-    'SECCIÓN SEGUNDA: Anuncios y Avisos Legales' => [
-        'MADRID' => [
-            ['id' => 'BORME-C-2026-407', 'label' => 'ANUNCIO DE FUSIÓN'],
-        ]
-    ]
-];
+// Use shared scraper
+require_once __DIR__ . '/../lib/BoeScraper.php';
+
+$scraper = new BoeScraper();
+$result = $scraper->getSummary($date);
+
+$sections = $result['sections'];
+$error = $result['error'];
+
+// Filter by Province (if requested)
+$filter_prov_slug = $_GET['provincia'] ?? null;
+if ($filter_prov_slug && !empty($sections)) {
+    $filtered_sections = [];
+    foreach ($sections as $sec_name => $provinces) {
+        foreach ($provinces as $prov_name => $items) {
+            // Normalize Prov Name to match slug logic
+            $clean_name = str_replace(['PROVINCIA ', 'SECCIÓN ESPECIAL '], '', $prov_name);
+            $slug = strtolower(trim($clean_name));
+            $slug = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ñ', '/'], ['a', 'e', 'i', 'o', 'u', 'n', '-'], $slug);
+            $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
+            $slug = preg_replace('/-+/', '-', $slug);
+            $slug = trim($slug, '-');
+
+            if ($slug === $filter_prov_slug) {
+                $filtered_sections[$sec_name][$prov_name] = $items;
+            }
+        }
+    }
+    // If we found matches, use them. Else show all? Or show empty?
+    // Let's show filtered.
+    if (!empty($filtered_sections)) {
+        $sections = $filtered_sections;
+    }
+}
+
+// Fallback logic if empty (e.g. weekend or parsing fail)
+if (empty($sections)) {
+    $sections['AVISO'] = ['INFO' => [['id' => '', 'label' => 'No hay boletines publicados para esta fecha o no se han podido cargar.']]];
+}
 ?>
 
 <div class="container" style="padding: var(--space-6) 0;">
     <nav class="breadcrumbs">
         <a href="/">Inicio</a> /
-        <a href="/diario">Diario</a> /
+        <a href="/borme/dias">Diario</a> /
         <span>Boletín de <?= $formatted_date ?></span>
     </nav>
 
     <div style="margin-bottom: var(--space-7);">
         <h1>BORME del <?= $formatted_date ?></h1>
-        <p class="meta">Sumario estructurado de actos y anuncios publicados en el Registro Mercantil.</p>
+        <p class="meta">Sumario obtenido en tiempo rea de la Sede Electrónica del BOE.</p>
+
+        <div style="margin-top: var(--space-4);">
+            <a href="https://www.boe.es/borme/dias/<?= $year ?>/<?= $month ?>/<?= $day ?>/" target="_blank"
+                class="btn btn-secondary btn-s">Ver en BOE.es &rarr;</a>
+        </div>
     </div>
 
     <?php foreach ($sections as $section_name => $provinces): ?>
@@ -48,19 +79,24 @@ $sections = [
                 <div style="margin-bottom: var(--space-6);">
                     <h3
                         style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: var(--space-3); border-left: 2px solid var(--accent); padding-left: var(--space-3);">
-                        Provincia de <?= $province ?>
+                        <?= $province ?>
                     </h3>
 
                     <div
                         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: var(--space-4);">
-                        <?php foreach ($items as $item): ?>
+                        <?php foreach ($items as $item):
+                            if (!$item['id']) {
+                                echo "<div class='inst-card' style='padding: var(--space-4); color: var(--text-muted);'>" . $item['label'] . "</div>";
+                                continue;
+                            }
+                            ?>
                             <a href="/borme/doc/<?= $item['id'] ?>?date=<?= $date ?>" class="inst-card"
                                 style="padding: var(--space-4); display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
                                 <div style="display: flex; flex-direction: column; gap: 4px;">
                                     <span class="mono"
                                         style="font-size: 0.75rem; color: var(--text-muted);"><?= $item['id'] ?></span>
                                     <span
-                                        style="font-size: 1rem; font-weight: 700; color: var(--text-main);"><?= $item['label'] ?></span>
+                                        style="font-size: 1rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 280px;"><?= $item['label'] ?></span>
                                 </div>
                                 <span style="font-size: 0.8rem; color: var(--brand-primary); font-weight: 800;">VER &rarr;</span>
                             </a>
@@ -70,13 +106,4 @@ $sections = [
             <?php endforeach; ?>
         </section>
     <?php endforeach; ?>
-
-    <div class="trazabilidad" style="margin-top: var(--space-8);">
-        <h5>Información del Sumario</h5>
-        <p style="font-size: 13px;">
-            Este sumario ha sido generado automáticamente a partir de los datos abiertos de la <a
-                href="https://www.boe.es" target="_blank">Agencia Estatal BOE</a>.
-            OpenBorme procesa estos datos para ofrecer una visualización técnica estructurada.
-        </p>
-    </div>
 </div>

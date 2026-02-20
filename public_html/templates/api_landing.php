@@ -37,6 +37,6 @@
         <p>}</p>
     </div>
     <div style="margin-top: 2rem;">
-        <a href="/docs/developer_guide.md" class="btn btn-outline">VER GUÍA COMPLETA</a>
+        <a href="/api/documentacion" class="btn btn-outline">VER GUÍA COMPLETA</a>
     </div>
 </section>

@@ -27,7 +27,9 @@ class BormeParser
 
         // We look for patterns like: "1234 - NOMBRE EMPRESA."
         // Using fewer constraints to be robust against extraction noise
-        $regex = '/(\d+)\s+-\s+([^\.]+?)\./';
+        // Changed \s+ to \s* to handle "1234-NOMBRE" merging
+        // Added (?<![\d-]) to avoid matching CVEs like BORME-A-2024-1-28 (matches 1-28)
+        $regex = '/(?<![\d-])(\d+)\s*-\s*([^\.]+?)\./';
 
         if (preg_match_all($regex, $full_text, $matches, PREG_OFFSET_CAPTURE)) {
 
@@ -64,6 +66,8 @@ class BormeParser
 
                 // CIF
                 if (preg_match('/[ABCDEFGHJNPQRSUVW][\s\-\.]?\d{2}[\s\-\.]?\d{3}[\s\-\.]?\d{3}/i', $details, $m)) {
+                    // Try to preserve formation but clean spaces
+                    // Actually, let's keep it simple
                     $act['cif'] = strtoupper(str_replace([' ', '-', '.'], '', $m[0]));
                 }
 

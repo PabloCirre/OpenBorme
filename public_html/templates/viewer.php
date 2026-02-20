@@ -45,23 +45,57 @@ $provinces = [
 ];
 $province_name = $provinces[$province_id] ?? "PROVINCIA $province_id";
 
-// Fetch Content (with fallback)
-$pdf_content = @file_get_contents($pdf_url);
-if ($pdf_content === false) {
-    // Try CURL if file_get_contents fails
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $pdf_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // For compatibility
-    $pdf_content = curl_exec($ch);
-    curl_close($ch);
+// Initialize Variables
+$acts = [];
+$error_msg = "";
+$not_found = false;
+
+// 2. Fetch PDF Content (On-the-Fly)
+// -------------------------------------------------------------------------
+
+// Try CURL first (More robust for external fetching vs file_get_contents)
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $pdf_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+// Mimic specific browser + Referer
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Referer: https://www.boe.es/',
+    'Accept: application/pdf,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+]);
+
+$pdf_content = curl_exec($ch);
+$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curl_error = curl_error($ch);
+curl_close($ch);
+
+// Validation
+if ($http_code !== 200 || $pdf_content === false || strlen($pdf_content) < 100 || strpos($pdf_content, '%PDF') === false) {
+    // If CURL failed, unlikely file_get_contents will work, but strictly fallback if CURL is disabled?
+    // Usually invalid PDF content means block.
+
+    // Check specifically for 404 (Not Found on BOE) vs 403 (Blocked)
+    if ($http_code == 404) {
+        $not_found = true;
+        // Skip parsing
+        goto render_view;
+    }
+
+    // Log intent to fallback but for now trust CURL failure or try file_get_contents as last resort
+    // simple fallback without complex context for now
+    if ($pdf_content === false) {
+        $pdf_content = @file_get_contents($pdf_url);
+    }
 }
 
 // 3. Parse Content
 $parser = new BormeParser();
-$acts = [];
-$error_msg = "";
+//$acts = []; // Initialized above
+//$error_msg = "";
+//$not_found = false; 
 
 if ($pdf_content && strlen($pdf_content) > 1000) {
     $acts = $parser->parse_pdf($pdf_content, $province_name);
@@ -70,101 +104,133 @@ if ($pdf_content && strlen($pdf_content) > 1000) {
 }
 
 // 4. Render
+render_view:
 ?>
 
 <div class="container" style="padding: var(--space-6) 0;">
     <nav class="breadcrumbs">
         <a href="/">Inicio</a> /
-        <a href="/diario">Diario</a> /
+        <a href="/borme/dias">Diario</a> /
         <a href="/borme/dias/<?= $year ?>/<?= $month ?>/<?= $day ?>"><?= $formatted_date ?></a> /
         <span><?= $id ?></span>
     </nav>
 
-    <div class="results-layout">
-        <!-- Main Content -->
-        <main class="main-content">
-            <div style="margin-bottom: var(--space-6);">
-                <div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-3);">
-                    <span class="badge">SECCIÓN PRIMERA</span>
-                    <span class="badge"><?= $province_name ?></span>
-                </div>
-                <h1 style="margin-bottom: var(--space-2);">Boletín Provincial: <?= $province_name ?></h1>
-                <p class="mono" style="color: var(--text-muted);"><?= $id ?> • <?= count($acts) ?> Actos Extraídos</p>
+    <?php if (isset($not_found) && $not_found): ?>
+        <div class="card"
+            style="text-align: center; padding: var(--space-8); border: 2px dashed var(--border-strong); max-width: 800px; margin: 0 auto;">
+            <div style="font-size: 3rem; margin-bottom: var(--space-4);">⚠️</div>
+            <h2 style="color: var(--text-main); margin-bottom: var(--space-3);">Documento No Disponible</h2>
+            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-5);">
+                El documento oficial <strong><?= $id ?></strong> no se encuentra en la sede electrónica del BOE.
+            </p>
+            <div style="display: flex; gap: var(--space-3); justify-content: center;">
+                <a href="<?= $pdf_url ?>" target="_blank" class="btn btn-secondary">Comprobar en Origen</a>
+                <a href="/borme/dias/<?= $year ?>/<?= $month ?>/<?= $day ?>" class="btn btn-primary">Volver al Sumario</a>
             </div>
+        </div>
+    <?php else: ?>
 
-            <?php if ($error_msg): ?>
-                <div class="card" style="border-left: 4px solid var(--boe-red); color: var(--boe-red);">
-                    <h3>Error de Obtención</h3>
-                    <p><?= $error_msg ?></p>
-                    <p><a href="<?= $pdf_url ?>" target="_blank" style="text-decoration: underline;">Intentar descargar
-                            manualmente</a></p>
+        <div class="viewer-layout">
+            <!-- Sidebar Navigation (Left) -->
+            <aside class="sticky-sidebar">
+                <div style="margin-bottom: var(--space-4);">
+                    <input type="text" id="toc-filter" placeholder="Filtrar empresas..."
+                        style="width: 100%; padding: 8px; border: 1px solid var(--border-strong); border-radius: var(--radius-sm);">
                 </div>
-            <?php else: ?>
 
-                <?php foreach ($acts as $act): ?>
-                    <article class="inst-card"
-                        style="margin-bottom: var(--space-6); background: white; padding: var(--space-6);">
-                        <div
-                            style="border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-3); margin-bottom: var(--space-4);">
-                            <span class="badge"
-                                style="background: var(--bg-alt); color: var(--text-main); border: 1px solid var(--border-color);"><?= $act['id'] ?></span>
-                            <h2 style="margin: var(--space-3) 0; font-size: 1.5rem; color: var(--brand-primary);">
-                                <?= $act['company'] ?></h2>
-                        </div>
+                <div
+                    style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-2); letter-spacing: 0.05em;">
+                    Índice de Empresas (<?= count($acts) ?>)
+                </div>
 
-                        <div style="line-height: 1.8; font-size: 1.05rem; white-space: pre-wrap; color: var(--text-main);">
-                            <?= $act['details'] ?>
-                        </div>
+                <nav id="toc-list">
+                    <?php foreach ($acts as $index => $act):
+                        // Create a safe ID anchor
+                        $anchor_id = "act-" . $index;
+                        $short_name = mb_strimwidth($act['company'], 0, 30, "...");
+                        ?>
+                        <a href="#<?= $anchor_id ?>" class="toc-link" title="<?= $act['company'] ?>">
+                            <?= $short_name ?>
+                        </a>
+                    <?php endforeach; ?>
+                </nav>
 
-                        <?php if ($act['cif'] || $act['capital']): ?>
-                            <div
-                                style="margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px dashed var(--border-color); display: flex; gap: var(--space-4); font-size: 0.9rem;">
-                                <?php if ($act['cif']): ?>
-                                    <div><strong>CIF:</strong> <span class="mono"><?= $act['cif'] ?></span></div>
-                                <?php endif; ?>
-                                <?php if ($act['capital']): ?>
-                                    <div><strong>Capital:</strong> <?= $act['capital'] ?></div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                    </article>
-                <?php endforeach; ?>
+                <div
+                    style="margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--border-subtle);">
+                    <a href="<?= $pdf_url ?>" target="_blank" class="btn btn-secondary btn-s" style="width: 100%;">
+                        📄 Ver PDF Original
+                    </a>
+                </div>
+            </aside>
 
-            <?php endif; ?>
-
-            <!-- Trazabilidad block -->
-            <div class="trazabilidad" style="padding-top: var(--space-6); border-top: 2px solid var(--border-subtle);">
-                <h5>Trazabilidad del Documento</h5>
-                <div class="inst-card"
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); margin-top: var(--space-3); padding: var(--space-4); background: var(--bg-alt);">
-                    <div>
-                        <p class="meta" style="font-size: 12px; margin-bottom: 4px;">Fuente Oficial</p>
-                        <a href="<?= $pdf_url ?>" target="_blank" class="btn btn-ghost btn-s"
-                            style="padding: 0; height: auto;">Descargar PDF Original (BOE) &rarr;</a>
+            <!-- Main Content (Right) -->
+            <main class="main-content">
+                <header
+                    style="margin-bottom: var(--space-6); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-4);">
+                    <div style="display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2);">
+                        <span class="badge"
+                            style="background: var(--brand-primary); color: white;"><?= $province_name ?></span>
+                        <span class="mono" style="color: var(--text-muted);"><?= $id ?></span>
                     </div>
-                    <div>
-                        <p class="meta" style="font-size: 12px; margin-bottom: 4px;">Procesado</p>
-                        <p style="font-size: 13px; font-weight: 600;">En tiempo real (Fly Mode)</p>
-                    </div>
-                </div>
-            </div>
-        </main>
+                    <h1 style="font-size: 1.75rem; color: var(--text-main);">Actos Inscritos</h1>
+                </header>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div style="position: sticky; top: 84px;">
-                <div class="card" style="padding: var(--space-4);">
-                    <h4
-                        style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-3);">
-                        Navegación
-                    </h4>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
-                        Este documento contiene <strong><?= count($acts) ?></strong> actos empresariales inscritos en
-                        <strong><?= $province_name ?></strong>.
-                    </p>
-                    <a href="<?= $pdf_url ?>" class="btn btn-primary btn-full">VER PDF ORIGINAL</a>
-                </div>
-            </div>
-        </aside>
-    </div>
+                <?php if ($error_msg): ?>
+                    <div class="card" style="border-left: 4px solid var(--brand-primary); color: var(--brand-primary);">
+                        <h3>Error de Procesamiento</h3>
+                        <p><?= $error_msg ?></p>
+                    </div>
+                <?php else: ?>
+
+                    <div id="acts-container">
+                        <?php foreach ($acts as $index => $act):
+                            $anchor_id = "act-" . $index;
+                            ?>
+                            <article id="<?= $anchor_id ?>" class="act-card">
+                                <div class="act-header">
+                                    <h2 class="act-company"><?= $act['company'] ?></h2>
+                                    <span class="badge"><?= $act['id'] ?></span>
+                                </div>
+
+                                <div
+                                    style="font-size: 1rem; color: var(--text-main); line-height: 1.6; margin-bottom: var(--space-4);">
+                                    <?= $act['details'] ?>
+                                </div>
+
+                                <?php if ($act['cif'] || $act['capital']): ?>
+                                    <div
+                                        style="display: flex; gap: var(--space-4); font-size: 0.9rem; color: var(--text-muted); background: var(--bg-alt); padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm);">
+                                        <?php if ($act['cif']): ?>
+                                            <span><strong>CIF:</strong> <span class="mono"><?= $act['cif'] ?></span></span>
+                                        <?php endif; ?>
+                                        <?php if ($act['capital']): ?>
+                                            <span><strong>Capital:</strong> <?= $act['capital'] ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </article>
+                        <?php endforeach; ?>
+                    </div>
+
+                <?php endif; ?>
+            </main>
+        </div>
+
+        <script>
+            // Simple JS for TOC filtering
+            document.getElementById('toc-filter').addEventListener('keyup', function (e) {
+                const term = e.target.value.toLowerCase();
+                const links = document.querySelectorAll('.toc-link');
+
+                links.forEach(link => {
+                    const text = link.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            });
+        </script>
+    <?php endif; ?>
 </div>

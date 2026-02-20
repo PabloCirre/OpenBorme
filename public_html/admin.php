@@ -82,19 +82,26 @@ $is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $_SERVER[
                 <button class="btn btn-primary" id="start-btn">Iniciar</button>
             </div>
 
-            <div class="controls-history" style="background: #f0f7ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #cce5ff;">
-                <h3 style="color: #004085; font-size: 1rem; margin-bottom: 1rem;">🚀 Extracción de Alto Rendimiento (Python)</h3>
+            <div class="controls-history"
+                style="background: #f0f7ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #cce5ff;">
+                <h3 style="color: #004085; font-size: 1rem; margin-bottom: 1rem;">🚀 Extracción de Alto Rendimiento
+                    (Python)</h3>
                 <p style="font-size: 0.85rem; color: #004085; margin-bottom: 1rem; line-height: 1.4;">
-                    Para el <strong>Horizonte 2020 (25GB)</strong>, utiliza el motor de Python integrado. Es 10x más rápido y estable que la interfaz web.
+                    Para el <strong>Horizonte 2020 (25GB)</strong>, utiliza el motor de Python integrado. Es 10x más
+                    rápido y estable que la interfaz web.
                 </p>
-                <div style="background: #e1eefc; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #004085; margin-bottom: 1rem;">
+                <div
+                    style="background: #e1eefc; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #004085; margin-bottom: 1rem;">
                     cd core/extractor<br>
                     python engine.py 2020-01-01 2020-12-31
                 </div>
                 <div style="display: flex; gap: 1rem; align-items: center; opacity: 0.6; pointer-events: none;">
-                    <input type="date" id="start-date" value="2020-01-01" style="padding: 0.5rem; border: 1px solid var(--border-color);">
-                    <input type="date" id="end-date" value="2020-01-31" style="padding: 0.5rem; border: 1px solid var(--border-color);">
-                    <button class="btn" style="background: #004085; color: white;" id="history-btn">Cargar Rango (Web Legacy)</button>
+                    <input type="date" id="start-date" value="2020-01-01"
+                        style="padding: 0.5rem; border: 1px solid var(--border-color);">
+                    <input type="date" id="end-date" value="2020-01-31"
+                        style="padding: 0.5rem; border: 1px solid var(--border-color);">
+                    <button class="btn" style="background: #004085; color: white;" id="history-btn">Cargar Rango (Web
+                        Legacy)</button>
                 </div>
                 <p style="font-size: 0.7rem; color: #004085; mt: 0.5rem;">
                     * La carga vía web está limitada para evitar saturar el navegador. Usa Python para lotes grandes.
@@ -125,7 +132,7 @@ $is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $_SERVER[
                 <div class="log-container" id="log-container"></div>
             </div>
 
-            <a href="legacy/borme_data_extract.xlsx" id="download-btn" class="btn"
+            <a href="#" id="download-btn" class="btn"
                 style="display:none; width: 100%; margin-top: 2rem; border: 1px solid var(--boe-red);">DESCARGAR DATOS
                 COMPLETOS</a>
         </div>

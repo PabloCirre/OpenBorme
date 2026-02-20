@@ -60,6 +60,13 @@ if (isset($routes[$clean_path])) {
     $page_index = $routes[$clean_path]['index'];
     if (isset($routes[$clean_path]['title']))
         $page_title = $routes[$clean_path]['title'] . " | OpenBorme";
+
+    // Generate desc based on template
+    if ($template === 'search.php' || $template === 'search_advanced.php') {
+        $page_description = "Buscador avanzado del Registro Mercantil de España. Filtra por empresas, cargos, CIF o palabras clave.";
+    } elseif ($template === 'static.php') {
+        $page_description = "Sección de " . ($routes[$clean_path]['title'] ?? 'información') . " de OpenBorme, la plataforma de acceso al Registro Mercantil.";
+    }
 }
 
 // 2. Complex Routes (Regex-like)
@@ -86,12 +93,13 @@ if ($clean_path === 'borme/dias') {
 if (preg_match('/^borme\/dias\/(\d{4})\/(\d{2})\/(\d{2})$/', $clean_path, $matches)) {
     $date = $matches[1] . $matches[2] . $matches[3];
     $_GET['date'] = $date;
-    $template = 'sumario.php';
+    $template = 'home.php'; // Updated to use Home (Preview Mode) instead of Sumario
     $page_title = "BORME del " . $matches[3] . "/" . $matches[2] . "/" . $matches[1];
+    $page_description = "Consulta todas las empresas registradas y la actividad del Registro Mercantil publicadas en el boletín del " . $matches[3] . "/" . $matches[2] . "/" . $matches[1] . ".";
 }
 
 // /borme/doc/{id} or /diario_borme/txt.php?id=...
-if (preg_match('/(BORME-[A-Z]-[0-9]{4}-[0-9]+-[0-9]+)/', $base_path, $matches)) {
+if (preg_match('/(BORME-[A-Z]-\d{4}-[\d-]+)/', $base_path, $matches)) {
     $_GET['id'] = $matches[1];
     $template = 'viewer.php';
 }
@@ -100,7 +108,9 @@ if (preg_match('/(BORME-[A-Z]-[0-9]{4}-[0-9]+-[0-9]+)/', $base_path, $matches)) 
 if (preg_match('/^borme\/provincia\/([a-z-]+)$/', $clean_path, $matches)) {
     $_GET['provincia'] = $matches[1];
     $template = 'landing_seo.php';
-    $page_title = "BORME de " . ucwords(str_replace('-', ' ', $matches[1]));
+    $prov_name = ucwords(str_replace('-', ' ', $matches[1]));
+    $page_title = "BORME de " . $prov_name;
+    $page_description = "Explora los boletines mercantiles e información de sociedades en la provincia de " . $prov_name . ".";
 }
 
 // /borme/provincia/{provincia}/{Y}/{M}/{D}
@@ -110,6 +120,14 @@ if (preg_match('/^borme\/provincia\/([a-z-]+)\/(\d{4})\/(\d{2})\/(\d{2})$/', $cl
     $template = 'sumario.php';
     $page_title = "BORME de " . ucwords($matches[1]) . " - " . $matches[4] . "/" . $matches[3] . "/" . $matches[2];
 }
+
+// /borme/sumario/{Y}/{M}/{D} (Full Summary)
+if (preg_match('/^borme\/sumario\/(\d{4})\/(\d{2})\/(\d{2})$/', $clean_path, $matches)) {
+    $_GET['date'] = $matches[1] . $matches[2] . $matches[3];
+    $template = 'sumario.php';
+    $page_title = "Sumario BORME " . $matches[3] . "/" . $matches[2] . "/" . $matches[1];
+}
+
 
 // /tipo/{slug}
 if (preg_match('/^tipo\/([a-z-]+)$/', $clean_path, $matches)) {
@@ -122,7 +140,8 @@ if (preg_match('/^tipo\/([a-z-]+)$/', $clean_path, $matches)) {
 if (preg_match('/^empresa\/([a-zA-Z0-9-]+)$/', $clean_path, $matches)) {
     $_GET['id'] = $matches[1];
     $template = 'empresa.php';
-    $page_title = "Historial: " . $matches[1];
+    $page_title = "Historial Mercantil: " . $matches[1];
+    $page_description = "Historial y actos mercantil registrados para la empresa o entidad societaria con identificador " . $matches[1] . " en el BORME.";
 }
 
 // 3. Render Page
@@ -139,9 +158,20 @@ if (file_exists($template_file)) {
     include $template_file;
     include __DIR__ . "/templates/footer.php";
 } else {
+    // Return HTTP 404 Status Code properly
+    header("HTTP/1.0 404 Not Found");
+
     // If template doesn't exist, use static template if it matches a path for now
-    $page_title = ucwords(str_replace('-', ' ', trim($base_path, '/')));
-    $page_content = "<p>Esta sección está actualmente en desarrollo. Pronto estará disponible el contenido para <strong>" . htmlspecialchars($base_path) . "</strong>.</p>";
+    $page_title = "Página no encontrada o en desarrollo | 404";
+    $page_description = "La ruta solicitada no se encuentra disponible en OpenBorme.";
+    $page_content = "<div style='text-align: center; padding: 4rem 1rem;'>
+        <h2>Ups, ruta no encontrada (Error 404)</h2>
+        <p style='margin-top: 1rem;'>Esta sección está actualmente en desarrollo o no existe el contenido para <strong>" . htmlspecialchars($base_path) . "</strong>.</p>
+        <div style='margin-top: 2rem;'>
+            <a href='/' class='btn btn-primary'>Volver a la Portada</a>
+        </div>
+    </div>";
+
     include __DIR__ . "/templates/header.php";
     include __DIR__ . "/templates/static.php";
     include __DIR__ . "/templates/footer.php";

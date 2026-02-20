@@ -32,35 +32,33 @@ class PdfParser
 
     private function extractTextFromStream($stream)
     {
-        // Extract text between () or inside TJ arrays
         $text = "";
 
-        // Simple text operator extraction
-        // (Text) Tj  or  [(Te) 20 (xt)] TJ
+        // Regex to capture operators in order:
+        // 1. (...) Tj
+        // 2. [...] TJ
+        // We use a non-greedy catch for content. 
+        // Note: Simple parsing. Does not handle nested parentheses perfectly if not escaped.
 
-        // 1. Remove text positioning operators to avoid noise
-        // This is tricky without a full parser, but let's try capturing (...)Tj
-
-        if (preg_match_all('/\((.*?)\)\s*Tj/', $stream, $matches)) {
-            foreach ($matches[1] as $m) {
-                $text .= $m;
-            }
-        }
-
-        // 2. Handle TJ arrays: [(H) -2 (e) -2 (l) -2 (l) -2 (o)] TJ
-        if (preg_match_all('/\[(.*?)\]\s*TJ/', $stream, $matches)) {
-            foreach ($matches[1] as $m) {
-                // Extract strings in parentheses inside the array
-                if (preg_match_all('/\((.*?)\)/', $m, $submatches)) {
-                    foreach ($submatches[1] as $sm) {
-                        $text .= $sm;
+        if (preg_match_all('/(?:\((.*?)\)\s*Tj)|(?:\[(.*?)\]\s*TJ)/s', $stream, $matches, PREG_SET_ORDER)) {
+            foreach ($matches as $match) {
+                // Check which group matched
+                if (!empty($match[1])) {
+                    // (...) Tj Case
+                    $text .= $match[1];
+                } elseif (!empty($match[2])) {
+                    // [...] TJ Case
+                    // TJ contains an array of strings and numbers (shifts). 
+                    // We only want the strings: [(Text) 20 (More)]
+                    if (preg_match_all('/\((.*?)\)/', $match[2], $submatches)) {
+                        foreach ($submatches[1] as $submatch) {
+                            $text .= $submatch;
+                        }
                     }
                 }
             }
         }
 
-        // Handle newlines mapping (T* or Td/TD with negative Y)
-        // This parser returns a continuous stream, we'll rely on regex for structure
         return $text;
     }
 

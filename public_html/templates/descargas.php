@@ -59,7 +59,7 @@ include 'header.php';
                         b812...e409</p>
                 </div>
             </div>
-            <a href="/borme_data.csv" class="btn btn-primary btn-m" style="width: 100%;">DESCARGAR CSV</a>
+            <a href="/exportar" class="btn btn-primary btn-m" style="width: 100%;">DESCARGAR CSV</a>
         </div>
     </div>
 
