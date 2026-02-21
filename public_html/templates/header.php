@@ -7,6 +7,7 @@
     <title><?= htmlspecialchars($page_title ?? 'OpenBorme | Registro Mercantil') ?></title>
     <meta name="description"
         content="<?= htmlspecialchars($page_description ?? 'Buscador abierto y gratuito del Boletín Oficial del Registro Mercantil (BORME). Consulta empresas, cargos e historial mercantil.') ?>">
+    <meta name="google-site-verification" content="M3iTd6WAiraIsdVMp6nReHFN5VaULFXhB6hv-54f2vM" />
 
     <!-- Open Graph for Social Media Sharing -->
     <meta property="og:title" content="<?= htmlspecialchars($page_title ?? 'OpenBorme | Registro Mercantil') ?>">
