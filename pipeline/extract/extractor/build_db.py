@@ -72,8 +72,7 @@ def main():
     print(f"📅 Encontrados {len(dates)} días para procesar.")
 
     total_inserted = 0
-
-    conn.execute("BEGIN TRANSACTION")
+    date_count = 0
 
     try:
         for date_str in sorted(dates):
@@ -81,8 +80,12 @@ def main():
             if not os.path.isdir(date_path):
                 continue
                 
-            print(f"⏳ Procesando fecha: {date_str}...")
+            print(f"⏳ [{date_count+1}/{len(dates)}] Procesando fecha: {date_str}...")
             
+            # Use small transactions per day or group of days to avoid massive locks/journals
+            if date_count % 10 == 0:
+                conn.execute("BEGIN TRANSACTION")
+
             # Process Section A (PDFs)
             section_a_path = os.path.join(date_path, "section_A")
             if os.path.exists(section_a_path):
@@ -139,23 +142,19 @@ def main():
                             except sqlite3.Error as e:
                                 print(f"Error insertando acto: {e}")
 
-            # Process Section C (XMLs)
-            section_c_path = os.path.join(date_path, "section_C")
-            if os.path.exists(section_c_path):
-                for filename in os.listdir(section_c_path):
-                    if filename.endswith(".xml"):
-                        xml_path = os.path.join(section_c_path, filename)
-                        act = parse_section_2_xml(xml_path)
-                        if act:
-                            # Not implemented fully for DB injection here as Section 1 is the main target,
-                            # but can be added if XML parsing provides standard dictionary format.
-                            pass
+            date_count += 1
+            if date_count % 10 == 0:
+                conn.commit()
+                print(f"✅ Chunk de 10 días guardado. Total insertados: {total_inserted}")
 
         conn.commit()
         print(f"✅ ¡Proceso completado! Se han insertado {total_inserted} actos en la Base de Datos SQLite.")
         print(f"🚀 Ya puedes subir el archivo '{DB_PATH}' a tu servidor FTP de Hostinger.")
     except Exception as e:
-        conn.rollback()
+        try:
+            conn.rollback()
+        except:
+            pass
         print(f"❌ Error catastrófico guardando la información: {e}")
     finally:
         conn.close()

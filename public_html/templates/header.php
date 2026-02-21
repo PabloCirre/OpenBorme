@@ -15,26 +15,21 @@
         content="<?= htmlspecialchars($page_description ?? 'Explora los registros del BORME de manera rápida y sencilla.') ?>">
     <meta property="og:type" content="website">
 
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=3.0.1">
 </head>
 
 <body>
-    <header class="inst-header" style="height: 72px; position: sticky; top: 0; z-index: 1000;">
-        <div class="container"
-            style="height: 100%; display: flex; align-items: center; justify-content: space-between;">
+    <header class="inst-header">
+        <div class="header-container container">
             <a href="/" class="logo-container">
                 <span class="logo-open">Open</span>
                 <span class="logo-borme-box">Borme</span>
             </a>
 
-            <div class="header-search-wrap"
-                style="flex: 1; max-width: 520px; margin: 0 var(--space-6); position: relative;">
+            <div class="header-search-wrap">
                 <form action="/buscar" method="GET">
-                    <input type="text" name="q" id="global-search" class="input-main"
-                        style="border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: var(--bg-alt);"
-                        placeholder="Buscar por empresa o texto (presiona /)"
-                        value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+                    <input type="text" name="q" id="global-search" class="header-search-input"
+                        placeholder="Buscar por empresa o texto..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
                 </form>
             </div>
 
@@ -42,12 +37,12 @@
                 ☰
             </button>
 
-            <nav id="nav-menu" class="header-nav" style="display: flex; gap: var(--space-2);">
+            <nav id="nav-menu" class="header-nav" style="display: flex; gap: var(--space-1);">
                 <a href="/borme/dias" class="btn btn-ghost btn-s">Diario</a>
                 <a href="/provincias" class="btn btn-ghost btn-s">Provincias</a>
                 <a href="/empresas" class="btn btn-ghost btn-s">Empresas</a>
                 <a href="/descargas" class="btn btn-ghost btn-s">Descargas</a>
-                <a href="/api" class="btn btn-primary btn-s" style="border-radius: var(--radius-sm);">API</a>
+                <a href="/api" class="btn btn-primary btn-s" style="margin-left: var(--space-2);">API</a>
             </nav>
         </div>
     </header>

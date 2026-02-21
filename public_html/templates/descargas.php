@@ -4,19 +4,22 @@
         <span>Descargas</span>
     </nav>
 
-    <div style="margin-bottom: var(--space-7);">
-        <h1>Descargar datos del BORME</h1>
-        <p class="meta">Acceso a los archivos de datos masivos estructurados para análisis a gran escala.</p>
+    <div class="v3-landing-header">
+        <h1 class="taxonomy-title">Sincronización de Datos & Descargas</h1>
+        <p style="color: var(--text-muted); font-size: 1.15rem; max-width: 800px;">
+            Acceso a los archivos de datos masivos estructurados de alta fidelidad para análisis técnico a gran escala.
+        </p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--space-6);">
+    <div class="borme-grid">
         <!-- Parquet Dataset -->
-        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card grid-col-6" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
                 <div
                     style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-4);">
-                    <h2 style="font-size: 20px;">BORME Histórico (Parquet)</h2>
-                    <span class="badge" style="background: #ecfdf5; color: #065f46; border: none;">OPTIMIZADO</span>
+                    <h2 style="font-size: 1.25rem; color: var(--brand-dark);">BORME Histórico (Parquet)</h2>
+                    <span class="badge"
+                        style="background: var(--bg-soft); color: var(--accent); border: 1px solid var(--accent-faded);">OPTIMIZADO</span>
                 </div>
                 <p style="font-size: 14px; margin-bottom: var(--space-5);">
                     Archivo de alta compresión ideal para procesamiento masivo con Spark, Python (Pandas/Polars) o
@@ -35,7 +38,7 @@
         </div>
 
         <!-- CSV Dataset -->
-        <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="card grid-col-6" style="display: flex; flex-direction: column; justify-content: space-between;">
             <div>
                 <div
                     style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: var(--space-4);">
@@ -58,8 +61,8 @@
         </div>
     </div>
 
-    <div class="trazabilidad" style="margin-top: var(--space-8);">
-        <h5>Condiciones de Reutilización</h5>
+    <div class="taxonomy-footer v3-note-box">
+        <h5 style="color: var(--text-main); font-weight: 800;">Condiciones de Reutilización</h5>
         <p style="font-size: 13px; margin-bottom: var(--space-3);">
             Estos datos se distribuyen bajo los términos de la Ley 37/2007 de reutilización de la información del sector
             público.

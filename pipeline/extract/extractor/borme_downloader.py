@@ -104,11 +104,21 @@ class BormeDownloader:
 
 if __name__ == "__main__":
     import sys
-    days = int(sys.argv[1]) if len(sys.argv) > 1 else 7
-    
-    end_date = datetime.date.today()
-    start_date = end_date - datetime.timedelta(days=days)
     
     downloader = BormeDownloader(storage_dir=BASE_DATA_DIR)
-    print(f"[*] Descargando BORME desde {start_date} hasta {end_date}...")
-    downloader.download_range(start_date, end_date)
+    
+    if len(sys.argv) >= 3:
+        # Range: python borme_downloader.py 2023-01-01 2023-01-31
+        start_str = sys.argv[1]
+        end_str = sys.argv[2]
+        start_date = datetime.datetime.strptime(start_str, "%Y-%m-%d").date()
+        end_date = datetime.datetime.strptime(end_str, "%Y-%m-%d").date()
+        print(f"[*] Descargando BORME desde {start_date} hasta {end_date}...")
+        downloader.download_range(start_date, end_date)
+    else:
+        # Days from today: python borme_downloader.py 30
+        days = int(sys.argv[1]) if len(sys.argv) > 1 else 7
+        end_date = datetime.date.today()
+        start_date = end_date - datetime.timedelta(days=days)
+        print(f"[*] Descargando BORME de los últimos {days} días (desde {start_date})...")
+        downloader.download_range(start_date, end_date)

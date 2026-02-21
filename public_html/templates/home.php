@@ -3,40 +3,35 @@ $db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . 
 require_once $db_path;
 ?>
 <main class="container" style="padding: var(--space-8) 0;">
-    <div class="hero-section" style="text-align: center; max-width: 900px; margin: 0 auto var(--space-8);">
-        <h1 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Visualiza el Registro Mercantil <br>como
-            nunca antes</h1>
-        <p style="font-size: 1.25rem; margin-bottom: var(--space-6); color: var(--text-muted);">
-            OpenBorme estructura, normaliza y democratiza el acceso a los datos societarios de España.
-            Sin publicidad, sin rastreo, solo datos puros.
+    <div class="hero-v3">
+        <h1 class="hero-title">La infraestructura de datos del <br><span class="accent-malva">Registro Mercantil</span>
+        </h1>
+        <p class="hero-subtitle">
+            Normalización y democratización de los datos societarios de la industria española en una plataforma de alto
+            rendimiento para analistas y desarrolladores.
         </p>
 
-        <form action="/buscar" method="GET" class="hero-search-form"
-            style="display: flex; gap: var(--space-3); max-width: 680px; margin: 0 auto; background: white; padding: var(--space-3); border-radius: var(--radius-md); border: 2px solid var(--brand-primary); box-shadow: var(--shadow-md);">
-            <input type="text" name="q" class="input-main" placeholder="Ej: Inditex, construcciones, B81234567..."
-                style="flex: 1; border: none; font-size: 1.1rem; outline: none; padding-left: var(--space-4);">
-            <button type="submit" class="btn btn-primary"
-                style="height: 52px; padding: 0 var(--space-6); border-radius: var(--radius-sm);">BUSCAR</button>
+        <form action="/buscar" method="GET" class="hero-search-wrap">
+            <input type="text" name="q" class="hero-search-input" placeholder="Buscar por empresa, NIF o texto...">
+            <button type="submit" class="btn btn-primary btn-m" style="background: var(--brand-dark);">BUSCAR</button>
         </form>
 
-        <div
-            style="margin-top: var(--space-5); display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2);">
-            <a href="/borme/dias" class="badge"
-                style="padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: white;">Hoy</a>
-            <a href="/buscar?date=yesterday" class="badge"
-                style="padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: white;">Ayer</a>
-            <a href="/provincias" class="badge"
-                style="padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); background: white;">Provincias</a>
+        <div class="hero-badges">
+            <a href="/borme/dias" class="badge-outline">Hoy</a>
+            <a href="/buscar?date=yesterday" class="badge-outline">Ayer</a>
+            <a href="/provincias" class="badge-outline">Provincias</a>
         </div>
     </div>
 
     <div style="margin: var(--space-8) 0;">
-        <h2 style="text-align: center; margin-bottom: var(--space-6); color: var(--brand-dark);">Últimos Boletines
-            Publicados</h2>
+        <div class="section-v3-header">
+            <h2 class="section-v3-title">Boletines Recientes</h2>
+            <a href="/borme/dias" class="btn btn-ghost btn-s">Explorar histórico &rarr;</a>
+        </div>
 
-        <div class="results-layout">
+        <div class="borme-grid">
             <!-- Calendar Widget -->
-            <div style="grid-column: span 4;">
+            <div class="grid-col-4">
                 <div class="calendar-widget">
                     <?php
                     $today_ts = strtotime(date('Y-m-d'));
@@ -123,7 +118,7 @@ require_once $db_path;
             </div>
 
             <!-- List / Detail View -->
-            <div style="grid-column: span 8; display: grid; gap: var(--space-4);">
+            <div class="grid-col-8" style="display: grid; gap: var(--space-4);">
                 <?php
                 if ($selected_date_str) {
                     // --- DETAIL MODE: Show bulletins for selected date ---
@@ -163,7 +158,6 @@ require_once $db_path;
                                 $slug = strtolower(trim($clean_name));
                                 $slug = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ñ', '/'], ['a', 'e', 'i', 'o', 'u', 'n', '-'], $slug);
                                 $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
-                                $slug = preg_replace('/-+/', '-', $slug);
                                 $slug = trim($slug, '-');
 
                                 // Link to PROVINCE view
@@ -212,27 +206,32 @@ require_once $db_path;
                         // Clean URL Construction
                         $url_clean = "/borme/dias/" . date('Y/m/d', $ts);
                         ?>
-                        <a href="<?= $url_clean ?>" class="inst-card date-card-hover"
-                            style="text-decoration: none; color: inherit; padding: var(--space-4); display: flex; align-items: center; gap: var(--space-5); transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                        <a href="<?= $url_clean ?>" class="card date-card-hover"
+                            style="text-decoration: none; padding: var(--space-5); display: flex; align-items: center; gap: var(--space-5); border-color: var(--border-subtle);">
 
-                            <!-- Big Number -->
+                            <!-- Authority Indicator -->
                             <div
-                                style="font-size: 2.5rem; font-weight: 800; line-height: 1; color: <?= $is_today ? 'var(--brand-primary)' : 'var(--text-secondary)' ?>;">
+                                style="font-size: 2.25rem; font-weight: 800; line-height: 1; color: <?= $is_today ? 'var(--accent)' : 'var(--text-secondary)' ?>; letter-spacing: -0.05em; width: 50px; text-align: center;">
                                 <?= $day_num ?>
                             </div>
 
-                            <!-- Date & Title -->
-                            <div style="border-left: 2px solid var(--border-subtle); padding-left: var(--space-4);">
-                                <div class="mono" style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2px;">
+                            <!-- Content Area -->
+                            <div style="flex: 1;">
+                                <div class="mono"
+                                    style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">
                                     <?= $human_date ?>
                                 </div>
-                                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--brand-dark); margin: 0;">Sumario
-                                    del Boletín</h3>
+                                <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0;">Boletín
+                                    Oficial (BORME)</h3>
                             </div>
 
-                            <!-- Arrow -->
-                            <div style="margin-left: auto; color: var(--brand-primary); font-size: 1.5rem;">
-                                &rarr;
+                            <!-- Malva Accent on Hover is handled by .card CSS, but let's add a micro-arrow -->
+                            <div style="color: var(--text-secondary); opacity: 0.3;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
                             </div>
                         </a>
                     <?php endforeach;
@@ -242,14 +241,13 @@ require_once $db_path;
         </div>
     </div>
 
-    <!-- PREMIUM FEATURE: Top Capital Injections -->
-    <div style="margin: var(--space-8) 0; padding-top: var(--space-6); border-top: 1px solid var(--border-subtle);">
-        <h2 style="text-align: center; margin-bottom: var(--space-2); color: var(--brand-dark);">💰 Top Inversiones de
-            Capital</h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: var(--space-5);">Las mayores inyecciones
-            de capital registradas recientemente en España.</p>
+    <!-- PREMIUM FEATURE: Bento Top Capital Injections -->
+    <div style="margin: var(--space-8) 0; padding-top: var(--space-8);">
+        <h2 class="section-v3-title" style="margin-bottom: var(--space-2);">💰 Inyecciones de Capital</h2>
+        <p style="color: var(--text-muted); margin-bottom: var(--space-6);">Las mayores transacciones registradas en el
+            sistema recientemente.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
+        <div class="borme-grid">
             <?php
             try {
                 $db = Database::getInstance();
@@ -262,21 +260,28 @@ require_once $db_path;
                 $stmt->execute();
                 $top_acts = $stmt->fetchAll();
 
-                foreach ($top_acts as $act) {
+                foreach ($top_acts as $index => $act) {
                     $c_date = date('d/m/Y', strtotime($act['date']));
-                    // Format Capital String
                     $cap_str = $act['capital'];
                     $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($act['company_name']));
-                    echo "<div class='card' style='padding: var(--space-4); border-left: 4px solid var(--brand-primary); transition: transform 0.2s; cursor: pointer;' onmouseover=\"this.style.transform='translateY(-4px)'\" onmouseout=\"this.style.transform='translateY(0)'\">
-                        <div style='font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; display: flex; justify-content: space-between;'>
-                            <span>{$act['province']}</span>
-                            <span>$c_date</span>
+
+                    // Bento style spanning: first two are larger
+                    $span_class = ($index < 2) ? 'grid-col-6' : 'grid-col-3';
+                    $padding = ($index < 2) ? 'var(--space-6)' : 'var(--space-5)';
+
+                    echo "<div class='card $span_class' style='padding: $padding; display: flex; flex-direction: column; justify-content: space-between; border-color: var(--border-subtle);'>
+                        <div>
+                            <div style='font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;'>
+                                {$act['province']} • $c_date
+                            </div>
+                            <h4 style='margin-bottom: 12px; color: var(--brand-dark); font-size: " . ($index < 2 ? '1.4rem' : '1.1rem') . "; line-height: 1.2;'>
+                                <a href='/empresa/$slug' style='text-decoration: none; color: inherit;' class='accent-hover'>{$act['company_name']}</a>
+                            </h4>
                         </div>
-                        <h4 style='margin-bottom: 8px; color: var(--brand-dark); font-size: 1.1rem;'>
-                            <a href='/empresa/$slug' style='text-decoration: none; color: inherit;'>{$act['company_name']}</a>
-                        </h4>
-                        <div style='font-weight: 700; color: #2e7d32; font-size: 1.25rem; margin-bottom: 4px;'>$cap_str</div>
-                        <div style='font-size: 0.85rem; color: var(--text-secondary); background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; display: inline-block;'>{$act['type']}</div>
+                        <div>
+                            <div style='font-weight: 800; color: var(--text-main); font-size: " . ($index < 2 ? '1.75rem' : '1.35rem') . "; margin-bottom: 8px; letter-spacing: -0.02em;'>$cap_str</div>
+                            <div class='badge' style='background: var(--bg-alt);'>{$act['type']}</div>
+                        </div>
                     </div>";
                 }
             } catch (Exception $e) {
@@ -292,16 +297,16 @@ require_once $db_path;
     <!-- Feature Cards -->
     <div
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-6); border-top: 1px solid var(--border-subtle); padding-top: var(--space-8);">
-        <section class="inst-card" style="padding: var(--space-6);">
+        <section class="inst-card">
             <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">🏗️</div>
             <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Ingeniería de Datos</h3>
             <p>
-                No solo volcamos texto. OpenBorme normaliza entidades, detecta tipos de actos y vincula eventos
-                para crear un historial coherente de cada empresa.
+                No solo volcamos texto. OpenBorme normaliza entidades, detecta tipos de actos y vincula eventos para
+                crear un historial coherente de cada empresa.
             </p>
         </section>
 
-        <section class="inst-card" style="padding: var(--space-6);">
+        <section class="inst-card">
             <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">⚖️</div>
             <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Ética por Diseño</h3>
             <p>
@@ -310,12 +315,12 @@ require_once $db_path;
             </p>
         </section>
 
-        <section class="inst-card" style="padding: var(--space-6);">
+        <section class="inst-card">
             <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">🚀</div>
             <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">API & Datasets</h3>
             <p>
-                Construido para desarrolladores e IAs. Accede a dumps masivos en formatos eficientes o integra
-                nuestra API en tus flujos de trabajo.
+                Construido para desarrolladores e IAs. Accede a dumps masivos en formatos eficientes o integra nuestra
+                API en tus flujos de trabajo.
             </p>
             <div style="margin-top: var(--space-4);">
                 <a href="/api" class="btn btn-secondary btn-s" style="border-radius: var(--radius-md);">Explorar API

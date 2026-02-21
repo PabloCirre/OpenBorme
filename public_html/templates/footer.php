@@ -53,27 +53,8 @@
     </div>
 </footer>
 
-<!-- Global Shortcuts & Scripts -->
-<script>
-    document.addEventListener('keydown', function (e) {
-        // '/' to focus search
-        if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-            e.preventDefault();
-            document.getElementById('global-search')?.focus();
-        }
-        // 'f' to toggle filters (if applicable)
-        if (e.key === 'f' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-            const sidebar = document.querySelector('.sidebar');
-            if (sidebar) {
-                sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-            }
-        }
-        // 'Esc' to close
-        if (e.key === 'Escape') {
-            document.activeElement.blur();
-        }
-    });
-</script>
+<!-- Global Scripts -->
+<script src="/assets/js/main.js?v=3.0.1"></script>
 </body>
 
 </html>

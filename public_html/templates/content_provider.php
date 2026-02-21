@@ -9,10 +9,10 @@ function get_page_content($path, $extra = [])
 
     $content = [
         'personas' => <<<HTML
-            <div style="background: #f9fafb; border: 1px solid var(--border-dark); border-radius: var(--radius-lg); padding: 4rem; text-align: center;">
-                <div style="font-size: 48px; margin-bottom: var(--space-4);">🔒</div>
-                <h2 style="margin-bottom: var(--space-4);">Funcionalidad en Pausa por Privacidad</h2>
-                <p style="max-width: 600px; margin: 0 auto; color: var(--text-secondary); line-height: 1.6;">
+            <div class="v3-status-box">
+                <div class="v3-status-icon">🔒</div>
+                <h2 style="margin-bottom: var(--space-4); color: var(--brand-dark);">Funcionalidad en Pausa por Privacidad</h2>
+                <p style="max-width: 650px; color: var(--text-muted); font-size: 1.15rem; line-height: 1.6;">
                     El buscador de personas físicas y cargos ha sido temporalmente desactivado para asegurar el cumplimiento estricto 
                     del Reglamento General de Protección de Datos (RGPD) y garantizar la privacidad individual.
                 </p>
@@ -63,14 +63,14 @@ HTML
             </ul>
 
             <h3 style="margin-top: var(--space-6);">3. Derechos ARCO y "Takedown"</h3>
-            <div style="background: #f9fafb; padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <p>Si usted es un particular y desea que su nombre no aparezca indexado en OpenBorme:</p>
-                <ol>
-                    <li>Envíe un email a <a href="mailto:privacidad@openborme.es">privacidad@openborme.es</a>.</li>
+            <div class="v3-highlight-box">
+                <p style="font-weight: 600; color: var(--brand-dark); margin-bottom: var(--space-2);">Si usted es un particular y desea que su nombre no aparezca indexado en OpenBorme:</p>
+                <ol style="margin-bottom: var(--space-4);">
+                    <li>Envíe un email a <a href="mailto:privacidad@openborme.es" style="color: var(--accent); font-weight: 600;">privacidad@openborme.es</a>.</li>
                     <li>Indique la URL exacta o el acto donde aparecen sus datos.</li>
                     <li>Procederemos a <strong>anonimizar</strong> su nombre en nuestra base de datos derivada.</li>
                 </ol>
-                <p style="font-size: 0.9em; color: var(--text-secondary);">Nota: Esto no elimina el dato del BORME oficial, solo de nuestra visualización.</p>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0;">Nota: Esto no elimina el dato del BORME oficial, solo de nuestra visualización técnica.</p>
             </div>
 
             <h3 style="margin-top: var(--space-6);">4. Limitación de Responsabilidad</h3>
@@ -95,8 +95,9 @@ HTML
             <h3 style="margin-top: var(--space-6);">3. Normalización</h3>
             <p>Los datos extraídos se normalizan para corregir errores comunes en la fuente original (como formatos de CIF inconsistentes) y se preparan para su indexación en nuestra base de datos derivada.</p>
 
-            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 6px; margin-top: 2rem;">
-                <strong>Nota de Trazabilidad:</strong> Todo este proceso se realiza de forma automatizada y con trazabilidad completa a los documentos originales del BOE a través de hashes MD5.
+            <div class="v3-note-box">
+                <strong style="color: var(--brand-dark); display: block; margin-bottom: 4px;">Nota de Trazabilidad</strong>
+                <span style="color: var(--text-muted);">Todo este proceso se realiza de forma automatizada y con trazabilidad completa a los documentos originales del BOE a través de hashes MD5 verificables.</span>
             </div>
             HTML
         ,
@@ -108,10 +109,10 @@ HTML
             <p>Los datos publicados en este portal han sido obtenidos de la <strong>Agencia Estatal Boletín Oficial del Estado (BOE)</strong>, específicamente del Boletín Oficial del Registro Mercantil (BORME).</p>
             <p>Puede consultar la fuente original en: <a href="https://www.boe.es/diario_borme/" target="_blank">www.boe.es/diario_borme/</a></p>
 
-            <div style="background: #fff5f5; border: 2px solid var(--boe-red); padding: 1.5rem; border-radius: 6px; margin: 2rem 0;">
-                <h4 style="color: var(--boe-red); margin-bottom: 0.5rem;">Aviso de No Oficialidad</h4>
-                <p><strong>OpenBorme NO es el Registro Mercantil</strong> ni tiene carácter de fuente oficial. Somos una plataforma derivada que reestructura la información para facilitar su consulta y análisis.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.9em;">Para cualquier trámite legal, administrativo o mercantil, debe acudirse siempre a la fuente oficial (BOE o Registro Mercantil correspondiente).</p>
+            <div class="v3-legal-warning">
+                <h4 style="color: var(--text-main); font-weight: 800; margin-bottom: var(--space-2); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em;">⚖️ Aviso de No Oficialidad</h4>
+                <p style="color: var(--text-muted); line-height: 1.5;"><strong>OpenBorme no es el Registro Mercantil</strong> ni tiene carácter de fuente oficial. Somos una plataforma de ingeniería de datos que reestructura la información oficial para fines de análisis y consulta técnica.</p>
+                <p style="margin-top: var(--space-4); font-size: 0.85rem; color: var(--text-secondary);">Para trámites legales, administrativos o mercantiles con validez jurídica, debe acudirse siempre a la fuente oficial (BOE o Registro Mercantil correspondiente).</p>
             </div>
 
             <h3 style="margin-top: var(--space-6);">Reutilización de Información</h3>
@@ -150,14 +151,14 @@ HTML
 HTML
         ,
         'contacto' => <<<HTML
-            <div class="card" style="text-align: center; padding: 4rem 2rem;">
-                <h2 style="margin-bottom: var(--space-3);">Soporte y Consultas</h2>
-                <p style="margin-bottom: var(--space-6); color: var(--text-secondary);">Para cuestiones técnicas, soporte comercial o solicitudes de rectificación de datos, contacte con nuestro equipo.</p>
-                <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-                    <a href="mailto:admin@openborme.es" class="btn btn-primary">ENVIAR EMAIL</a>
-                    <a href="https://www.linkedin.com/in/pablocirre" class="btn btn-secondary">PERFIL LINKEDIN</a>
+            <div class="v3-status-box">
+                <h2 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Soporte y Consultas</h2>
+                <p style="margin-bottom: var(--space-6); color: var(--text-muted); max-width: 600px; font-size: 1.1rem;">Para cuestiones técnicas, soporte comercial o solicitudes de rectificación de datos, contacte con nuestro equipo.</p>
+                <div style="display: flex; gap: var(--space-3); justify-content: flex-start; flex-wrap: wrap;">
+                    <a href="mailto:admin@openborme.es" class="btn btn-primary btn-m" style="background: var(--brand-dark); border-radius: var(--radius-md);">ENVIAR EMAIL</a>
+                    <a href="https://www.linkedin.com/in/pablocirre" class="btn btn-secondary btn-m" style="border-radius: var(--radius-md);">PERFIL LINKEDIN</a>
                 </div>
-                <p style="margin-top: var(--space-5); font-size: 13px; color: var(--text-muted);">Para consultas legales formales, consulte nuestro <a href="/aviso-legal">Aviso Legal</a>.</p>
+                <p style="margin-top: var(--space-6); font-size: 0.85rem; color: var(--text-secondary);">Para consultas legales formales, consulte nuestro <a href="/aviso-legal" style="color: var(--accent); font-weight: 600;">Aviso Legal</a>.</p>
             </div>
             HTML
         ,

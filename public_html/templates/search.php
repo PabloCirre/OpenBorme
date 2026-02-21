@@ -29,32 +29,32 @@ if (strlen($q) >= 3) {
 ?>
 
 <div class="container" style="padding: var(--space-6) 0;">
-    <div style="margin-bottom: var(--space-6);">
+    <div class="search-header">
         <p class="meta">Resultados de búsqueda</p>
         <h1>Buscando "<?= htmlspecialchars($q) ?>"</h1>
     </div>
 
     <div class="results-layout">
-        <!-- Sidebar Filters (Grid 3) -->
+        <!-- Sidebar Filters -->
         <aside class="sidebar">
-            <div class="card" style="padding: var(--space-4);">
+            <div class="card search-filters-card">
                 <div
                     style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-5);">
-                    <h3 style="font-size: 14px; text-transform: uppercase; color: var(--text-muted);">Filtros</h3>
+                    <h3 class="meta" style="text-transform: uppercase;">Filtros</h3>
                     <a href="/buscar?q=<?= htmlspecialchars($q) ?>"
                         style="font-size: 12px; color: var(--accent); text-decoration: none;">Limpiar</a>
                 </div>
 
-                <div style="margin-bottom: var(--space-4);">
-                    <label class="meta" style="display: block; margin-bottom: var(--space-2);">Rango de Fecha</label>
-                    <div style="display: flex; gap: var(--space-2);">
+                <div class="filter-group">
+                    <label class="meta filter-label">Rango de Fecha</label>
+                    <div class="filter-input-split">
                         <input type="text" class="input-filter" placeholder="Desde" style="width: 50%;">
                         <input type="text" class="input-filter" placeholder="Hasta" style="width: 50%;">
                     </div>
                 </div>
 
-                <div style="margin-bottom: var(--space-4);">
-                    <label class="meta" style="display: block; margin-bottom: var(--space-2);">Provincia</label>
+                <div class="filter-group">
+                    <label class="meta filter-label">Provincia</label>
                     <select class="input-filter">
                         <option>Todas las provincias</option>
                         <option>MADRID</option>
@@ -63,16 +63,16 @@ if (strlen($q) >= 3) {
                     </select>
                 </div>
 
-                <div style="margin-bottom: var(--space-4);">
-                    <label class="meta" style="display: block; margin-bottom: var(--space-2);">Sección</label>
+                <div class="filter-group">
+                    <label class="meta filter-label">Sección</label>
                     <div style="display: flex; flex-direction: column; gap: var(--space-2); font-size: 14px;">
                         <label><input type="checkbox" checked> Sección I (Actos)</label>
                         <label><input type="checkbox" checked> Sección II (Anuncios)</label>
                     </div>
                 </div>
 
-                <div style="margin-bottom: var(--space-4);">
-                    <label class="meta" style="display: block; margin-bottom: var(--space-2);">Tipo de Acto</label>
+                <div class="filter-group">
+                    <label class="meta filter-label">Tipo de Acto</label>
                     <select class="input-filter">
                         <option>Cualquier tipo</option>
                         <option>CONSTITUCIÓN</option>
@@ -83,10 +83,9 @@ if (strlen($q) >= 3) {
             </div>
         </aside>
 
-        <!-- Main Content (Grid 9) -->
+        <!-- Main Content -->
         <main class="main-content">
-            <div
-                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
+            <div class="search-results-meta">
                 <p class="meta"><?= number_format($results_count, 0, ',', '.') ?> actos encontrados</p>
                 <div style="display: flex; align-items: center; gap: var(--space-3);">
                     <span class="meta" style="font-size: 12px;">Ordenar por:</span>
@@ -108,17 +107,16 @@ if (strlen($q) >= 3) {
                 <?php endif; ?>
 
                 <?php foreach ($results as $res): ?>
-                    <div class="card"
-                        style="padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div class="card search-result-card">
+                        <div class="search-result-header">
                             <a href="/empresa/<?= preg_replace('/[^a-z0-9]+/i', '-', strtolower($res['company_name'])) ?>"
-                                style="font-size: 18px; font-weight: 700; color: var(--text-primary); text-decoration: none;">
+                                class="search-result-title">
                                 <?= htmlspecialchars($res['company_name']) ?>
                             </a>
                             <span class="mono" style="font-size: 11px; color: var(--text-muted);"><?= $res['id'] ?></span>
                         </div>
 
-                        <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                        <div class="search-result-tags">
                             <span class="badge"><?= $res['province'] ?></span>
                             <span class="badge"
                                 style="background: var(--border-light);"><?= date('d/m/Y', strtotime($res['date'])) ?></span>
@@ -126,12 +124,11 @@ if (strlen($q) >= 3) {
                                 style="background: #e0f2fe; color: #0369a1; border: none;"><?= $res['type'] ?></span>
                         </div>
 
-                        <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">
+                        <p class="search-result-excerpt">
                             <?= preg_replace('/(' . preg_quote($q, '/') . ')/i', '<mark style="background: #fef08a;">$1</mark>', htmlspecialchars(mb_strimwidth($res['raw_text'], 0, 200, '...'))) ?>
                         </p>
 
-                        <div
-                            style="display: flex; gap: var(--space-4); margin-top: var(--space-2); padding-top: var(--space-2); border-top: 1px solid var(--border-light);">
+                        <div class="search-result-footer">
                             <a href="/borme/doc/<?= $res['id'] ?>" class="btn btn-ghost btn-s" style="padding-left: 0;">Ver
                                 Documento &rarr;</a>
                             <button class="btn btn-ghost btn-s"
