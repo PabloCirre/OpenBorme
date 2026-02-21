@@ -13,6 +13,8 @@
                 <a href="/manifiesto" style="color: var(--text-secondary); text-decoration: none;">Manifiesto
                     Técnico</a>
                 <a href="/objetivos" style="color: var(--text-secondary); text-decoration: none;">Objetivos</a>
+                <a href="/mapa-del-sitio" style="color: var(--text-secondary); text-decoration: none;">Mapa del
+                    Sitio</a>
             </nav>
         </div>
         <div>
