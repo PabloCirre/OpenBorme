@@ -1,8 +1,3 @@
-<?php
-// api_docs.php - Refined Technical Guidance
-include 'header.php';
-?>
-
 <div class="container" style="padding: var(--space-6) 0;">
     <nav class="breadcrumbs">
         <a href="/">Inicio</a> /
@@ -73,5 +68,3 @@ include 'header.php';
         </main>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>

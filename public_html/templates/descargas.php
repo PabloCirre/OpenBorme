@@ -1,8 +1,3 @@
-<?php
-// descargas.php - Refined Data Access
-include 'header.php';
-?>
-
 <div class="container" style="padding: var(--space-6) 0;">
     <nav class="breadcrumbs">
         <a href="/">Inicio</a> /
@@ -75,5 +70,3 @@ include 'header.php';
         </p>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>

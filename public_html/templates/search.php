@@ -2,7 +2,7 @@
 // search.php - Refined Professional Search
 $db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
 require_once $db_path;
-include 'header.php';
+
 
 $q = trim($_GET['q'] ?? '');
 $results = [];
@@ -148,5 +148,3 @@ if (strlen($q) >= 3) {
         </main>
     </div>
 </div>
-
-<?php include 'footer.php'; ?>

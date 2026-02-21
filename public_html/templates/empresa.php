@@ -2,7 +2,7 @@
 // empresa.php - Company Detail & Directory
 $db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
 require_once $db_path;
-include 'header.php';
+
 
 $company_slug = $_GET['id'] ?? '';
 $company_name = str_replace('-', ' ', strtoupper($company_slug));
@@ -122,5 +122,3 @@ if ($company_slug) {
         </div>
     <?php endif; ?>
 </div>
-
-<?php include 'footer.php'; ?>
