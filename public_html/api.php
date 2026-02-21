@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../pipeline/ingest/BormeDownloader.php';
 require_once __DIR__ . '/../pipeline/extract/ParserPdf.php';
 require_once __DIR__ . '/../pipeline/ingest/ParserXml.php';
+require_once __DIR__ . '/../pipeline/db/Database.php';
 
 session_start();
 
@@ -49,43 +50,95 @@ if ($action === 'get_act') {
     if (!$id)
         die(json_encode(['error' => 'ID requerido']));
 
-    require_once __DIR__ . '/../pipeline/extract/ParserPdf.php';
-    require_once __DIR__ . '/../pipeline/ingest/ParserXml.php';
+    $db = Database::getInstance();
+    $stmt = $db->prepare("SELECT * FROM borme_acts WHERE id = :id OR hash_md5 = :id LIMIT 1");
+    $stmt->execute([':id' => $id]);
+    $data = $stmt->fetch();
 
-    $storage_dir = __DIR__ . "/../data";
-    $found_file = null;
-    $type = (strpos($id, '-A-') !== false) ? 'pdf' : 'xml';
-    $section_dir = ($type === 'pdf') ? 'section_A' : 'section_C';
-
-    $dates = array_filter(scandir($storage_dir), function ($item) use ($storage_dir) {
-        return is_dir("$storage_dir/$item") && preg_match('/^\d{8}$/', $item);
-    });
-
-    foreach ($dates as $date) {
-        $path = "$storage_dir/$date/$section_dir/$id.$type";
-        if (file_exists($path)) {
-            $found_file = $path;
-            break;
-        }
-    }
-
-    if (!$found_file) {
-        header('Content-Type: application/json');
-        echo json_encode(['error' => 'Acta no encontrada']);
-        exit;
-    }
-
-    if ($type === 'pdf') {
-        $parser = new ParserPdf();
-        $results = $parser->parse($found_file, "Provincia");
-        $data = $results[0] ?? [];
-    } else {
-        $parser = new ParserXml();
-        $data = $parser->parse($found_file);
+    if (!$data) {
+        die(json_encode(['error' => 'Acta no encontrada en la base de datos']));
     }
 
     header('Content-Type: application/json');
     echo json_encode($data);
+    exit;
+}
+
+if ($action === 'search') {
+    $q = $_GET['q'] ?? '';
+    if (strlen($q) < 3)
+        die(json_encode(['error' => 'Búsqueda muy corta']));
+
+    $db = Database::getInstance();
+    // Búsqueda inteligente: Nombre de empresa, CIF o contenido
+    $stmt = $db->prepare("
+        SELECT id, date, type, province, company_name, company_uid, capital 
+        FROM borme_acts 
+        WHERE company_name LIKE :q 
+           OR company_uid LIKE :q 
+           OR raw_text LIKE :q
+        ORDER BY date DESC LIMIT 50
+    ");
+    $stmt->execute([':q' => "%$q%"]);
+    $results = $stmt->fetchAll();
+
+    header('Content-Type: application/json');
+    echo json_encode($results);
+    exit;
+}
+
+if ($action === 'timeline') {
+    $cif = $_GET['cif'] ?? '';
+    $name = $_GET['name'] ?? '';
+    if (!$cif && !$name)
+        die(json_encode(['error' => 'CIF o Nombre requerido']));
+
+    $db = Database::getInstance();
+    if ($cif) {
+        $stmt = $db->prepare("SELECT * FROM borme_acts WHERE company_uid = :cif ORDER BY date ASC");
+        $stmt->execute([':cif' => $cif]);
+    } else {
+        $stmt = $db->prepare("SELECT * FROM borme_acts WHERE company_name = :name ORDER BY date ASC");
+        $stmt->execute([':name' => $name]);
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
+    exit;
+}
+
+if ($action === 'top_capital') {
+    $db = Database::getInstance();
+    // Extraemos los números del capital usando CAST tras limpiar, o simple sort texto x longitud temporal
+    // Para SQLite, ordenamos por la longitud del capital y el valor alfanumérico crudo de forma básica
+    $stmt = $db->prepare("
+        SELECT id, date, company_name, province, capital, type 
+        FROM borme_acts 
+        WHERE capital IS NOT NULL AND capital != '' 
+        ORDER BY length(capital) DESC, capital DESC LIMIT 10
+    ");
+    $stmt->execute();
+
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
+    exit;
+}
+
+if ($action === 'radar') {
+    $db = Database::getInstance();
+    $stmt = $db->prepare("
+        SELECT province, COUNT(*) as total_acts,
+               SUM(CASE WHEN type LIKE '%Constitu%' THEN 1 ELSE 0 END) as nuevas,
+               SUM(CASE WHEN type LIKE '%Disoluci%' OR type LIKE '%Cese%' THEN 1 ELSE 0 END) as cierres
+        FROM borme_acts
+        GROUP BY province
+        ORDER BY total_acts DESC
+        LIMIT 15
+    ");
+    $stmt->execute();
+
+    header('Content-Type: application/json');
+    echo json_encode($stmt->fetchAll());
     exit;
 }
 

@@ -3,6 +3,8 @@
 require_once 'BormeDownloader.php';
 require_once 'ParserPdf.php';
 require_once 'ParserXml.php';
+require_once __DIR__ . '/db/Database.php';
+require_once __DIR__ . '/ingest/DbIngestor.php';
 
 // Configuration
 $days_to_process = 7;
@@ -69,6 +71,8 @@ $province_mapping = [
 $downloader = new BormeDownloader($storage_dir);
 if (isset($argv[1])) {
     $downloader->download((int) $argv[1]);
+} elseif (isset($_GET['days'])) {
+    $downloader->download((int) $_GET['days']);
 } else {
     $downloader->download($days_to_process);
 }
@@ -92,7 +96,8 @@ foreach ($dates as $date) {
     $sec1_dir = "$date_dir/section_A";
     if (is_dir($sec1_dir)) {
         $pdfs = array_filter(scandir($sec1_dir), function ($f) {
-            return strpos($f, '.pdf') !== false; });
+            return strpos($f, '.pdf') !== false;
+        });
         foreach ($pdfs as $pdf) {
             $f_path = "$sec1_dir/$pdf";
             // Get province code from filename like BORME-A-2026-32-28.pdf
@@ -112,7 +117,8 @@ foreach ($dates as $date) {
     $sec2_dir = "$date_dir/section_C";
     if (is_dir($sec2_dir)) {
         $xmls = array_filter(scandir($sec2_dir), function ($f) {
-            return strpos($f, '.xml') !== false; });
+            return strpos($f, '.xml') !== false;
+        });
         foreach ($xmls as $xml_file) {
             $f_path = "$sec2_dir/$xml_file";
             $result = $xml_parser->parse($f_path);
@@ -122,20 +128,16 @@ foreach ($dates as $date) {
     }
 }
 
-// 3. Export to CSV
+// 3. Insert in Database (In-Memory Processing)
 if (!empty($all_data)) {
-    echo "Exportando " . count($all_data) . " registros a CSV...\n";
-    $fp = fopen($output_file, 'w');
+    echo "💾 Guardando " . count($all_data) . " actos corporativos en la Base de Datos SQLite...\n";
 
-    // Header
-    fputcsv($fp, array_keys($all_data[0]));
+    // Iniciar Motor DB
+    $ingestor = new DbIngestor();
+    $filas_insertadas = $ingestor->ingestBatch($all_data);
 
-    foreach ($all_data as $row) {
-        fputcsv($fp, $row);
-    }
-
-    fclose($fp);
-    echo "¡Exportación completada! Archivo: $output_file\n";
+    echo "✅ Éxito! Se han inyectado $filas_insertadas nuevos registros atómicos organizados.\n";
+    echo "🗑️ Los archivos PDF descargados temporalmente han cumplido su ciclo.\n";
 } else {
-    echo "No se encontraron datos para exportar.\n";
+    echo "No se encontraron datos listos para inyectar en DB.\n";
 }

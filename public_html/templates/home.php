@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../../pipeline/db/Database.php'; ?>
 <main class="container" style="padding: var(--space-8) 0;">
     <div class="hero-section" style="text-align: center; max-width: 900px; margin: 0 auto var(--space-8);">
         <h1 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Visualiza el Registro Mercantil <br>como
@@ -235,6 +236,53 @@
                 }
                 ?>
             </div>
+        </div>
+    </div>
+
+    <!-- PREMIUM FEATURE: Top Capital Injections -->
+    <div style="margin: var(--space-8) 0; padding-top: var(--space-6); border-top: 1px solid var(--border-subtle);">
+        <h2 style="text-align: center; margin-bottom: var(--space-2); color: var(--brand-dark);">💰 Top Inversiones de
+            Capital</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: var(--space-5);">Las mayores inyecciones
+            de capital registradas recientemente en España.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4);">
+            <?php
+            try {
+                $db = Database::getInstance();
+                $stmt = $db->prepare("
+                    SELECT id, date, company_name, province, capital, type 
+                    FROM borme_acts 
+                    WHERE capital IS NOT NULL AND capital != '' 
+                    ORDER BY length(capital) DESC, capital DESC LIMIT 6
+                ");
+                $stmt->execute();
+                $top_acts = $stmt->fetchAll();
+
+                foreach ($top_acts as $act) {
+                    $c_date = date('d/m/Y', strtotime($act['date']));
+                    // Format Capital String
+                    $cap_str = $act['capital'];
+                    $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($act['company_name']));
+                    echo "<div class='card' style='padding: var(--space-4); border-left: 4px solid var(--brand-primary); transition: transform 0.2s; cursor: pointer;' onmouseover=\"this.style.transform='translateY(-4px)'\" onmouseout=\"this.style.transform='translateY(0)'\">
+                        <div style='font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; display: flex; justify-content: space-between;'>
+                            <span>{$act['province']}</span>
+                            <span>$c_date</span>
+                        </div>
+                        <h4 style='margin-bottom: 8px; color: var(--brand-dark); font-size: 1.1rem;'>
+                            <a href='/empresa/$slug' style='text-decoration: none; color: inherit;'>{$act['company_name']}</a>
+                        </h4>
+                        <div style='font-weight: 700; color: #2e7d32; font-size: 1.25rem; margin-bottom: 4px;'>$cap_str</div>
+                        <div style='font-size: 0.85rem; color: var(--text-secondary); background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; display: inline-block;'>{$act['type']}</div>
+                    </div>";
+                }
+            } catch (Exception $e) {
+                echo "<p style='color: var(--error); text-align: center;'>Generando estadísticas en tiempo real...</p>";
+            }
+            ?>
+        </div>
+        <div style="text-align: center; margin-top: var(--space-4);">
+            <a href="/ranking-capital" class="btn btn-ghost">Ver listado completo &rarr;</a>
         </div>
     </div>
 

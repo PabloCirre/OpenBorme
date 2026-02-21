@@ -1,30 +1,30 @@
 <?php
 // search.php - Refined Professional Search
+require_once __DIR__ . '/../../pipeline/db/Database.php';
 include 'header.php';
 
-// Mock Search Logic
-$q = $_GET['q'] ?? '';
-$results_count = 1250;
-$results = [
-    [
-        'id' => 'BORME-A-2026-3024',
-        'title' => 'SOLUCIONES TECNOLÓGICAS SL',
-        'details' => '...Constitución de la sociedad. Nombramiento de GARCÍA LÓPEZ MANUEL como administrador único...',
-        'province' => 'MADRID',
-        'section' => 'SECCIÓN I',
-        'date' => '11/02/2026',
-        'type' => 'CONSTITUCIÓN'
-    ],
-    [
-        'id' => 'BORME-B-2026-5521',
-        'title' => 'AGROEXPORTACIONES DEL SUR SA',
-        'details' => '...Aumento de capital social de 50.000€ a 120.000€. Reelección de auditores externos...',
-        'province' => 'SEVILLA',
-        'section' => 'SECCIÓN I',
-        'date' => '10/02/2026',
-        'type' => 'AUMENTO CAPITAL'
-    ]
-];
+$q = trim($_GET['q'] ?? '');
+$results = [];
+$results_count = 0;
+
+if (strlen($q) >= 3) {
+    try {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("
+            SELECT id, date, type, province, company_name, company_uid, capital, raw_text 
+            FROM borme_acts 
+            WHERE company_name LIKE :q 
+               OR company_uid LIKE :q 
+               OR raw_text LIKE :q
+            ORDER BY date DESC LIMIT 100
+        ");
+        $stmt->execute([':q' => "%$q%"]);
+        $results = $stmt->fetchAll();
+        $results_count = count($results);
+    } catch (Exception $e) {
+        $results_count = 0;
+    }
+}
 ?>
 
 <div class="container" style="padding: var(--space-6) 0;">
@@ -98,27 +98,35 @@ $results = [
             </div>
 
             <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+                <?php if ($results_count === 0 && strlen($q) >= 3): ?>
+                    <div class="card" style="padding: var(--space-4); text-align: center;">No se encontraron resultados para
+                        "<?= htmlspecialchars($q) ?>".</div>
+                <?php elseif (strlen($q) < 3): ?>
+                    <div class="card" style="padding: var(--space-4); text-align: center;">Por favor, introduce al menos 3
+                        caracteres para buscar.</div>
+                <?php endif; ?>
+
                 <?php foreach ($results as $res): ?>
                     <div class="card"
                         style="padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2);">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <a href="/borme/doc/<?= $res['id'] ?>"
+                            <a href="/empresa/<?= preg_replace('/[^a-z0-9]+/i', '-', strtolower($res['company_name'])) ?>"
                                 style="font-size: 18px; font-weight: 700; color: var(--text-primary); text-decoration: none;">
-                                <?= htmlspecialchars($res['title']) ?>
+                                <?= htmlspecialchars($res['company_name']) ?>
                             </a>
                             <span class="mono" style="font-size: 11px; color: var(--text-muted);"><?= $res['id'] ?></span>
                         </div>
 
                         <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
-                            <span class="badge"><?= $res['section'] ?></span>
                             <span class="badge"><?= $res['province'] ?></span>
-                            <span class="badge" style="background: var(--border-light);"><?= $res['date'] ?></span>
+                            <span class="badge"
+                                style="background: var(--border-light);"><?= date('d/m/Y', strtotime($res['date'])) ?></span>
                             <span class="badge"
                                 style="background: #e0f2fe; color: #0369a1; border: none;"><?= $res['type'] ?></span>
                         </div>
 
                         <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">
-                            ...<?= str_replace($q, '<mark style="background: #fef08a;">' . $q . '</mark>', htmlspecialchars($res['details'])) ?>...
+                            <?= preg_replace('/(' . preg_quote($q, '/') . ')/i', '<mark style="background: #fef08a;">$1</mark>', htmlspecialchars(mb_strimwidth($res['raw_text'], 0, 200, '...'))) ?>
                         </p>
 
                         <div
@@ -128,7 +136,6 @@ $results = [
                             <button class="btn btn-ghost btn-s"
                                 onclick="navigator.clipboard.writeText('https://openborme.es/borme/doc/<?= $res['id'] ?>')">Copiar
                                 Enlace</button>
-                            <a href="/export?id=<?= $res['id'] ?>&format=json" class="btn btn-ghost btn-s">Exportar JSON</a>
                         </div>
                     </div>
                 <?php endforeach; ?>

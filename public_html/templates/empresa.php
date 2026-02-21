@@ -1,16 +1,30 @@
 <?php
 // empresa.php - Company Detail & Directory
+require_once __DIR__ . '/../../pipeline/db/Database.php';
 include 'header.php';
 
-$company_id = $_GET['id'] ?? '';
-$company_name = "EJEMPLO CORPORATIVO SL"; // Mock
+$company_slug = $_GET['id'] ?? '';
+$company_name = str_replace('-', ' ', strtoupper($company_slug));
 
-// Timeline Mock Data
-$events = [
-    ['date' => '11/02/2026', 'act' => 'Aumento de capital', 'id' => 'BORME-A-2026-3024'],
-    ['date' => '15/01/2025', 'act' => 'Nombramiento de Auditores', 'id' => 'BORME-A-2025-1234'],
-    ['date' => '02/11/2020', 'act' => 'Constitución', 'id' => 'BORME-A-2020-9988'],
-];
+// DB Query for Timeline Events
+$events = [];
+if ($company_slug) {
+    try {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("SELECT * FROM borme_acts WHERE company_name LIKE :name ORDER BY date ASC");
+
+        // Exact matching might be tricky due to special chars, using a fuzzy match with the slug parts
+        $search_name = str_replace('-', '%', $company_slug);
+        $stmt->execute([':name' => "%$search_name%"]);
+
+        $events = $stmt->fetchAll();
+
+        if (count($events) > 0) {
+            $company_name = $events[0]['company_name'];
+        }
+    } catch (Exception $e) {
+    }
+}
 ?>
 
 <div class="container" style="padding: var(--space-6) 0;">
@@ -20,7 +34,7 @@ $events = [
         <span><?= htmlspecialchars($company_name) ?></span>
     </nav>
 
-    <?php if ($company_id): ?>
+    <?php if ($company_slug && count($events) > 0): ?>
         <div style="margin-bottom: var(--space-7);">
             <p class="meta">Ficha de Empresa</p>
             <h1><?= htmlspecialchars($company_name) ?></h1>
@@ -41,8 +55,10 @@ $events = [
                                 style="padding: var(--space-3) var(--space-4); display: flex; justify-content: space-between; align-items: center;">
                                 <div>
                                     <span class="meta"
-                                        style="font-size: 12px; color: var(--accent); font-weight: 700;"><?= $ev['date'] ?></span>
-                                    <p style="font-weight: 600; margin-top: 2px;"><?= $ev['act'] ?></p>
+                                        style="font-size: 12px; color: var(--accent); font-weight: 700;"><?= date('d/m/Y', strtotime($ev['date'])) ?></span>
+                                    <p style="font-weight: 600; margin-top: 2px;"><?= $ev['type'] ?></p>
+                                    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
+                                        <?= mb_strimwidth($ev['raw_text'], 0, 100, "...") ?></p>
                                 </div>
                                 <a href="/borme/doc/<?= $ev['id'] ?>" class="btn btn-ghost btn-s">Ver Acto &rarr;</a>
                             </div>
@@ -57,12 +73,12 @@ $events = [
                         style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-3);">
                         Resumen de Actividad</h4>
                     <div style="font-size: 13px; margin-bottom: var(--space-3);">
-                        <p class="meta">Primera aparición</p>
-                        <p style="font-weight: 600;">02/11/2020</p>
+                        <p class="meta">Primera aparición detectada</p>
+                        <p style="font-weight: 600;"><?= date('d/m/Y', strtotime($events[0]['date'])) ?></p>
                     </div>
                     <div style="font-size: 13px;">
-                        <p class="meta">Última aparición</p>
-                        <p style="font-weight: 600;">11/02/2026</p>
+                        <p class="meta">Última aparición detectada</p>
+                        <p style="font-weight: 600;"><?= date('d/m/Y', strtotime(end($events)['date'])) ?></p>
                     </div>
                     <div
                         style="margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-light);">

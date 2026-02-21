@@ -60,21 +60,7 @@
     --base-font: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-main: #121212;
-        --bg-alt: #1a1a1a;
-        --text-main: #e0e0e0;
-        --text-muted: #a0a0a0;
-        --border-subtle: #2a2a2a;
-        --border-strong: #333333;
-        --border-dark: #444444;
-        --border-light: #222222;
-        --bg-tag: #202020;
-        --brand-light: #2a1114;
-        /* Darker red tint for hovers */
-    }
-}
+
 
 /* Institutional Clean Utilities */
 .inst-header {

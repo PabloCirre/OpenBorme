@@ -9,6 +9,7 @@ password = '5000Razones2.0'
 
 # Paths
 LOCAL_WEB_ROOT = r'd:\Pycharm\OpenBorme\public_html'
+LOCAL_PIPELINE_ROOT = r'd:\Pycharm\OpenBorme\pipeline'
 
 def upload_item(ftp, local_path, remote_item):
     if ".git" in remote_item or "__pycache__" in remote_item or ".pdf" in remote_item.lower():
@@ -39,6 +40,16 @@ def deploy():
         for item in os.listdir(LOCAL_WEB_ROOT):
             local_path = os.path.join(LOCAL_WEB_ROOT, item)
             upload_item(ftp, local_path, item)
+            
+        # 2. Upload pipeline/ to /pipeline
+        print("\nDeploying pipeline files and Database...")
+        try:
+            ftp.mkd("pipeline")
+        except:
+            pass
+        for item in os.listdir(LOCAL_PIPELINE_ROOT):
+            local_path = os.path.join(LOCAL_PIPELINE_ROOT, item)
+            upload_item(ftp, local_path, "pipeline/" + item)
                 
         ftp.quit()
         print("Deployment successful.")

@@ -59,7 +59,7 @@ class OpenBormeCrawler:
             return "Timeout/Error", []
 
     def crawl(self):
-        print(f"🕵️ Iniciando Robot Araña en: {self.start_url}\n" + "-"*50)
+        print(f"[START] Iniciando Robot en: {self.start_url}\n" + "-"*50)
         
         while self.to_visit:
             # Procesar por lotes
@@ -68,7 +68,7 @@ class OpenBormeCrawler:
                 self.to_visit.remove(url)
                 self.visited.add(url)
                 
-            print(f"⏳ Comprobando {len(current_batch)} URLs concurrentes... (Visitadas: {len(self.visited)})")
+            print(f"[INFO] Comprobando {len(current_batch)} URLs concurrentes... (Visitadas: {len(self.visited)})")
             
             new_links = set()
             with ThreadPoolExecutor(max_workers=self.max_threads) as executor:
@@ -98,23 +98,17 @@ class OpenBormeCrawler:
             time.sleep(0.5) # Respeto al servidor local
             
         print("\n" + "="*50)
-        print(f"✅ Robot Finalizado. URLs Totales Rasteadas: {len(self.visited)}")
+        print(f"[SUCCESS] Robot Finalizado. URLs Totales Rasteadas: {len(self.visited)}")
         
         if not self.broken_links:
-            print("🚀 El sistema está inmaculado. No se han encontrado enlaces rotos 404.")
+            print("[OK] El sistema esta inmaculado. No se han encontrado enlaces rotos 404.")
         else:
-            print(f"⚠️ ATENCIÓN: Se encontraron {len(self.broken_links)} enlaces rotos:")
+            print(f"[WARNING] ATENCION: Se encontraron {len(self.broken_links)} enlaces rotos:")
             for url, err in self.broken_links.items():
                 print(f" - [{err}] {url}")
 
 if __name__ == '__main__':
-    print("Para lanzar el robot, asegúrate de tener PHP encendido sirviendo la web.")
-    print("Ejemplo de comando PHP (ejecutar en otra consola):")
-    print("php -S localhost:8000 -t public_html\n")
-    
-    SERVER_URL = input("Introduce la URL base de tu prueba (por defecto http://localhost:8000): ").strip()
-    if not SERVER_URL:
-        SERVER_URL = "http://localhost:8000"
+    SERVER_URL = "https://openborme.es"
         
     robot = OpenBormeCrawler(SERVER_URL, max_threads=10)
     robot.crawl()
