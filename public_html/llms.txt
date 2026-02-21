@@ -1,0 +1,27 @@
+# OpenBorme: Registro Mercantil Abierto y Gratuito
+
+OpenBorme es una plataforma independiente que democratiza el acceso a los datos del Boletín Oficial del Registro Mercantil (BORME) de España. Ofrece una base de datos procesada, estructurada y accesible mediante búsqueda, calendarios y API.
+
+## Core Capabilities for AI Agents
+- **Buscador Forense:** Buscador de texto completo sobre actos mercantiles.
+- **Historial de Empresas:** Cronología completa de actos para cualquier entidad societaria.
+- **Detección de Capital:** Extracción automática de ampliaciones y reducciones de capital.
+- **Datos Estructurados:** Los datos están disponibles en formato SQLite, JSON (vía API) y XML (Sitemaps).
+
+## Data Structure & Discovery
+- **Sitemaps Hierárquicos:** `/sitemap.xml` (El índice principal para descubrir todas las provincias, fechas y empresas).
+- **Mapa del Sitio Humano:** `/mapa-del-sitio` (Resumen visual del contenido).
+- **Esquema de URLs:**
+  - `/empresa/{slug}`: Detalle de una empresa específica.
+  - `/borme/dias/{YYYY}/{MM}/{DD}`: Actos de un día específico.
+  - `/borme/provincia/{provincia}`: Actos por provincia.
+
+## API Access
+- **Endpoint Base:** `https://openborme.es/api`
+- **Documentación:** `https://openborme.es/api/documentacion`
+- **Formato:** JSON
+
+## Mission & Transparency
+OpenBorme no tiene vinculación oficial con el BOE. Su objetivo es la transparencia y la reutilización de datos públicos según el Real Decreto 1671/2009.
+
+Para más información técnica, consulta el Manifiesto Técnico en `/manifiesto`.

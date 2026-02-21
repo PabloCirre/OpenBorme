@@ -1,11 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin.php
-Disallow: /core/
-Disallow: /data/
-Disallow: /scripts/
-Disallow: /templates/
-Disallow: /resultados
-Disallow: /mi-cuenta/
 
 Sitemap: https://openborme.es/sitemap.xml
