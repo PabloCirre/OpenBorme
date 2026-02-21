@@ -76,6 +76,13 @@ if (isset($routes[$clean_path])) {
 
 // 2. Complex Routes (Regex-like)
 
+// Sitemap Companies Paging (sitemap-empresas-1.xml, etc.)
+if (preg_match('/^sitemap-empresas-(\d+)\.xml$/', $clean_path, $matches)) {
+    $_GET['page'] = $matches[1];
+    $template = 'sitemap_companies.xml.php';
+    $page_index = 'index';
+}
+
 // /diario_borme/ultimo.php -> Redirect to latest
 if ($clean_path === 'diario_borme/ultimo.php') {
     // Logic to find latest folder in /data/
