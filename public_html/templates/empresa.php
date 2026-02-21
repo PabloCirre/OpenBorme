@@ -1,6 +1,7 @@
 <?php
 // empresa.php - Company Detail & Directory
-require_once __DIR__ . '/../../pipeline/db/Database.php';
+$db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
+require_once $db_path;
 include 'header.php';
 
 $company_slug = $_GET['id'] ?? '';
@@ -58,7 +59,8 @@ if ($company_slug) {
                                         style="font-size: 12px; color: var(--accent); font-weight: 700;"><?= date('d/m/Y', strtotime($ev['date'])) ?></span>
                                     <p style="font-weight: 600; margin-top: 2px;"><?= $ev['type'] ?></p>
                                     <p style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">
-                                        <?= mb_strimwidth($ev['raw_text'], 0, 100, "...") ?></p>
+                                        <?= mb_strimwidth($ev['raw_text'], 0, 100, "...") ?>
+                                    </p>
                                 </div>
                                 <a href="/borme/doc/<?= $ev['id'] ?>" class="btn btn-ghost btn-s">Ver Acto &rarr;</a>
                             </div>

@@ -1,10 +1,12 @@
 RewriteEngine On
 RewriteBase /
 
-# 1. Protect internal directories
-RewriteRule ^(core|data|templates|scripts)/ - [F,L]
+# 1. Protect internal directories and database
+RewriteRule ^(core|data|templates|scripts|pipeline)/ - [F,L]
 
 # 2. Allow existing files and directories (CSS, JS, Images, etc.)
+# Explicitly allow Google verification files
+RewriteCond %{REQUEST_URI} ^/google[a-z0-9]+\.html$ [OR]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
@@ -13,4 +15,5 @@ RewriteRule ^ - [L]
 RewriteRule ^diario_borme/ultimo.php$ /?action=ultimo [L,R=302]
 
 # 4. Global Router: Send everything else to index.php
+RewriteCond %{REQUEST_URI} !^/google[a-z0-9]+\.html$
 RewriteRule ^ index.php [L,QSA]

@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/../../pipeline/db/Database.php'; ?>
+<?php
+$db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
+require_once $db_path;
+?>
 <main class="container" style="padding: var(--space-8) 0;">
     <div class="hero-section" style="text-align: center; max-width: 900px; margin: 0 auto var(--space-8);">
         <h1 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Visualiza el Registro Mercantil <br>como

@@ -1,9 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../pipeline/ingest/BormeDownloader.php';
-require_once __DIR__ . '/../pipeline/extract/ParserPdf.php';
-require_once __DIR__ . '/../pipeline/ingest/ParserXml.php';
-require_once __DIR__ . '/../pipeline/db/Database.php';
+$base_pipeline = file_exists(__DIR__ . '/../pipeline/db/Database.php')
+    ? __DIR__ . '/../pipeline'
+    : __DIR__ . '/pipeline';
+
+require_once $base_pipeline . '/ingest/BormeDownloader.php';
+require_once $base_pipeline . '/extract/ParserPdf.php';
+require_once $base_pipeline . '/ingest/ParserXml.php';
+require_once $base_pipeline . '/db/Database.php';
 
 session_start();
 

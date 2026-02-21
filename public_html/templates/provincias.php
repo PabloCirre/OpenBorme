@@ -1,6 +1,7 @@
 <?php
 // templates/provincias.php - Interactive Map of Spain
-require_once __DIR__ . '/../../pipeline/db/Database.php';
+$db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
+require_once $db_path;
 ?>
 
 <style>
