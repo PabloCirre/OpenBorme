@@ -15,34 +15,55 @@
         content="<?= htmlspecialchars($page_description ?? 'Explora los registros del BORME de manera rápida y sencilla.') ?>">
     <meta property="og:type" content="website">
 
-    <link rel="stylesheet" href="/assets/css/styles.css?v=3.0.1">
+    <!-- Linear Typography: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/styles.css?v=4.0.0">
+    <script src="/assets/js/design_v3.js" defer></script>
 </head>
 
 <body>
     <header class="inst-header">
         <div class="header-container container">
             <a href="/" class="logo-container">
-                <span class="logo-open">Open</span>
-                <span class="logo-borme-box">Borme</span>
+                <span class="logo-open">Open</span><span class="logo-borme-box">Borme</span>
             </a>
 
-            <div class="header-search-wrap">
-                <form action="/buscar" method="GET">
-                    <input type="text" name="q" id="global-search" class="header-search-input"
-                        placeholder="Buscar por empresa o texto..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
-                </form>
-            </div>
-
-            <button class="mobile-menu-btn" onclick="document.getElementById('nav-menu').classList.toggle('active')">
-                ☰
+            <button class="mobile-menu-btn" aria-label="Menu"
+                onclick="document.getElementById('nav-menu').classList.toggle('active')">
+                MENU
             </button>
 
-            <nav id="nav-menu" class="header-nav" style="display: flex; gap: var(--space-1);">
-                <a href="/borme/dias" class="btn btn-ghost btn-s">Diario</a>
-                <a href="/provincias" class="btn btn-ghost btn-s">Provincias</a>
-                <a href="/empresas" class="btn btn-ghost btn-s">Empresas</a>
-                <a href="/descargas" class="btn btn-ghost btn-s">Descargas</a>
-                <a href="/api" class="btn btn-primary btn-s" style="margin-left: var(--space-2);">API</a>
+            <nav id="nav-menu" class="header-nav">
+                <div class="nav-item has-megamenu">
+                    <a href="/explorar" class="nav-link">EXPLORAR</a>
+                    <div class="mega-menu">
+                        <div class="container mega-menu-grid">
+                            <div class="mega-col">
+                                <h5>Contenido</h5>
+                                <a href="/borme/dias">Boletines Diarios</a>
+                                <a href="/provincias">Por Provincias</a>
+                                <a href="/secciones">Por Secciones</a>
+                            </div>
+                            <div class="mega-col">
+                                <h5>Herramientas</h5>
+                                <a href="/buscar">Buscador Avanzado</a>
+                                <a href="/descargas">Datos Abiertos</a>
+                                <a href="/api">API para Desarrolladores</a>
+                            </div>
+                            <div class="mega-col">
+                                <h5>Proyecto</h5>
+                                <a href="/manifiesto">Manifiesto Técnico</a>
+                                <a href="/metodologia">Metodología</a>
+                                <a href="/contacto">Contacto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/descargas" class="nav-link">DATOS</a>
+                <a href="/api" class="btn btn-primary btn-s">API</a>
             </nav>
         </div>
     </header>

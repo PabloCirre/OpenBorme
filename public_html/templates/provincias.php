@@ -40,7 +40,7 @@ require_once $db_path;
     }
 </style>
 
-<div class="container" style="padding: var(--space-8) 0;">
+<div class="container section-py">
     <div style="text-align: center; margin-bottom: var(--space-6);">
         <h1 style="color: var(--brand-dark);">Mapa Interactivo del BORME</h1>
         <p style="color: var(--text-muted);">Selecciona una provincia para acceder a su histórico de publicaciones.</p>

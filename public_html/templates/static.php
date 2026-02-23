@@ -1,7 +1,7 @@
 <?php
 // static.php - Standardized template for legal and institutional content
 ?>
-<div class="container static-page-header">
+<div class="container section-py">
     <nav class="breadcrumbs" style="margin-bottom: var(--space-6);">
         <a href="/">Inicio</a> /
         <span><?= htmlspecialchars(str_replace(' | OpenBorme', '', $page_title)) ?></span>

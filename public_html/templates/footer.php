@@ -1,5 +1,5 @@
 <footer
-    style="margin-top: var(--space-8); border-top: 1px solid var(--border-dark); padding: var(--space-7) 0 var(--space-5);">
+    style="margin-top: var(--space-8); border-top: 1px solid var(--border-dark); padding: var(--space-9) 0 var(--space-7);">
     <div class="container"
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--space-6);">
         <div>

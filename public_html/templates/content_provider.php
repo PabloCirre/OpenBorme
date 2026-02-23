@@ -85,7 +85,7 @@ HTML
             <p>Cada día, nuestro sistema se conecta a la API de datos abiertos de la Agencia Estatal BOE para obtener el sumario del Boletín Oficial del Registro Mercantil. Descargamos tanto los sumarios en XML como los documentos individuales en PDF y XML (Secciones I y II).</p>
 
             <h3 style="margin-top: var(--space-6);">2. Parsing y Estructuración</h3>
-            <div class="card" style="margin: var(--space-4) 0;">
+            <div class="card">
                 <ul style="margin-bottom: 0;">
                     <li style="margin-bottom: 0.5rem;"><strong>Motor PDF (Sección I):</strong> Extrae texto plano de los boletines provinciales y utiliza expresiones regulares para identificar actos inscritos, empresas y CIFs.</li>
                     <li><strong>Motor XML (Sección II):</strong> Procesa los anuncios legales estructurados directamente desde la fuente XML oficial.</li>
@@ -258,7 +258,7 @@ HTML,
 
             <h3 style="margin-top: var(--space-6);">1. Contrato de Datos (Data Contract)</h3>
             <p>OpenBorme se compromete a mantener un esquema de datos estable y versionado para facilitar la interoperabilidad.</p>
-            <div class="card" style="margin: var(--space-4) 0;">
+            <div class="card">
                 <h4>Entidad: Acto (Publication)</h4>
                 <p>Unidad atómica de información registral.</p>
                 <ul>

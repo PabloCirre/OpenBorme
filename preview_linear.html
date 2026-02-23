@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Linear Style | OpenBorme</title>
+    <link rel="stylesheet" href="public_html/assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Header Minimalista -->
+    <header class="inst-header" style="height: 72px; border-bottom: 1px solid var(--border-subtle); background: white;">
+        <div class="container"
+            style="height: 100%; display: flex; align-items: center; justify-content: space-between;">
+            <a href="#" class="logo-container" style="display: flex; align-items: center; text-decoration: none;">
+                <span class="logo-open"
+                    style="font-size: 1.25rem; font-weight: 700; color: var(--text-main);">Open</span>
+                <span class="logo-borme-box"
+                    style="background: var(--brand-primary); color: white; padding: 3px 8px; font-weight: 800; border-radius: 4px; margin-left: 2px;">Borme</span>
+            </a>
+
+            <div class="header-search-wrap" style="flex: 1; max-width: 480px; margin: 0 var(--space-6);">
+                <input type="text" class="input-main" style="height: 38px; font-size: 0.875rem;"
+                    placeholder="Búsqueda rápida de empresas...">
+            </div>
+
+            <nav id="nav-menu" class="header-nav" style="display: flex; gap: var(--space-1);">
+                <a href="#" class="btn btn-ghost btn-s" style="color: var(--text-muted);">Diario</a>
+                <a href="#" class="btn btn-ghost btn-s" style="color: var(--text-muted);">Provincias</a>
+                <a href="#" class="btn btn-primary btn-s" style="margin-left: var(--space-2);">API</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding: var(--space-8) 0;">
+        <!-- Hero Section Sobrio -->
+        <div class="hero-section" style="text-align: center; max-width: 800px; margin: 0 auto var(--space-8);">
+            <h1 style="color: var(--text-main); letter-spacing: -0.02em; margin-bottom: var(--space-4);">Transparencia
+                corporativa,<br>sin ruidos visuales.</h1>
+            <p
+                style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: var(--space-6); max-width: 600px; margin-left: auto; margin-right: auto;">
+                Accede a los datos del Boletín Oficial del Registro Mercantil de forma estructurada, limpia y eficiente.
+                Una herramienta pensada para expertos.
+            </p>
+
+            <div style="display: flex; justify-content: center; gap: var(--space-3);">
+                <button class="btn btn-primary btn-m">Explorar Diario</button>
+                <button class="btn btn-secondary btn-m">Ranking Capital</button>
+            </div>
+        </div>
+
+        <!-- Resultados en Superficies Suaves -->
+        <div class="results-layout" style="display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--space-5);">
+            <div style="grid-column: span 12;">
+                <h3
+                    style="margin-bottom: var(--space-4); color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                    Actividad Reciente</h3>
+            </div>
+
+            <div class="inst-card" style="grid-column: span 4; padding: var(--space-5);">
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">MADRID • ESTA MAÑANA
+                </div>
+                <h4 style="margin-bottom: 12px; font-size: 1rem;">INDITEX HOLDING SA</h4>
+                <div style="font-weight: 600; color: var(--text-main); font-size: 1.125rem; margin-bottom: 12px;">€
+                    12.450.000</div>
+                <div class="badge">Ampliación</div>
+            </div>
+
+            <div class="inst-card" style="grid-column: span 4; padding: var(--space-5);">
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">BARCELONA • AYER
+                </div>
+                <h4 style="margin-bottom: 12px; font-size: 1rem;">NEXUS PHARMA SL</h4>
+                <div style="font-weight: 600; color: var(--text-main); font-size: 1.125rem; margin-bottom: 12px;">€
+                    800.000</div>
+                <div class="badge">Constitución</div>
+            </div>
+
+            <div class="inst-card" style="grid-column: span 4; padding: var(--space-5);">
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px;">VALENCIA • 20 FEB
+                </div>
+                <h4 style="margin-bottom: 12px; font-size: 1rem;">VALENCIA LOGISTICS</h4>
+                <div style="font-weight: 600; color: var(--text-main); font-size: 1.125rem; margin-bottom: 12px;">€
+                    1.200.000</div>
+                <div class="badge">Ampliación</div>
+            </div>
+        </div>
+
+        <!-- Estética de Herramienta -->
+        <div
+            style="margin-top: var(--space-8); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); border-top: 1px solid var(--border-subtle); padding-top: var(--space-8);">
+            <div class="card" style="padding: var(--space-6); background: white;">
+                <h4 style="margin-bottom: var(--space-3);">API de Datos</h4>
+                <p style="color: var(--text-muted); font-size: 0.875rem;">Diseñada para ser integrada en flujos de
+                    trabajo profesionales. Sin límites artificiales.</p>
+                <button class="btn btn-ghost btn-s" style="margin-top: var(--space-4); padding-left: 0;">Documentación
+                    &rarr;</button>
+            </div>
+            <div class="card" style="padding: var(--space-6); background: white;">
+                <h4 style="margin-bottom: var(--space-3);">Dumps Semanales</h4>
+                <p style="color: var(--text-muted); font-size: 0.875rem;">Descarga toda la base de datos en formato JSON
+                    estructurado para tu propio análisis offline.</p>
+                <button class="btn btn-ghost btn-s" style="margin-top: var(--space-4); padding-left: 0;">Descargar JSON
+                    &rarr;</button>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

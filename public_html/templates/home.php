@@ -2,9 +2,9 @@
 $db_path = file_exists(__DIR__ . '/../../pipeline/db/Database.php') ? __DIR__ . '/../../pipeline/db/Database.php' : __DIR__ . '/../pipeline/db/Database.php';
 require_once $db_path;
 ?>
-<main class="container" style="padding: var(--space-8) 0;">
+<main class="container">
     <div class="hero-v3">
-        <h1 class="hero-title">La infraestructura de datos del <br><span class="accent-malva">Registro Mercantil</span>
+        <h1 class="hero-title">La infraestructura de datos del <br><span>Registro Mercantil</span>
         </h1>
         <p class="hero-subtitle">
             Normalización y democratización de los datos societarios de la industria española en una plataforma de alto
@@ -13,48 +13,34 @@ require_once $db_path;
 
         <form action="/buscar" method="GET" class="hero-search-wrap">
             <input type="text" name="q" class="hero-search-input" placeholder="Buscar por empresa, NIF o texto...">
-            <button type="submit" class="btn btn-primary btn-m" style="background: var(--brand-dark);">BUSCAR</button>
+            <button type="submit" class="btn btn-primary btn-m">BUSCAR</button>
         </form>
 
         <div class="hero-badges">
-            <a href="/borme/dias" class="badge-outline">Hoy</a>
-            <a href="/buscar?date=yesterday" class="badge-outline">Ayer</a>
+            <a href="/borme/dias" class="badge-outline">Boletín de Hoy</a>
             <a href="/provincias" class="badge-outline">Provincias</a>
+            <a href="/manifiesto" class="badge">Manifiesto Técnico</a>
         </div>
     </div>
 
-    <div style="margin: var(--space-8) 0;">
+    <div style="margin: var(--space-9) 0;">
         <div class="section-v3-header">
             <h2 class="section-v3-title">Boletines Recientes</h2>
-            <a href="/borme/dias" class="btn btn-ghost btn-s">Explorar histórico &rarr;</a>
+            <a href="/borme/dias" class="btn btn-ghost btn-s">Histórico Completo</a>
         </div>
 
         <div class="borme-grid">
-            <!-- Calendar Widget -->
+            <!-- Global Calendar in Window -->
             <div class="grid-col-4">
-                <div class="calendar-widget">
+                <div class="v4-window" style="padding: var(--space-5);">
                     <?php
-                    $today_ts = strtotime(date('Y-m-d'));
-
-                    // Selected Date Logic
-                    $selected_date_str = $_GET['date'] ?? null; // YYYYMMDD
-                    if ($selected_date_str) {
-                        // Parse selected date to show its month
-                        $sel_year = substr($selected_date_str, 0, 4);
-                        $sel_month = substr($selected_date_str, 4, 2);
-                        $current_year = $sel_year;
-                        $current_month = $sel_month;
-                    } else {
-                        $current_month = date('n');
-                        $current_year = date('Y');
-                    }
-
+                    $current_month = date('n');
+                    $current_year = date('Y');
                     $days_in_month = cal_days_in_month(CAL_GREGORIAN, $current_month, $current_year);
-                    $first_day_of_week = date('N', strtotime("$current_year-$current_month-01")); // 1 (Mon) - 7 (Sun)
-                    
+                    $first_day = date('N', strtotime("$current_year-$current_month-01"));
                     $month_names = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
                     ?>
-                    <div class="calendar-header">
+                    <div class="calendar-month-label">
                         <?= $month_names[(int) $current_month] ?> <?= $current_year ?>
                     </div>
                     <div class="calendar-grid">
@@ -65,267 +51,100 @@ require_once $db_path;
                         <div class="calendar-day-head">V</div>
                         <div class="calendar-day-head">S</div>
                         <div class="calendar-day-head">D</div>
-
                         <?php
-                        // Empty cells before start
-                        for ($i = 1; $i < $first_day_of_week; $i++) {
+                        for ($i = 1; $i < $first_day; $i++)
                             echo '<div class="calendar-day empty"></div>';
-                        }
-
-                        // Days
                         for ($d = 1; $d <= $days_in_month; $d++) {
                             $ts = strtotime("$current_year-$current_month-$d");
-                            $date_ymd = date('Ymd', $ts);
-
-                            $is_today = ($date_ymd === date('Ymd'));
-                            $is_selected = ($date_ymd === $selected_date_str);
-                            $weekday = date('N', $ts);
-                            $is_weekend = ($weekday >= 7);
-                            $is_future = ($ts > $today_ts);
-
-                            $class = "calendar-day";
-                            if ($is_today)
-                                $class .= " today";
-                            if ($is_selected)
-                                $class .= " selected";
-                            if ($is_future)
-                                $class .= " disabled";
-
-                            // Link - Only if valid
-                            if (!$is_weekend && !$is_future) {
-                                // Link to ?date=YYYYMMDD to reload home with detail
-                                echo "<a href='?date=$date_ymd' class='$class'>$d</a>";
+                            $ymd = date('Ymd', $ts);
+                            $class = "calendar-day" . ($ymd === date('Ymd') ? " today" : "");
+                            if (date('N', $ts) < 7 && $ts <= time()) {
+                                echo "<a href='/borme/dias/" . date('Y/m/d', $ts) . "' class='$class'>$d</a>";
                             } else {
-                                echo "<div class='$class' style='color: var(--text-muted); opacity: 0.5; cursor: default;'>$d</div>";
+                                echo "<div class='$class' style='opacity: 0.3;'>$d</div>";
                             }
                         }
                         ?>
-                    </div>
-                    <div style="margin-top: var(--space-3); text-align: center;">
-                        <!-- Navigation could be improved, simplification -->
-                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
-                            <?php
-                            $prev_ts = strtotime("$current_year-$current_month-01 -1 month");
-                            $next_ts = strtotime("$current_year-$current_month-01 +1 month");
-                            ?>
-                            <a href="?date=<?= date('Ymd', $prev_ts) ?>" class="btn btn-ghost btn-s">&larr; Ant</a>
-                            <?php if ($next_ts < time()): ?>
-                                <a href="?date=<?= date('Ymd', $next_ts) ?>" class="btn btn-ghost btn-s">Sig &rarr;</a>
-                            <?php endif; ?>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- List / Detail View -->
+            <!-- Recent Activity List -->
             <div class="grid-col-8" style="display: grid; gap: var(--space-4);">
                 <?php
-                if ($selected_date_str) {
-                    // --- DETAIL MODE: Show bulletins for selected date ---
-                    require_once __DIR__ . '/../lib/BoeScraper.php';
-                    $scraper = new BoeScraper();
-                    $summary = $scraper->getSummary($selected_date_str);
+                $recent_days = [];
+                for ($i = 0; $i < 4; $i++) {
+                    $ts = strtotime("-$i days");
+                    if (date('N', $ts) < 7)
+                        $recent_days[] = $ts;
+                    if (count($recent_days) >= 3)
+                        break;
+                }
+                foreach ($recent_days as $ts):
+                    $human = date('d/m/Y', $ts);
+                    $day = date('d', $ts);
+                    ?>
+                    <a href="/borme/dias/<?= date('Y/m/d', $ts) ?>" class="v4-inner-card borme-day-card">
+                        <div class="day-number">
+                            <?= $day ?>
+                        </div>
+                        <div class="day-info">
+                            <span class="meta"><?= $human ?></span>
+                            <h4>Boletín Oficial del Registro Mercantil</h4>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 
-                    $sel_day = substr($selected_date_str, 6, 2);
-                    $sel_mon = substr($selected_date_str, 4, 2);
-                    $sel_yr = substr($selected_date_str, 0, 4);
-                    $hum_date = "$sel_day/$sel_mon/$sel_yr";
-                    $boe_link = "https://www.boe.es/borme/dias/$sel_yr/$sel_mon/$sel_day/";
-                    // Route to SUMARIO template for Full View
-                    $url_full = "/borme/sumario/$sel_yr/$sel_mon/$sel_day";
-
-                    echo "<div>";
-                    echo "<div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);'>";
-                    echo "<h2 style='color: var(--brand-dark); margin: 0;'>Boletines del $hum_date</h2>";
-                    echo "<a href='$boe_link' target='_blank' class='btn btn-ghost btn-s'>Ver en BOE.es &rarr;</a>";
-                    echo "</div>";
-
-                    if (!empty($summary['sections'])) {
-                        foreach ($summary['sections'] as $sec_name => $provinces) {
-                            echo "<div style='margin-bottom: var(--space-5);'>";
-                            echo "<h4 style='color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; border-bottom: 2px solid var(--border-subtle); padding-bottom: 8px; margin-bottom: 12px;'>$sec_name</h4>";
-                            echo "<div style='display: flex; flex-wrap: wrap; gap: 8px;'>";
-
-                            ksort($provinces); // Alphabetical order
-                
-                            foreach ($provinces as $prov_name => $items) {
-                                // Clean Province Name for Display
-                                $clean_name = str_replace(['PROVINCIA ', 'SECCIÓN ESPECIAL '], '', $prov_name);
-                                $display_name = ucwords(strtolower($clean_name));
-                                $count = count($items);
-
-                                // Create Slug for URL
-                                $slug = strtolower(trim($clean_name));
-                                $slug = str_replace(['á', 'é', 'í', 'ó', 'ú', 'ñ', '/'], ['a', 'e', 'i', 'o', 'u', 'n', '-'], $slug);
-                                $slug = preg_replace('/[^a-z0-9-]/', '-', $slug);
-                                $slug = trim($slug, '-');
-
-                                // Link to PROVINCE view
-                                $prov_url = "/borme/provincia/$slug/$sel_yr/$sel_mon/$sel_day";
-
-                                echo "<a href='$prov_url' class='badge' style='background: white; border: 1px solid var(--border-strong); text-decoration: none; color: var(--text-main); padding: 6px 12px; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;' onmouseover=\"this.style.borderColor='var(--brand-primary)'; this.style.color='var(--brand-primary)';\" onmouseout=\"this.style.borderColor='var(--border-strong)'; this.style.color='var(--text-main)';\">";
-                                echo "<span style='font-weight: 600;'>$display_name</span>";
-                                echo "<span style='background: var(--bg-tag); font-size: 0.75rem; padding: 2px 6px; border-radius: 4px; color: var(--text-muted);'>$count</span>";
-                                echo "</a>";
-                            }
-                            echo "</div>";
-                            echo "</div>";
-                        }
-
-                        // Big Button
-                        echo "<div style='margin-top: var(--space-4); text-align: center;'>";
-                        echo "<a href='$url_full' class='btn btn-primary btn-m' style='width: 100%; justify-content: center;'>Ver Todos los Documentos &rarr;</a>";
-                        echo "</div>";
-
-                    } elseif ($summary['error']) {
-                        echo "<div class='card' style='padding: var(--space-4); color: var(--error); background: var(--bg-error);'>⚠️ " . $summary['error'] . "</div>";
-                    } else {
-                        echo "<div class='card' style='padding: var(--space-4);'>No hay datos disponibles para esta fecha.</div>";
+    <div class="section-soft-bg">
+        <div class="container">
+            <h2 class="section-v3-title" style="margin-bottom: var(--space-6);">Inyecciones de Capital</h2>
+            <div class="borme-grid">
+                <?php
+                try {
+                    $db = Database::getInstance();
+                    $stmt = $db->prepare("SELECT company_name, province, capital, type, date FROM borme_acts WHERE capital IS NOT NULL AND capital != '' ORDER BY length(capital) DESC, capital DESC LIMIT 6");
+                    $stmt->execute();
+                    $top_acts = $stmt->fetchAll();
+                    foreach ($top_acts as $index => $act) {
+                        $span = ($index < 2) ? 'grid-col-6' : 'grid-col-3';
+                        $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($act['company_name']));
+                        echo "<div class='v4-inner-card $span' style='display: flex; flex-direction: column; justify-content: space-between; min-height: 160px;'>
+                            <div>
+                                <span class='meta' style='font-size: 11px;'>{$act['province']} • " . date('d/m/Y', strtotime($act['date'])) . "</span>
+                                <h4 style='margin-top: 8px;'><a href='/empresa/$slug' style='text-decoration: none; color: inherit;'>{$act['company_name']}</a></h4>
+                            </div>
+                            <div>
+                                <div style='font-weight: 700; color: var(--brand-primary); font-size: " . ($index < 2 ? '1.5rem' : '1.25rem') . ";'>{$act['capital']}</div>
+                                <span class='badge' style='margin-top: 8px;'>{$act['type']}</span>
+                            </div>
+                        </div>";
                     }
-                    echo "</div>";
-
-                } else {
-                    // --- DEFAULT MODE: Recent Bulletins ---
-                    // Generate last 3 working days (approximate)
-                    $dates = [];
-                    for ($i = 0; $i < 5; $i++) {
-                        $ts = strtotime("-$i days");
-                        if (date('N', $ts) < 7) { // Mon-Sat
-                            $dates[] = $ts;
-                        }
-                        if (count($dates) >= 3)
-                            break;
-                    }
-
-                    foreach ($dates as $ts):
-                        $date_str = date('Ymd', $ts);
-                        $human_date = date('d/m/Y', $ts);
-                        $day_num = date('d', $ts);
-                        $is_today = (date('Ymd') === $date_str);
-
-                        // Clean URL Construction
-                        $url_clean = "/borme/dias/" . date('Y/m/d', $ts);
-                        ?>
-                        <a href="<?= $url_clean ?>" class="card date-card-hover"
-                            style="text-decoration: none; padding: var(--space-5); display: flex; align-items: center; gap: var(--space-5); border-color: var(--border-subtle);">
-
-                            <!-- Authority Indicator -->
-                            <div
-                                style="font-size: 2.25rem; font-weight: 800; line-height: 1; color: <?= $is_today ? 'var(--accent)' : 'var(--text-secondary)' ?>; letter-spacing: -0.05em; width: 50px; text-align: center;">
-                                <?= $day_num ?>
-                            </div>
-
-                            <!-- Content Area -->
-                            <div style="flex: 1;">
-                                <div class="mono"
-                                    style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.05em;">
-                                    <?= $human_date ?>
-                                </div>
-                                <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin: 0;">Boletín
-                                    Oficial (BORME)</h3>
-                            </div>
-
-                            <!-- Malva Accent on Hover is handled by .card CSS, but let's add a micro-arrow -->
-                            <div style="color: var(--text-secondary); opacity: 0.3;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
-                            </div>
-                        </a>
-                    <?php endforeach;
+                } catch (Exception $e) {
                 }
                 ?>
             </div>
         </div>
     </div>
 
-    <!-- PREMIUM FEATURE: Bento Top Capital Injections -->
-    <div style="margin: var(--space-8) 0; padding-top: var(--space-8);">
-        <h2 class="section-v3-title" style="margin-bottom: var(--space-2);">💰 Inyecciones de Capital</h2>
-        <p style="color: var(--text-muted); margin-bottom: var(--space-6);">Las mayores transacciones registradas en el
-            sistema recientemente.</p>
-
-        <div class="borme-grid">
-            <?php
-            try {
-                $db = Database::getInstance();
-                $stmt = $db->prepare("
-                    SELECT id, date, company_name, province, capital, type 
-                    FROM borme_acts 
-                    WHERE capital IS NOT NULL AND capital != '' 
-                    ORDER BY length(capital) DESC, capital DESC LIMIT 6
-                ");
-                $stmt->execute();
-                $top_acts = $stmt->fetchAll();
-
-                foreach ($top_acts as $index => $act) {
-                    $c_date = date('d/m/Y', strtotime($act['date']));
-                    $cap_str = $act['capital'];
-                    $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($act['company_name']));
-
-                    // Bento style spanning: first two are larger
-                    $span_class = ($index < 2) ? 'grid-col-6' : 'grid-col-3';
-                    $padding = ($index < 2) ? 'var(--space-6)' : 'var(--space-5)';
-
-                    echo "<div class='card $span_class' style='padding: $padding; display: flex; flex-direction: column; justify-content: space-between; border-color: var(--border-subtle);'>
-                        <div>
-                            <div style='font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em;'>
-                                {$act['province']} • $c_date
-                            </div>
-                            <h4 style='margin-bottom: 12px; color: var(--brand-dark); font-size: " . ($index < 2 ? '1.4rem' : '1.1rem') . "; line-height: 1.2;'>
-                                <a href='/empresa/$slug' style='text-decoration: none; color: inherit;' class='accent-hover'>{$act['company_name']}</a>
-                            </h4>
-                        </div>
-                        <div>
-                            <div style='font-weight: 800; color: var(--text-main); font-size: " . ($index < 2 ? '1.75rem' : '1.35rem') . "; margin-bottom: 8px; letter-spacing: -0.02em;'>$cap_str</div>
-                            <div class='badge' style='background: var(--bg-alt);'>{$act['type']}</div>
-                        </div>
-                    </div>";
-                }
-            } catch (Exception $e) {
-                echo "<p style='color: var(--error); text-align: center;'>Generando estadísticas en tiempo real...</p>";
-            }
-            ?>
-        </div>
-        <div style="text-align: center; margin-top: var(--space-4);">
-            <a href="/ranking-capital" class="btn btn-ghost">Ver listado completo &rarr;</a>
-        </div>
-    </div>
-
-    <!-- Feature Cards -->
-    <div
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-6); border-top: 1px solid var(--border-subtle); padding-top: var(--space-8);">
-        <section class="inst-card">
-            <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">🏗️</div>
-            <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Ingeniería de Datos</h3>
-            <p>
-                No solo volcamos texto. OpenBorme normaliza entidades, detecta tipos de actos y vincula eventos para
-                crear un historial coherente de cada empresa.
-            </p>
+    <!-- Final Features Grid -->
+    <div class="borme-grid" style="border-top: 1px solid var(--border-linear); padding-top: var(--space-9);">
+        <section class="grid-col-4 v4-inner-card">
+            <h3 style="color: #fff; margin-bottom: 12px;">Ingeniería de Datos</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">Normalización y estructuración profunda de eventos
+                mercantiles.</p>
         </section>
-
-        <section class="inst-card">
-            <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">⚖️</div>
-            <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">Ética por Diseño</h3>
-            <p>
-                Respetamos estrictamente el RGPD. Limitamos la visibilidad de datos personales y evitamos el profiling
-                masivo para centrarnos en transparencia corporativa.
-            </p>
+        <section class="grid-col-4 v4-inner-card">
+            <h3 style="color: #fff; margin-bottom: 12px;">Ética & RGPD</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">Privacidad por diseño para una transparencia
+                responsable.</p>
         </section>
-
-        <section class="inst-card">
-            <div style="font-size: 2rem; margin-bottom: var(--space-3); color: var(--brand-primary);">🚀</div>
-            <h3 style="margin-bottom: var(--space-3); color: var(--brand-dark);">API & Datasets</h3>
-            <p>
-                Construido para desarrolladores e IAs. Accede a dumps masivos en formatos eficientes o integra nuestra
-                API en tus flujos de trabajo.
-            </p>
-            <div style="margin-top: var(--space-4);">
-                <a href="/api" class="btn btn-secondary btn-s" style="border-radius: var(--radius-md);">Explorar API
-                    &rarr;</a>
-            </div>
+        <section class="grid-col-4 v4-inner-card">
+            <h3 style="color: #fff; margin-bottom: 12px;">API Centralizada</h3>
+            <p style="font-size: 14px; color: var(--text-muted);">Acceso programático de alto rendimiento para
+                analistas.</p>
         </section>
     </div>
 </main>

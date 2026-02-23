@@ -1,4 +1,4 @@
-<div class="container" style="padding: var(--space-6) 0;">
+<div class="container section-py">
     <nav class="breadcrumbs">
         <a href="/">Inicio</a> /
         <span>Documentación API</span>

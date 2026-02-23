@@ -28,7 +28,7 @@ if (strlen($q) >= 3) {
 }
 ?>
 
-<div class="container" style="padding: var(--space-6) 0;">
+<div class="container section-py">
     <div class="search-header">
         <p class="meta">Resultados de búsqueda</p>
         <h1>Buscando "<?= htmlspecialchars($q) ?>"</h1>
@@ -118,10 +118,8 @@ if (strlen($q) >= 3) {
 
                         <div class="search-result-tags">
                             <span class="badge"><?= $res['province'] ?></span>
-                            <span class="badge"
-                                style="background: var(--border-light);"><?= date('d/m/Y', strtotime($res['date'])) ?></span>
-                            <span class="badge"
-                                style="background: #e0f2fe; color: #0369a1; border: none;"><?= $res['type'] ?></span>
+                            <span class="badge"><?= date('d/m/Y', strtotime($res['date'])) ?></span>
+                            <span class="badge badge-type-acto"><?= $res['type'] ?></span>
                         </div>
 
                         <p class="search-result-excerpt">
@@ -130,7 +128,7 @@ if (strlen($q) >= 3) {
 
                         <div class="search-result-footer">
                             <a href="/borme/doc/<?= $res['id'] ?>" class="btn btn-ghost btn-s" style="padding-left: 0;">Ver
-                                Documento &rarr;</a>
+                                Documento</a>
                             <button class="btn btn-ghost btn-s"
                                 onclick="navigator.clipboard.writeText('https://openborme.es/borme/doc/<?= $res['id'] ?>')">Copiar
                                 Enlace</button>

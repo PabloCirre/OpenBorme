@@ -1,3 +1,4 @@
+<?php
 session_start();
 $is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $_SERVER['SERVER_NAME'] == 'localhost';
 ?>
@@ -92,7 +93,7 @@ $is_local = in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $_SERVER[
                 </p>
                 <div
                     style="background: #e1eefc; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.8rem; color: #004085; margin-bottom: 1rem;">
-                    cd core/extractor<br>
+                    cd pipeline/extract/extractor<br>
                     python engine.py 2020-01-01 2020-12-31
                 </div>
                 <div style="display: flex; gap: 1rem; align-items: center; opacity: 0.6; pointer-events: none;">

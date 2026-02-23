@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenBorme V2 | High-Performance Tooling</title>
+    <link rel="stylesheet" href="public_html/assets/css/styles.css">
+    <style>
+        body {
+            background: var(--bg-main);
+        }
+
+        .grid-12 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-5);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header V2 -->
+    <header class="inst-header"
+        style="height: 72px; border-bottom: 1px solid var(--border-subtle); background: rgba(255,255,255,0.8); backdrop-filter: blur(8px);">
+        <div class="container"
+            style="height: 100%; display: flex; align-items: center; justify-content: space-between;">
+            <a href="#" class="logo-container" style="display: flex; align-items: center; text-decoration: none;">
+                <span
+                    style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); font-family: var(--font-heading); letter-spacing: -0.04em;">OpenBORME</span>
+            </a>
+            <nav style="display: flex; gap: var(--space-4); align-items: center;">
+                <a href="#" class="btn btn-ghost btn-s" style="color: var(--text-muted); font-weight: 600;">Explorar</a>
+                <a href="#" class="btn btn-ghost btn-s" style="color: var(--text-muted); font-weight: 600;">API</a>
+                <a href="#" class="btn btn-primary btn-s"
+                    style="border-radius: var(--radius-md); padding: 0 var(--space-4); background: var(--brand-dark);">Acceso</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="padding: var(--space-8) 0;">
+        <!-- Hero Stripe-Style -->
+        <div class="hero-section" style="text-align: center; max-width: 1000px; margin: 0 auto var(--space-8);">
+            <h1 style="text-wrap: balance;">La infraestructura de datos del <span class="accent-malva">Registro
+                    Mercantil</span></h1>
+            <p
+                style="font-size: 1.35rem; color: var(--text-muted); max-width: 750px; margin: 0 auto var(--space-7); line-height: 1.4;">
+                Normalización y democratización de los datos societarios de la industria española en una plataforma de
+                alto rendimiento.
+            </p>
+
+            <div
+                style="display: flex; gap: var(--space-3); max-width: 720px; margin: 0 auto; background: white; padding: var(--space-2); border-radius: var(--radius-xl); border: 1px solid var(--border-strong); box-shadow: var(--shadow-md);">
+                <input type="text" placeholder="Buscar Inditex, NIF o actividad..."
+                    style="flex: 1; border: none; font-size: 1.15rem; outline: none; padding-left: var(--space-4); background: transparent;">
+                <button class="btn btn-primary btn-m"
+                    style="padding: 0 var(--space-6); border-radius: var(--radius-lg); background: var(--brand-dark);">BUSCAR</button>
+            </div>
+        </div>
+
+        <!-- Bento Grid: Boletines -->
+        <div style="margin-bottom: var(--space-8);">
+            <div
+                style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-5); border-bottom: 1px solid var(--border-subtle); padding-bottom: var(--space-3);">
+                <h2 style="font-size: 1.25rem; margin: 0;">Actividad en Tiempo Real</h2>
+                <span class="badge accent-bg">V2 ENGINE</span>
+            </div>
+
+            <div class="grid-12">
+                <!-- Bento Block 1: Date Navigation -->
+                <div class="card" style="grid-column: span 4; background: var(--bg-soft);">
+                    <div class="calendar-header" style="text-align: left; margin-bottom: var(--space-5);">FEBRERO 2024
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;">
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">L</div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">M</div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">X</div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">J</div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700;">V</div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; opacity: 0.3;">S
+                        </div>
+                        <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 700; opacity: 0.3;">D
+                        </div>
+
+                        <div class="calendar-day">19</div>
+                        <div class="calendar-day">20</div>
+                        <div class="calendar-day today">21</div>
+                        <div class="calendar-day disabled">22</div>
+                        <div class="calendar-day disabled">23</div>
+                    </div>
+                </div>
+
+                <!-- Bento Block 2: Recent List -->
+                <div style="grid-column: span 8; display: flex; flex-direction: column; gap: var(--space-3);">
+                    <a href="#" class="card"
+                        style="padding: var(--space-5); display: flex; align-items: center; gap: var(--space-5); border-color: var(--border-subtle);">
+                        <div
+                            style="font-size: 2.25rem; font-weight: 800; color: var(--accent); letter-spacing: -0.05em; width: 50px; text-align: center;">
+                            21</div>
+                        <div style="flex: 1;">
+                            <div class="mono"
+                                style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase;">
+                                21 FEBRERO 2024</div>
+                            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Boletín Oficial (BORME)</h3>
+                        </div>
+                        <div style="color: var(--text-secondary); opacity: 0.3;">&rarr;</div>
+                    </a>
+                    <a href="#" class="card"
+                        style="padding: var(--space-5); display: flex; align-items: center; gap: var(--space-5); border-color: var(--border-subtle);">
+                        <div
+                            style="font-size: 2.25rem; font-weight: 800; color: var(--text-secondary); letter-spacing: -0.05em; width: 50px; text-align: center;">
+                            20</div>
+                        <div style="flex: 1;">
+                            <div class="mono"
+                                style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase;">
+                                20 FEBRERO 2024</div>
+                            <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0;">Boletín Oficial (BORME)</h3>
+                        </div>
+                        <div style="color: var(--text-secondary); opacity: 0.3;">&rarr;</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bento Grid: Capital Injections -->
+        <div style="margin-top: var(--space-8);">
+            <h2 style="font-size: 1.5rem; margin-bottom: var(--space-2);">Top Inversiones de Capital</h2>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-6);">Transacciones institucionales detected
+                por el motor de análisis.</p>
+
+            <div class="grid-12">
+                <div class="card"
+                    style="grid-column: span 6; padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div
+                            style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                            MADRID • HOY</div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 12px;"><a href="#"
+                                style="text-decoration: none; color: inherit;" class="accent-hover">INDITEX HOLDING
+                                SA</a></h4>
+                    </div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 1.75rem; margin-bottom: 8px; letter-spacing: -0.02em;">
+                            € 12.450.000</div>
+                        <div class="badge">Ampliación de Capital</div>
+                    </div>
+                </div>
+
+                <div class="card"
+                    style="grid-column: span 6; padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div
+                            style="font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase;">
+                            BARCELONA • AYER</div>
+                        <h4 style="font-size: 1.4rem; margin-bottom: 12px;"><a href="#"
+                                style="text-decoration: none; color: inherit;" class="accent-hover">NEXUS PHARMA
+                                TECHNOLOGY</a></h4>
+                    </div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 1.75rem; margin-bottom: 8px; letter-spacing: -0.02em;">
+                            € 8.200.000</div>
+                        <div class="badge">Constitución</div>
+                    </div>
+                </div>
+
+                <div class="card" style="grid-column: span 4; padding: var(--space-5);">
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">VALENCIA</div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 8px;">LEVANTINA LOGÍSTICA</h4>
+                    <div style="font-weight: 800; font-size: 1.35rem; margin-bottom: 8px;">€ 1.200.000</div>
+                    <div class="badge">Reducción</div>
+                </div>
+                <div class="card" style="grid-column: span 4; padding: var(--space-5);">
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">SEVILLA</div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 8px;">ANDALUCÍA SOLAR SL</h4>
+                    <div style="font-weight: 800; font-size: 1.35rem; margin-bottom: 8px;">€ 950.000</div>
+                    <div class="badge">Ampliación</div>
+                </div>
+                <div class="card" style="grid-column: span 4; padding: var(--space-5);">
+                    <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 4px;">BILBAO</div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 8px;">VIZCAYA VENTURES</h4>
+                    <div style="font-weight: 800; font-size: 1.35rem; margin-bottom: 8px;">€ 2.100.000</div>
+                    <div class="badge">Inyección</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

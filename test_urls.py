@@ -2,7 +2,7 @@ import urllib.request
 import urllib.error
 import time
 
-BASE_URL = "https://openborme.es"
+BASE_URL = "http://localhost:8000"
 
 endpoints = [
     "/",
