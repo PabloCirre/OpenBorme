@@ -1,0 +1,14 @@
+{
+  "name": "openborme/openborme",
+  "description": "Pipeline y frontend para estructurar el BORME.",
+  "type": "project",
+  "require": {
+    "php": ">=8.0",
+    "smalot/pdfparser": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenBorme\\": "pipeline/"
+    }
+  }
+}

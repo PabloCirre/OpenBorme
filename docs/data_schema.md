@@ -1,6 +1,6 @@
 # Modelo de Datos (Schema)
 
-OpenBorme utiliza un modelo relacional simplificado diseñado para la búsqueda rápida y el análisis de series temporales de actos mercantiles.
+OpenBorme utiliza un modelo relacional simplificado sobre **SQLite** (`pipeline/data/openborme.sqlite`) diseñado para búsqueda rápida y análisis temporal.
 
 ## Entidades Principales
 
@@ -16,11 +16,16 @@ Representa la entidad legal inscrita en el Registro Mercantil.
 
 Representa un evento atómico publicado en el BORME.
 
-- **ID**: Hash MD5 generado a partir del contenido del acto para garantizar trazabilidad.
+- **ID**: Identificador del acto (fuente BORME o ID interno de parsing).
+- **Hash MD5**: Huella única de contenido para deduplicación y trazabilidad.
 - **Tipo de Acto**: Categoría normalizada (ej: Constitución, Nombramientos, Cese).
-- **Fecha**: Fecha de publicación en el BOE (YYYY-MM-DD).
+- **Fecha**: Fecha de publicación en el BOE (formato `YYYYMMDD` en SQLite actual).
 - **Sección**: Sección del BORME (I o II).
 - **Detalles**: Texto completo extraído mediante el pipeline OCR.
+- **normalized_type**: Tipo canónico (`CONSTITUCION`, `DISOLUCION`, `CESE`, etc.).
+- **event_group**: Grupo analítico (`CREATION`, `DISSOLUTION`, `OTHER`, `MIXED`).
+- **is_creation / is_dissolution**: Flags para métricas de altas/bajas.
+- **company_name_norm**: Nombre social normalizado en mayúsculas para matching.
 
 ## Relaciones
 
@@ -30,6 +35,6 @@ Un `company` puede tener múltiples `acts` asociados a lo largo del tiempo, perm
 
 Los datos están disponibles para descarga masiva en los siguientes formatos:
 
-- **CSV**: Para análisis rápido en Excel/Pandas.
-- **JSON**: Para integración en aplicaciones.
-- **Parquet**: *[PRÓXIMAMENTE]* Para procesamiento Big Data.
+- **SQLite**: Base oficial del proyecto (`openborme.sqlite`).
+- **CSV**: Exportaciones puntuales.
+- **JSON**: Vía API.

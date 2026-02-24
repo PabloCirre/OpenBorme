@@ -1,0 +1,1210 @@
+[
+  {
+    "url": "https://openborme.es/",
+    "final_url": "https://openborme.es/",
+    "status": 200,
+    "latency_ms": 221.56,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/api",
+    "final_url": "https://openborme.es/api",
+    "status": 200,
+    "latency_ms": 124.44,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/api/documentacion",
+    "final_url": "https://openborme.es/api/documentacion",
+    "status": 200,
+    "latency_ms": 136.4,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-28?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-28?date=20260224",
+    "status": 200,
+    "latency_ms": 134.2,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93842?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93842?date=20260224",
+    "status": 200,
+    "latency_ms": 119.24,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93843?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93843?date=20260224",
+    "status": 200,
+    "latency_ms": 135.95,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93844?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93844?date=20260224",
+    "status": 200,
+    "latency_ms": 123.05,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93845?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93845?date=20260224",
+    "status": 200,
+    "latency_ms": 120.63,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93846?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93846?date=20260224",
+    "status": 200,
+    "latency_ms": 122.32,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93847?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93847?date=20260224",
+    "status": 200,
+    "latency_ms": 125.42,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93848?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93848?date=20260224",
+    "status": 200,
+    "latency_ms": 127.33,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93849?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93849?date=20260224",
+    "status": 200,
+    "latency_ms": 135.3,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93850?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93850?date=20260224",
+    "status": 200,
+    "latency_ms": 120.24,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93851?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93851?date=20260224",
+    "status": 200,
+    "latency_ms": 128.29,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93852?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93852?date=20260224",
+    "status": 200,
+    "latency_ms": 119.92,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93853?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93853?date=20260224",
+    "status": 200,
+    "latency_ms": 122.93,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93854?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93854?date=20260224",
+    "status": 200,
+    "latency_ms": 118.09,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93855?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93855?date=20260224",
+    "status": 200,
+    "latency_ms": 131.35,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93856?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93856?date=20260224",
+    "status": 200,
+    "latency_ms": 114.84,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93857?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93857?date=20260224",
+    "status": 200,
+    "latency_ms": 177.88,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93858?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93858?date=20260224",
+    "status": 200,
+    "latency_ms": 125.64,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93859?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93859?date=20260224",
+    "status": 200,
+    "latency_ms": 119.33,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93860?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93860?date=20260224",
+    "status": 200,
+    "latency_ms": 125.22,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93861?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93861?date=20260224",
+    "status": 200,
+    "latency_ms": 126.51,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93862?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93862?date=20260224",
+    "status": 200,
+    "latency_ms": 120.59,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93863?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93863?date=20260224",
+    "status": 200,
+    "latency_ms": 120.05,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93864?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93864?date=20260224",
+    "status": 200,
+    "latency_ms": 121.71,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-93865?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-93865?date=20260224",
+    "status": 200,
+    "latency_ms": 122.29,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96201?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96201?date=20260224",
+    "status": 200,
+    "latency_ms": 141.83,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96202?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96202?date=20260224",
+    "status": 200,
+    "latency_ms": 186.41,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96203?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96203?date=20260224",
+    "status": 200,
+    "latency_ms": 124.63,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96204?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96204?date=20260224",
+    "status": 200,
+    "latency_ms": 133.15,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96205?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96205?date=20260224",
+    "status": 200,
+    "latency_ms": 121.82,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96206?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96206?date=20260224",
+    "status": 200,
+    "latency_ms": 127.49,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96207?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96207?date=20260224",
+    "status": 200,
+    "latency_ms": 124.55,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96208?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96208?date=20260224",
+    "status": 200,
+    "latency_ms": 130.08,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96209?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96209?date=20260224",
+    "status": 200,
+    "latency_ms": 123.71,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96210?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96210?date=20260224",
+    "status": 200,
+    "latency_ms": 129.58,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96211?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96211?date=20260224",
+    "status": 200,
+    "latency_ms": 120.62,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96212?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96212?date=20260224",
+    "status": 200,
+    "latency_ms": 135.02,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96213?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96213?date=20260224",
+    "status": 200,
+    "latency_ms": 118.47,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96214?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96214?date=20260224",
+    "status": 200,
+    "latency_ms": 123.73,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96215?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96215?date=20260224",
+    "status": 200,
+    "latency_ms": 121.52,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96216?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96216?date=20260224",
+    "status": 200,
+    "latency_ms": 129.4,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96217?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96217?date=20260224",
+    "status": 200,
+    "latency_ms": 123.46,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96218?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96218?date=20260224",
+    "status": 200,
+    "latency_ms": 130.86,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96219?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96219?date=20260224",
+    "status": 200,
+    "latency_ms": 124.64,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96220?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96220?date=20260224",
+    "status": 200,
+    "latency_ms": 119.02,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96221?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96221?date=20260224",
+    "status": 200,
+    "latency_ms": 121.09,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96222?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96222?date=20260224",
+    "status": 200,
+    "latency_ms": 116.02,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96223?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96223?date=20260224",
+    "status": 200,
+    "latency_ms": 118.69,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96224?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96224?date=20260224",
+    "status": 200,
+    "latency_ms": 126.52,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96225?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96225?date=20260224",
+    "status": 200,
+    "latency_ms": 122.81,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96226?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96226?date=20260224",
+    "status": 200,
+    "latency_ms": 121.05,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96227?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96227?date=20260224",
+    "status": 200,
+    "latency_ms": 118.28,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96228?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96228?date=20260224",
+    "status": 200,
+    "latency_ms": 134.79,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96229?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96229?date=20260224",
+    "status": 200,
+    "latency_ms": 118.25,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96230?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96230?date=20260224",
+    "status": 200,
+    "latency_ms": 133.92,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96231?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96231?date=20260224",
+    "status": 200,
+    "latency_ms": 125.76,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96232?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96232?date=20260224",
+    "status": 200,
+    "latency_ms": 121.75,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96233?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96233?date=20260224",
+    "status": 200,
+    "latency_ms": 122.49,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96234?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96234?date=20260224",
+    "status": 200,
+    "latency_ms": 123.12,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96235?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96235?date=20260224",
+    "status": 200,
+    "latency_ms": 124.5,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96236?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96236?date=20260224",
+    "status": 200,
+    "latency_ms": 120.01,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96237?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96237?date=20260224",
+    "status": 200,
+    "latency_ms": 134.57,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96238?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96238?date=20260224",
+    "status": 200,
+    "latency_ms": 129.95,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96239?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96239?date=20260224",
+    "status": 200,
+    "latency_ms": 129.04,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96240?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96240?date=20260224",
+    "status": 200,
+    "latency_ms": 176.1,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96241?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96241?date=20260224",
+    "status": 200,
+    "latency_ms": 121.57,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96242?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96242?date=20260224",
+    "status": 200,
+    "latency_ms": 123.28,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96243?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96243?date=20260224",
+    "status": 200,
+    "latency_ms": 124.65,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96244?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96244?date=20260224",
+    "status": 200,
+    "latency_ms": 122.97,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96245?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96245?date=20260224",
+    "status": 200,
+    "latency_ms": 125.96,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96246?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96246?date=20260224",
+    "status": 200,
+    "latency_ms": 119.04,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96247?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96247?date=20260224",
+    "status": 200,
+    "latency_ms": 120.22,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96248?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96248?date=20260224",
+    "status": 200,
+    "latency_ms": 135.2,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96249?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96249?date=20260224",
+    "status": 200,
+    "latency_ms": 117.49,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96250?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96250?date=20260224",
+    "status": 200,
+    "latency_ms": 143.94,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96251?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96251?date=20260224",
+    "status": 200,
+    "latency_ms": 137.82,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96252?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96252?date=20260224",
+    "status": 200,
+    "latency_ms": 119.9,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96253?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96253?date=20260224",
+    "status": 200,
+    "latency_ms": 140.76,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96254?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96254?date=20260224",
+    "status": 200,
+    "latency_ms": 125.99,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/doc/SALAMANCA-96255?date=20260224",
+    "final_url": "https://openborme.es/borme/doc/SALAMANCA-96255?date=20260224",
+    "status": 200,
+    "latency_ms": 122.04,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/a-coruna",
+    "final_url": "https://openborme.es/borme/provincia/a-coruna",
+    "status": 200,
+    "latency_ms": 124.65,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de A Coruna</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/asturias",
+    "final_url": "https://openborme.es/borme/provincia/asturias",
+    "status": 200,
+    "latency_ms": 121.22,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Asturias</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/caceres",
+    "final_url": "https://openborme.es/borme/provincia/caceres",
+    "status": 200,
+    "latency_ms": 120.03,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Caceres</title>  "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/cadiz",
+    "final_url": "https://openborme.es/borme/provincia/cadiz",
+    "status": 200,
+    "latency_ms": 120.8,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Cadiz</title>    "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/castellon",
+    "final_url": "https://openborme.es/borme/provincia/castellon",
+    "status": 200,
+    "latency_ms": 132.47,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Castellon</title>"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/ciudad-real",
+    "final_url": "https://openborme.es/borme/provincia/ciudad-real",
+    "status": 200,
+    "latency_ms": 123.3,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Ciudad Real</titl"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/cordoba",
+    "final_url": "https://openborme.es/borme/provincia/cordoba",
+    "status": 200,
+    "latency_ms": 140.08,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Cordoba</title>  "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/cuenca",
+    "final_url": "https://openborme.es/borme/provincia/cuenca",
+    "status": 200,
+    "latency_ms": 121.99,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Cuenca</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/gipuzkoa",
+    "final_url": "https://openborme.es/borme/provincia/gipuzkoa",
+    "status": 200,
+    "latency_ms": 122.89,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Gipuzkoa</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/girona",
+    "final_url": "https://openborme.es/borme/provincia/girona",
+    "status": 200,
+    "latency_ms": 123.96,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Girona</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/granada",
+    "final_url": "https://openborme.es/borme/provincia/granada",
+    "status": 200,
+    "latency_ms": 124.3,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Granada</title>  "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/guadalajara",
+    "final_url": "https://openborme.es/borme/provincia/guadalajara",
+    "status": 200,
+    "latency_ms": 116.88,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Guadalajara</titl"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/huelva",
+    "final_url": "https://openborme.es/borme/provincia/huelva",
+    "status": 200,
+    "latency_ms": 152.87,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Huelva</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/huesca",
+    "final_url": "https://openborme.es/borme/provincia/huesca",
+    "status": 200,
+    "latency_ms": 116.41,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Huesca</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/jaen",
+    "final_url": "https://openborme.es/borme/provincia/jaen",
+    "status": 200,
+    "latency_ms": 128.25,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Jaen</title>     "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/la-rioja",
+    "final_url": "https://openborme.es/borme/provincia/la-rioja",
+    "status": 200,
+    "latency_ms": 126.6,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de La Rioja</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/las-palmas",
+    "final_url": "https://openborme.es/borme/provincia/las-palmas",
+    "status": 200,
+    "latency_ms": 119.67,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Las Palmas</title"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/leon",
+    "final_url": "https://openborme.es/borme/provincia/leon",
+    "status": 200,
+    "latency_ms": 139.22,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Leon</title>     "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/lleida",
+    "final_url": "https://openborme.es/borme/provincia/lleida",
+    "status": 200,
+    "latency_ms": 217.52,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Lleida</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/lugo",
+    "final_url": "https://openborme.es/borme/provincia/lugo",
+    "status": 200,
+    "latency_ms": 119.92,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Lugo</title>     "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/madrid",
+    "final_url": "https://openborme.es/borme/provincia/madrid",
+    "status": 200,
+    "latency_ms": 120.56,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Madrid</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/malaga",
+    "final_url": "https://openborme.es/borme/provincia/malaga",
+    "status": 200,
+    "latency_ms": 120.06,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Malaga</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/murcia",
+    "final_url": "https://openborme.es/borme/provincia/murcia",
+    "status": 200,
+    "latency_ms": 130.87,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Murcia</title>   "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/national",
+    "final_url": "https://openborme.es/borme/provincia/national",
+    "status": 200,
+    "latency_ms": 132.85,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de National</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/navarra",
+    "final_url": "https://openborme.es/borme/provincia/navarra",
+    "status": 200,
+    "latency_ms": 119.9,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Navarra</title>  "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/ourense",
+    "final_url": "https://openborme.es/borme/provincia/ourense",
+    "status": 200,
+    "latency_ms": 124.24,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Ourense</title>  "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/palencia",
+    "final_url": "https://openborme.es/borme/provincia/palencia",
+    "status": 200,
+    "latency_ms": 230.38,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Palencia</title> "
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/pontevedra",
+    "final_url": "https://openborme.es/borme/provincia/pontevedra",
+    "status": 200,
+    "latency_ms": 130.88,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Pontevedra</title"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/salamanca",
+    "final_url": "https://openborme.es/borme/provincia/salamanca",
+    "status": 200,
+    "latency_ms": 128.19,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Salamanca</title>"
+  },
+  {
+    "url": "https://openborme.es/borme/provincia/unknown",
+    "final_url": "https://openborme.es/borme/provincia/unknown",
+    "status": 200,
+    "latency_ms": 123.6,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>BORME de Unknown</title>  "
+  },
+  {
+    "url": "https://openborme.es/buscar",
+    "final_url": "https://openborme.es/buscar",
+    "status": 200,
+    "latency_ms": 120.75,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/busqueda-avanzada",
+    "final_url": "https://openborme.es/busqueda-avanzada",
+    "status": 200,
+    "latency_ms": 123.63,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/descargas",
+    "final_url": "https://openborme.es/descargas",
+    "status": 200,
+    "latency_ms": 118.53,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/manifiesto",
+    "final_url": "https://openborme.es/manifiesto",
+    "status": 200,
+    "latency_ms": 122.18,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>Manifiesto Técnico | OpenB"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas",
+    "final_url": "https://openborme.es/nuevas-empresas",
+    "status": 200,
+    "latency_ms": 119.58,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/a-coruna",
+    "final_url": "https://openborme.es/nuevas-empresas/a-coruna",
+    "status": 200,
+    "latency_ms": 136.75,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/asturias",
+    "final_url": "https://openborme.es/nuevas-empresas/asturias",
+    "status": 200,
+    "latency_ms": 135.39,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/caceres",
+    "final_url": "https://openborme.es/nuevas-empresas/caceres",
+    "status": 200,
+    "latency_ms": 131.01,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/cadiz",
+    "final_url": "https://openborme.es/nuevas-empresas/cadiz",
+    "status": 200,
+    "latency_ms": 125.57,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/castellon",
+    "final_url": "https://openborme.es/nuevas-empresas/castellon",
+    "status": 200,
+    "latency_ms": 120.74,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/ciudad-real",
+    "final_url": "https://openborme.es/nuevas-empresas/ciudad-real",
+    "status": 200,
+    "latency_ms": 122.77,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/cordoba",
+    "final_url": "https://openborme.es/nuevas-empresas/cordoba",
+    "status": 200,
+    "latency_ms": 136.34,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/cuenca",
+    "final_url": "https://openborme.es/nuevas-empresas/cuenca",
+    "status": 200,
+    "latency_ms": 118.79,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/gipuzkoa",
+    "final_url": "https://openborme.es/nuevas-empresas/gipuzkoa",
+    "status": 200,
+    "latency_ms": 131.96,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/girona",
+    "final_url": "https://openborme.es/nuevas-empresas/girona",
+    "status": 200,
+    "latency_ms": 133.13,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/granada",
+    "final_url": "https://openborme.es/nuevas-empresas/granada",
+    "status": 200,
+    "latency_ms": 119.12,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/guadalajara",
+    "final_url": "https://openborme.es/nuevas-empresas/guadalajara",
+    "status": 200,
+    "latency_ms": 129.06,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/huelva",
+    "final_url": "https://openborme.es/nuevas-empresas/huelva",
+    "status": 200,
+    "latency_ms": 125.74,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/huesca",
+    "final_url": "https://openborme.es/nuevas-empresas/huesca",
+    "status": 200,
+    "latency_ms": 120.41,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/jaen",
+    "final_url": "https://openborme.es/nuevas-empresas/jaen",
+    "status": 200,
+    "latency_ms": 198.6,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/la-rioja",
+    "final_url": "https://openborme.es/nuevas-empresas/la-rioja",
+    "status": 200,
+    "latency_ms": 124.72,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/las-palmas",
+    "final_url": "https://openborme.es/nuevas-empresas/las-palmas",
+    "status": 200,
+    "latency_ms": 132.47,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/leon",
+    "final_url": "https://openborme.es/nuevas-empresas/leon",
+    "status": 200,
+    "latency_ms": 123.31,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/lleida",
+    "final_url": "https://openborme.es/nuevas-empresas/lleida",
+    "status": 200,
+    "latency_ms": 116.75,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/lugo",
+    "final_url": "https://openborme.es/nuevas-empresas/lugo",
+    "status": 200,
+    "latency_ms": 127.95,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/madrid",
+    "final_url": "https://openborme.es/nuevas-empresas/madrid",
+    "status": 200,
+    "latency_ms": 121.86,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/malaga",
+    "final_url": "https://openborme.es/nuevas-empresas/malaga",
+    "status": 200,
+    "latency_ms": 124.67,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/murcia",
+    "final_url": "https://openborme.es/nuevas-empresas/murcia",
+    "status": 200,
+    "latency_ms": 115.79,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/national",
+    "final_url": "https://openborme.es/nuevas-empresas/national",
+    "status": 200,
+    "latency_ms": 116.31,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/navarra",
+    "final_url": "https://openborme.es/nuevas-empresas/navarra",
+    "status": 200,
+    "latency_ms": 130.58,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/ourense",
+    "final_url": "https://openborme.es/nuevas-empresas/ourense",
+    "status": 200,
+    "latency_ms": 124.35,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/palencia",
+    "final_url": "https://openborme.es/nuevas-empresas/palencia",
+    "status": 200,
+    "latency_ms": 122.4,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/pontevedra",
+    "final_url": "https://openborme.es/nuevas-empresas/pontevedra",
+    "status": 200,
+    "latency_ms": 126.93,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/salamanca",
+    "final_url": "https://openborme.es/nuevas-empresas/salamanca",
+    "status": 200,
+    "latency_ms": 124.37,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/nuevas-empresas/unknown",
+    "final_url": "https://openborme.es/nuevas-empresas/unknown",
+    "status": 200,
+    "latency_ms": 121.4,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/provincias",
+    "final_url": "https://openborme.es/provincias",
+    "status": 200,
+    "latency_ms": 135.75,
+    "content_type": "text/html; charset=UTF-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/sitemap-estatico.xml",
+    "final_url": "https://openborme.es/sitemap-estatico.xml",
+    "status": 200,
+    "latency_ms": 121.56,
+    "content_type": "application/xml; charset=utf-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  },
+  {
+    "url": "https://openborme.es/sitemap.xml",
+    "final_url": "https://openborme.es/sitemap.xml",
+    "status": 200,
+    "latency_ms": 125.9,
+    "content_type": "application/xml; charset=utf-8",
+    "sample": "<!DOCTYPE html> <html lang=\"es\">  <head>     <meta charset=\"UTF-8\">     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">     <title>OpenBorme | Boletín Oficia"
+  }
+]

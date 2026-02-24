@@ -5,6 +5,7 @@ $routes_to_list = [
     '',
     'buscar',
     'busqueda-avanzada',
+    'nuevas-empresas',
     'provincias',
     'tipos-de-actos',
     'descargas',

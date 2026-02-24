@@ -38,18 +38,19 @@
 
             <nav id="nav-menu" class="header-nav">
                 <div class="nav-item has-megamenu">
-                    <a href="/explorar" class="nav-link">EXPLORAR</a>
+                    <a href="/borme/dias" class="nav-link">EXPLORAR</a>
                     <div class="mega-menu">
                         <div class="container mega-menu-grid">
                             <div class="mega-col">
                                 <h5>Contenido</h5>
                                 <a href="/borme/dias">Boletines Diarios</a>
                                 <a href="/provincias">Por Provincias</a>
-                                <a href="/secciones">Por Secciones</a>
+                                <a href="/tipos-de-actos">Por Secciones</a>
                             </div>
                             <div class="mega-col">
                                 <h5>Herramientas</h5>
                                 <a href="/buscar">Buscador Avanzado</a>
+                                <a href="/nuevas-empresas">Nuevas Empresas</a>
                                 <a href="/descargas">Datos Abiertos</a>
                                 <a href="/api">API para Desarrolladores</a>
                             </div>

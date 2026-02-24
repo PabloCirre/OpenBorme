@@ -8,15 +8,16 @@ OpenBorme utiliza una **Arquitectura Híbrida "On-the-Fly"** para optimizar el r
 
 1. **Extractor Efímero (Python)**: Ubicado en `pipeline/extract/`, descarga y procesa los PDFs en memoria o archivos temporales que **se destruyen inmediatamente** tras la extracción.
     - **Cero Almacenamiento**: No se guarda copia local de los PDFs (ahora ~50GB).
-    - **Solo Datos**: Solo se persiste la información estructurada en `borme_data.csv` o base de datos.
+    - **Solo Datos**: Solo se persiste la información estructurada en `pipeline/data/openborme.sqlite`.
 2. **Visualizador Remoto (PHP)**: La interfaz web desplegada en `openborme.es`.
-3. **Sincronización**: Subida de datos procesados vía FTP.
+3. **Sincronización**: Subida de código y SQLite vía FTP.
 
 ---
 
-## 🐍 Motor de Extracción (Python)
+## 🐍 Motor de Extracción
 
-El motor se encuentra en `core/extractor/` y utiliza `pypdf` y `requests`.
+El motor principal para histórico se ejecuta en Python (`pipeline/extract/extractor/build_db.py`).
+La capa web en PHP queda en modo lectura (`OPENBORME_WEB_READ_ONLY=1`) para consumir la SQLite resultante.
 
 ### Instalación de Dependencias
 
@@ -26,19 +27,17 @@ pip install requests pypdf pandas openpyxl
 
 ### Uso del Motor
 
-Para realizar una carga histórica (ej: todo el año 2020):
+Para construir/actualizar SQLite desde 2020:
 
 ```bash
-cd core/extractor
-python engine.py 2020-01-01 2020-12-31
+python3 pipeline/extract/extractor/build_db.py --start 2020-01-01 --end 2026-02-24 --reset --resume
 ```
 
-### Estructura del Código
+Para recargas rápidas de ventana corta:
 
-- `engine.py`: Coordinador principal.
-- `borme_downloader.py`: Gestión de descargas desde la API del BOE.
-- `parser_pdf.py`: Extractor de texto para la Sección I (PDF).
-- `parser_xml.py`: Extractor de datos para la Sección II (XML).
+```bash
+python3 pipeline/extract/extractor/build_db.py --start 2026-01-01 --end 2026-02-24 --resume
+```
 
 ---
 
@@ -71,17 +70,17 @@ La API permite consultar datos de forma programática.
 
 ### Despliegue de Código (FTP)
 
-Utiliza `scripts/ftp_deploy.py` para sincronizar los cambios de código con el servidor. Configura tus credenciales en el script antes de ejecutarlo.
+Utiliza `ops/deploy_prod.py` o `ops/ftp_deploy.py` con variables de entorno.
 
 ### Sincronización de Datos
 
-Tras una extracción masiva en local, usa:
+Tras una extracción masiva en local, sincroniza el SQLite:
 
 ```bash
-python scripts/sync_data.py
+python ops/sync_data.py
 ```
 
-Esto subirá el archivo `borme_data.csv` al servidor remoto.
+Por defecto sube `pipeline/data/openborme.sqlite` a `pipeline/data/openborme.sqlite` en remoto.
 
 ---
 

@@ -62,7 +62,11 @@ if ($company_slug) {
                                         <?= mb_strimwidth($ev['raw_text'], 0, 100, "...") ?>
                                     </p>
                                 </div>
-                                <a href="/borme/doc/<?= $ev['id'] ?>" class="btn btn-ghost btn-s">Ver Acto &rarr;</a>
+                                <?php
+                                $ev_date = preg_replace('/[^0-9]/', '', (string) ($ev['date'] ?? ''));
+                                $ev_doc_url = "/borme/doc/" . rawurlencode((string) $ev['id']) . ($ev_date ? "?date=" . rawurlencode($ev_date) : "");
+                                ?>
+                                <a href="<?= $ev_doc_url ?>" class="btn btn-ghost btn-s">Ver Acto &rarr;</a>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -84,6 +88,7 @@ if ($company_slug) {
                     </div>
                     <div
                         style="margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--border-light);">
+                        <?php $company_id = urlencode($company_slug ?: $company_name); ?>
                         <a href="/export?empresa=<?= $company_id ?>" class="btn btn-secondary btn-m"
                             style="width: 100%;">Exportar Historial</a>
                     </div>
@@ -100,9 +105,45 @@ if ($company_slug) {
             <form action="/empresas" method="GET"
                 style="display: flex; gap: var(--space-3); margin-bottom: var(--space-8);">
                 <input type="text" name="name" class="input-main" placeholder="Nombre de la empresa o CIF..."
-                    style="flex: 1;">
+                    style="flex: 1;" value="<?= htmlspecialchars($_GET['name'] ?? '') ?>">
                 <button type="submit" class="btn btn-primary btn-l">BUSCAR</button>
             </form>
+
+            <?php
+            $name_query = trim($_GET['name'] ?? '');
+            if (strlen($name_query) >= 3) {
+                try {
+                    $db = Database::getInstance();
+                    $stmt = $db->prepare("SELECT cif, name, province FROM company WHERE name LIKE :name OR cif LIKE :cif ORDER BY name LIMIT 50");
+                    $stmt->execute([':name' => "%$name_query%", ':cif' => "%$name_query%"]);
+                    $companies = $stmt->fetchAll();
+                } catch (Exception $e) {
+                    $companies = [];
+                }
+            } else {
+                $companies = [];
+            }
+            ?>
+
+            <?php if ($name_query && empty($companies)): ?>
+                <div class="card" style="padding: var(--space-4);">No se encontraron empresas para "<?= htmlspecialchars($name_query) ?>".</div>
+            <?php endif; ?>
+
+            <?php if (!empty($companies)): ?>
+                <div class="card" style="text-align: left;">
+                    <h3
+                        style="font-size: 14px; text-transform: uppercase; color: var(--text-muted); margin-bottom: var(--space-4);">
+                        Resultados</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);">
+                        <?php foreach ($companies as $comp): ?>
+                            <?php $slug = preg_replace('/[^a-z0-9]+/i', '-', strtolower($comp['name'])); ?>
+                            <a href="/empresa/<?= $slug ?>" style="font-size: 14px; color: var(--accent); text-decoration: none;">
+                                <?= htmlspecialchars($comp['name']) ?> <span class="meta">(<?= htmlspecialchars($comp['cif']) ?> • <?= htmlspecialchars($comp['province']) ?>)</span>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <div class="card" style="text-align: left;">
                 <h3

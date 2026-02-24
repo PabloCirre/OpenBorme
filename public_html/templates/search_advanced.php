@@ -4,7 +4,7 @@
         precisos.</p>
 </div>
 
-<form action="/resultados" method="GET" class="card" style="padding: 3rem; background: var(--bg-light);">
+<form action="/buscar" method="GET" class="card" style="padding: 3rem; background: var(--bg-light);">
     <div
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
         <div>
@@ -17,10 +17,12 @@
             <select name="provincia"
                 style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px;">
                 <option value="">Todas las provincias</option>
-                <option value="madrid">Madrid</option>
-                <option value="barcelona">Barcelona</option>
-                <option value="valencia">Valencia</option>
-                <!-- More options will be populated dynamically -->
+                <?php
+                $provincias = ["ALAVA","ALBACETE","ALICANTE","ALMERIA","AVILA","BADAJOZ","ILLES BALEARS","BARCELONA","BURGOS","CACERES","CADIZ","CASTELLON","CIUDAD REAL","CORDOBA","A CORUÑA","CUENCA","GIRONA","GRANADA","GUADALAJARA","GIPUZKOA","HUELVA","HUESCA","JAEN","LEON","LLEIDA","LA RIOJA","LUGO","MADRID","MALAGA","MURCIA","NAVARRA","OURENSE","ASTURIAS","PALENCIA","LAS PALMAS","PONTEVEDRA","SALAMANCA","SANTA CRUZ DE TENERIFE","CANTABRIA","SEGOVIA","SEVILLA","SORIA","TARRAGONA","TERUEL","TOLEDO","VALENCIA","VALLADOLID","BIZKAIA","ZAMORA","ZARAGOZA","CEUTA","MELILLA"];
+                foreach ($provincias as $prov) {
+                    echo "<option value=\"$prov\">$prov</option>";
+                }
+                ?>
             </select>
         </div>
         <div>

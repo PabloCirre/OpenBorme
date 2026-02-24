@@ -3,8 +3,8 @@
 class ParserXml
 {
     private $cif_pattern = '/\b[ABCDEFGHJNPQRSUVW][\s\-\.]?\d{2}[\s\-\.]?\d{3}[\s\-\.]?\d{3}\b/i';
-    private $url_pattern = '/\b((? :https?:\/\/|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(?:\/[^\s\),. ]*) ?)\b/i';
-    private $workers_pattern = '/\b(\d+)\s*(? :trabajadores|empleados|miembros de plantilla)\b/i';
+    private $url_pattern = '/\b((?:https?:\/\/|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(?:\/[^\s\),. ]*)?)\b/i';
+    private $workers_pattern = '/\b(\d+)\s*(?:trabajadores|empleados|miembros de plantilla)\b/i';
 
     public function parse($file_path)
     {
@@ -21,8 +21,10 @@ class ParserXml
         $act_type = (string) $xml->metadatos->departamento;
 
         $description_parts = [];
-        foreach ($xml->texto->p as $p) {
-            $description_parts[] = (string) $p;
+        if (isset($xml->texto) && isset($xml->texto->p)) {
+            foreach ($xml->texto->p as $p) {
+                $description_parts[] = (string) $p;
+            }
         }
         $description = implode("\n", $description_parts);
 

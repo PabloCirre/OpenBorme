@@ -1,14 +1,26 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+// PDF parser dependency (smalot/pdfparser) vía Composer
+$vendor = __DIR__ . '/../../vendor/autoload.php';
+if (file_exists($vendor)) {
+    require_once $vendor;
+} else {
+    // fallback para entornos sin composer: no fatal, pero advertimos
+    $warn = "[WARN] vendor/autoload.php no encontrado. Ejecuta 'composer install' para habilitar el parseo de PDFs.";
+    if (defined('STDERR')) {
+        fwrite(STDERR, $warn . "\n");
+    } else {
+        error_log($warn);
+    }
+}
 
 class ParserPdf
 {
     private $cif_pattern = '/\b[ABCDEFGHJNPQRSUVW][\s\-\.]?\d{2}[\s\-\.]?\d{3}[\s\-\.]?\d{3}\b/i';
-    private $url_pattern = '/\b((? :https?:\/\/|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(?:\/[^\s\),. ]*) ?)\b/i';
+    private $url_pattern = '/\b((?:https?:\/\/|www\.)[a-zA-Z0-9\-\.]+\.[a-z]{2,}(?:\/[^\s\),. ]*)?)\b/i';
     private $capital_pattern = '/Capital:\s*([\d\.,]+\s*Euros)/i';
     private $address_pattern = '/Domicilio:\s*(.*?)\.\s/i';
-    private $workers_pattern = '/\b(\d+)\s*(? :trabajadores|empleados|miembros de plantilla)\b/i';
+    private $workers_pattern = '/\b(\d+)\s*(?:trabajadores|empleados|miembros de plantilla)\b/i';
 
     public function parse($file_path, $province_name)
     {

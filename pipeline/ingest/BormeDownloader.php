@@ -4,11 +4,13 @@ class BormeDownloader
 {
     private $base_url = "https://www.boe.es/datosabiertos/api/borme/sumario/";
     private $storage_dir = "data";
+    private $stream_only = false; // si true no persiste archivos en disco
 
-    public function __construct($storage_dir = "data")
+    public function __construct($storage_dir = "data", $stream_only = false)
     {
         $this->storage_dir = $storage_dir;
-        if (!is_dir($this->storage_dir)) {
+        $this->stream_only = $stream_only;
+        if (!$this->stream_only && !is_dir($this->storage_dir)) {
             mkdir($this->storage_dir, 0777, true);
         }
     }
@@ -56,24 +58,33 @@ class BormeDownloader
         if (!$xml)
             return;
 
+        // La API devuelve <response><data><sumario><diario>...</diario></sumario></data></response>
+        $diario = $xml->diario ?? ($xml->data->sumario->diario ?? null);
+        if (!$diario)
+            return;
+
         $date_dir = "{$this->storage_dir}/$date";
-        if (!is_dir($date_dir))
+        if (!$this->stream_only && !is_dir($date_dir))
             mkdir($date_dir, 0777, true);
 
         // Section 1 (PDFs by province)
         $sec1_dir = "$date_dir/section_A";
-        if (!is_dir($sec1_dir))
+        if (!$this->stream_only && !is_dir($sec1_dir))
             mkdir($sec1_dir, 0777, true);
 
-        foreach ($xml->diario->seccion as $seccion) {
+        foreach ($diario->seccion as $seccion) {
             if ((string) $seccion['codigo'] === 'A') {
                 foreach ($seccion->item as $item) {
                     $id = (string) $item->identificador;
                     $pdf_url = (string) $item->url_pdf;
-                    $filename = "$sec1_dir/$id.pdf";
-                    if (!file_exists($filename)) {
-                        echo "  Descargando PDF: $id\n";
-                        $this->downloadFile($pdf_url, $filename);
+                    $filename = $this->stream_only ? tempnam(sys_get_temp_dir(), 'borme_pdf_') : "$sec1_dir/$id.pdf";
+                    echo "  Descargando PDF: $id\n";
+                    $this->downloadFile($pdf_url, $filename);
+
+                    // Si es streaming, parsear y borrar aquí
+                    if ($this->stream_only && is_file($filename)) {
+                        $this->onDocumentDownloaded($filename, 'pdf', $date, $id);
+                        unlink($filename);
                     }
                 }
             }
@@ -81,19 +92,22 @@ class BormeDownloader
 
         // Section 2 (XML Individual Acts)
         $sec2_dir = "$date_dir/section_C";
-        if (!is_dir($sec2_dir))
+        if (!$this->stream_only && !is_dir($sec2_dir))
             mkdir($sec2_dir, 0777, true);
 
-        foreach ($xml->diario->seccion as $seccion) {
+        foreach ($diario->seccion as $seccion) {
             if ((string) $seccion['codigo'] === 'C') {
                 foreach ($seccion->apartado as $apartado) {
                     foreach ($apartado->item as $item) {
                         $id = (string) $item->identificador;
                         $act_xml_url = "https://www.boe.es/datosabiertos/api/borme/acta/$id";
-                        $filename = "$sec2_dir/$id.xml";
-                        if (!file_exists($filename)) {
-                            echo "  Descargando XML: $id\n";
-                            $this->downloadFile($act_xml_url, $filename, ['Accept: application/xml']);
+                        $filename = $this->stream_only ? tempnam(sys_get_temp_dir(), 'borme_xml_') : "$sec2_dir/$id.xml";
+                        echo "  Descargando XML: $id\n";
+                        $this->downloadFile($act_xml_url, $filename, ['Accept: application/xml']);
+
+                        if ($this->stream_only && is_file($filename)) {
+                            $this->onDocumentDownloaded($filename, 'xml', $date, $id);
+                            unlink($filename);
                         }
                     }
                 }
@@ -124,5 +138,12 @@ class BormeDownloader
         curl_exec($ch);
         curl_close($ch);
         fclose($fp);
+    }
+
+    // Hook: para procesar documentos en streaming (parsers + ingest)
+    protected function onDocumentDownloaded($path, $type, $date, $id)
+    {
+        // El procesamiento se implementa desde fuera (main o cron), no aquí.
+        // Se deja el hook para que el caller pueda extender la clase y sobreescribir.
     }
 }

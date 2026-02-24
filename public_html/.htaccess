@@ -11,8 +11,8 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# 3. Handle Special BOE compatibility redirects
-RewriteRule ^diario_borme/ultimo.php$ /?action=ultimo [L,R=302]
+# 3. Handle Special BOE compatibility route via central router
+RewriteRule ^diario_borme/ultimo.php$ index.php [L,QSA]
 
 # 4. Global Router: Send everything else to index.php
 RewriteCond %{REQUEST_URI} !^/google[a-z0-9]+\.html$

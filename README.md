@@ -21,19 +21,20 @@ Puedes visualizar y probar el proyecto en los siguientes entornos:
 * **Extracción OCR**: Procesamiento de documentos PDF (Sección I) para extraer texto plano estructurado.
 * **Normalización**: Limpieza de entidades, fechas y tipos de actos.
 * **Trazabilidad**: Generación de hashes MD5 para garantizar la integridad del texto extraído frente al original.
+* **Base de Datos Flexible**: SQLite por defecto (`openborme.sqlite`) y soporte para PostgreSQL remoto como base definitiva.
 * **Frontend Ligero**: Interfaz web PHP sobria y rápida, sin rastreadores ni publicidad.
 
 ## 📁 Estructura del Proyecto
 
-* **`pipeline/`**: Motor de extracción y procesamiento (Python).
+* **`pipeline/`**: Motor de extracción y procesamiento (PHP + Python).
 * **`public_html/`**: Interfaz web y API (PHP/CSS).
 * **`ops/`**: Scripts de despliegue y mantenimiento.
 * **`docs/`**: Documentación técnica y estratégica.
-* **`data/`**: Almacenamiento local de documentos BORME (vía `pipeline`).
+* **`pipeline/data/`**: SQLite y datos locales de ejecución.
 
 ## 🛠️ Instalación (Local)
 
-1. **Requisitos**: PHP 8.x, Python 3.10+.
+1. **Requisitos**: PHP 8.x (con `pdo_sqlite`), Python 3.10+.
 2. **Web**: Sirve el directorio `public_html`.
 
     ```bash
@@ -60,12 +61,48 @@ Puedes visualizar y probar el proyecto en los siguientes entornos:
     composer install
     ```
 
-6. Configurar entorno:
+6. Configurar entorno (opcional):
 
     ```bash
     cp ops/env.example .env
-    # Editar .env con tus rutas locales
+    # Editar variables FTP y de base de datos (SQLite o PostgreSQL)
     ```
+
+## 🗃️ Migración SQLite -> PostgreSQL (Remoto)
+
+1. Crear esquema remoto automáticamente:
+
+    ```bash
+    OPENBORME_DB_DRIVER=pgsql \
+    OPENBORME_PG_HOST=... OPENBORME_PG_DBNAME=... \
+    OPENBORME_PG_USER=... OPENBORME_PG_PASS=... \
+    php pipeline/migration/bootstrap_remote.php
+    ```
+
+2. Migrar datos desde SQLite local:
+
+    ```bash
+    OPENBORME_DB_DRIVER=pgsql \
+    OPENBORME_PG_HOST=... OPENBORME_PG_DBNAME=... \
+    OPENBORME_PG_USER=... OPENBORME_PG_PASS=... \
+    php pipeline/migration/sqlite_to_remote.php --source=pipeline/data/openborme.sqlite --batch=2000
+    ```
+
+## 🐍 Builder Python (Recomendado para histórico)
+
+Para cargas grandes (por ejemplo desde 2020), genera la SQLite con Python y deja PHP en lectura:
+
+```bash
+python3 pipeline/extract/extractor/build_db.py --start 2020-01-01 --end 2026-02-24 --reset --resume
+```
+
+Luego sube `pipeline/data/openborme.sqlite` a producción (FTP) y mantén `OPENBORME_WEB_READ_ONLY=1`.
+
+Pipeline completo (build + upload FTP):
+
+```bash
+python3 ops/build_and_upload_sqlite.py --start 2020-01-01 --end 2026-02-24 --reset --resume
+```
 
 ## 🤝 Contribuciones
 

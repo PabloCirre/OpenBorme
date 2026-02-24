@@ -14,7 +14,7 @@ echo "--- OpenBorme Backfill Engine ---\n";
 echo "Range: $startDate to $endDate\n";
 echo "Storage: data/\n\n";
 
-$downloader = new BormeDownloader(__DIR__ . '/../data');
+$downloader = new BormeDownloader(__DIR__ . '/data');
 $downloader->downloadRange($startDate, $endDate);
 
 echo "\n--- Backfill Batch Finished ---\n";

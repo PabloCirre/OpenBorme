@@ -105,7 +105,7 @@ require_once $db_path;
                 <?php
                 try {
                     $db = Database::getInstance();
-                    $stmt = $db->prepare("SELECT company_name, province, capital, type, date FROM borme_acts WHERE capital IS NOT NULL AND capital != '' ORDER BY length(capital) DESC, capital DESC LIMIT 6");
+                    $stmt = $db->prepare("SELECT company_name, province, capital, type, date FROM borme_acts WHERE capital IS NOT NULL AND capital != '' ORDER BY length(CAST(capital AS TEXT)) DESC, CAST(capital AS TEXT) DESC LIMIT 6");
                     $stmt->execute();
                     $top_acts = $stmt->fetchAll();
                     foreach ($top_acts as $index => $act) {

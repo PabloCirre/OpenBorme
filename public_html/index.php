@@ -4,6 +4,28 @@
  * Handles all dynamic requests and loads appropriate templates.
  */
 
+// Bootstrap ligero de SQLite: crea archivo/esquema si no existen.
+$db_bootstrap_file = null;
+$db_bootstrap_candidates = [
+    __DIR__ . '/../pipeline/db/Database.php',
+    __DIR__ . '/pipeline/db/Database.php',
+];
+foreach ($db_bootstrap_candidates as $candidate) {
+    if (file_exists($candidate)) {
+        $db_bootstrap_file = $candidate;
+        break;
+    }
+}
+
+if ($db_bootstrap_file) {
+    require_once $db_bootstrap_file;
+    try {
+        Database::getInstance();
+    } catch (Throwable $e) {
+        // Deferimos el error a templates/endpoints que realmente usen DB.
+    }
+}
+
 $request_uri = $_SERVER['REQUEST_URI'];
 $base_path = parse_url($request_uri, PHP_URL_PATH);
 $path_parts = explode('/', trim($base_path, '/'));
@@ -20,13 +42,16 @@ $routes = [
     'sitemap-fechas.xml' => ['template' => 'sitemap_dates.xml.php', 'index' => 'index'],
     'sitemap-empresas.xml' => ['template' => 'sitemap_companies.xml.php', 'index' => 'index'],
     'mapa-del-sitio' => ['template' => 'mapa_sitio.php', 'index' => 'index', 'title' => 'Mapa del Sitio'],
+    'explorar' => ['template' => 'home.php', 'index' => 'index', 'title' => 'Explorar BORME'],
     'exportar' => ['template' => 'export.php', 'index' => 'index'],
     'diario_borme' => ['template' => 'home.php', 'index' => 'index'],
     'diario_borme/ayuda.php' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Ayuda del BORME'],
     'seccion/actos-inscritos' => ['template' => 'landing_seo.php', 'index' => 'index', 'title' => 'Actos Inscritos'],
     'seccion/anuncios' => ['template' => 'landing_seo.php', 'index' => 'index', 'title' => 'Anuncios y Avisos'],
     'provincias' => ['template' => 'provincias.php', 'index' => 'index'],
+    'nuevas-empresas' => ['template' => 'new_companies.php', 'index' => 'index', 'title' => 'Nuevas Empresas'],
     'tipos-de-actos' => ['template' => 'tipos_actos.php', 'index' => 'index'],
+    'secciones' => ['template' => 'tipos_actos.php', 'index' => 'index', 'title' => 'Secciones del BORME'],
     'empresas' => ['template' => 'search.php', 'index' => 'index', 'title' => 'Buscar Empresas'],
     'personas' => ['template' => 'static.php', 'index' => 'noindex', 'title' => 'Búsqueda de Personas'],
     'alertas' => ['template' => 'static.php', 'index' => 'index', 'title' => 'Alertas del BORME'],
@@ -85,10 +110,25 @@ if (preg_match('/^sitemap-empresas-(\d+)\.xml$/', $clean_path, $matches)) {
 
 // /diario_borme/ultimo.php -> Redirect to latest
 if ($clean_path === 'diario_borme/ultimo.php') {
-    // Logic to find latest folder in /data/
-    $dates = array_filter(scandir(__DIR__ . '/data'), function ($d) {
-        return preg_match('/^\d{8}$/', $d);
-    });
+    // Intentamos resolver la fecha más reciente desde posibles rutas de datos
+    $dates = [];
+    $candidate_dirs = [
+        __DIR__ . '/data',
+        __DIR__ . '/../pipeline/data',
+        __DIR__ . '/../data'
+    ];
+
+    foreach ($candidate_dirs as $dir) {
+        if (!is_dir($dir)) {
+            continue;
+        }
+        $dates = array_filter(scandir($dir), function ($d) {
+            return preg_match('/^\d{8}$/', $d);
+        });
+        if (!empty($dates)) {
+            break;
+        }
+    }
     rsort($dates);
     $latest = $dates[0] ?? date('Ymd');
     header("Location: /borme/dias/" . date('Y/m/d', strtotime($latest)) . "/");
@@ -110,9 +150,9 @@ if (preg_match('/^borme\/dias\/(\d{4})\/(\d{2})\/(\d{2})$/', $clean_path, $match
     $page_description = "Consulta todas las empresas registradas y la actividad del Registro Mercantil publicadas en el boletín del " . $matches[3] . "/" . $matches[2] . "/" . $matches[1] . ".";
 }
 
-// /borme/doc/{id} or /diario_borme/txt.php?id=...
-if (preg_match('/(BORME-[A-Z]-\d{4}-[\d-]+)/', $base_path, $matches)) {
-    $_GET['id'] = $matches[1];
+// /borme/doc/{id}
+if (preg_match('/^borme\/doc\/([^\/]+)$/', $clean_path, $matches)) {
+    $_GET['id'] = urldecode($matches[1]);
     $template = 'viewer.php';
 }
 
@@ -123,6 +163,14 @@ if (preg_match('/^borme\/provincia\/([a-z-]+)$/', $clean_path, $matches)) {
     $prov_name = ucwords(str_replace('-', ' ', $matches[1]));
     $page_title = "BORME de " . $prov_name;
     $page_description = "Explora los boletines mercantiles e información de sociedades en la provincia de " . $prov_name . ".";
+}
+
+// /nuevas-empresas/{provincia}
+if (preg_match('/^nuevas-empresas\/([a-z-]+)$/', $clean_path, $matches)) {
+    $_GET['province'] = strtoupper(str_replace('-', ' ', $matches[1]));
+    $template = 'new_companies.php';
+    $page_title = "Nuevas Empresas en " . ucwords(str_replace('-', ' ', $matches[1]));
+    $page_description = "Altas y disoluciones de empresas en " . ucwords(str_replace('-', ' ', $matches[1])) . " por semana, mes y año.";
 }
 
 // /borme/provincia/{provincia}/{Y}/{M}/{D}

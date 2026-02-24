@@ -1,61 +1,90 @@
 import ftplib
 import os
 import sys
+from pathlib import Path
 
-# FTP Credentials (from ops/sync_data.py)
-host = 'ftp.servidor3000.lucusvirtual.es'
-user = 'branvan3000@openborme.es'
-password = '5000Razones2.0'
 
-# Paths
-LOCAL_WEB_ROOT = r'd:\Pycharm\OpenBorme\public_html'
-LOCAL_PIPELINE_ROOT = r'd:\Pycharm\OpenBorme\pipeline'
+def env_required(name: str) -> str:
+    value = os.getenv(name, "").strip()
+    if not value:
+        raise RuntimeError(f"Falta variable de entorno requerida: {name}")
+    return value
 
-def upload_item(ftp, local_path, remote_item):
-    if ".git" in remote_item or "__pycache__" in remote_item or ".pdf" in remote_item.lower():
+
+def ensure_remote_dirs(ftp: ftplib.FTP, remote_dir: str) -> None:
+    parts = [p for p in remote_dir.replace("\\", "/").split("/") if p]
+    current = ""
+    for part in parts:
+        current = f"{current}/{part}" if current else part
+        try:
+            ftp.mkd(current)
+        except ftplib.error_perm as exc:
+            if not str(exc).startswith("550"):
+                raise
+
+
+def upload_item(ftp: ftplib.FTP, local_path: Path, remote_item: str) -> None:
+    normalized = remote_item.replace("\\", "/")
+    lower = normalized.lower()
+    if ".git" in lower or "__pycache__" in lower or lower.endswith(".pdf") or lower.endswith(".sqlite") or lower.endswith(".db"):
         return
-        
-    if os.path.isfile(local_path):
-        print(f"Uploading file: {remote_item}")
-        with open(local_path, 'rb') as f:
-            ftp.storbinary(f'STOR {remote_item}', f)
-    elif os.path.isdir(local_path):
-        print(f"Syncing directory: {remote_item}")
-        try:
-            ftp.mkd(remote_item)
-        except:
-            pass # Already exists
-        for sub_item in os.listdir(local_path):
-            upload_item(ftp, os.path.join(local_path, sub_item), remote_item + "/" + sub_item)
 
-def deploy():
+    if local_path.is_dir() and normalized.startswith("pipeline/data"):
+        return
+
+    if local_path.is_file():
+        parent = normalized.rsplit("/", 1)[0] if "/" in normalized else ""
+        if parent:
+            ensure_remote_dirs(ftp, parent)
+        with local_path.open("rb") as f:
+            ftp.storbinary(f"STOR {normalized}", f)
+        print(f"Uploaded file: {normalized}")
+        return
+
+    if local_path.is_dir():
+        ensure_remote_dirs(ftp, normalized)
+        for sub_item in sorted(local_path.iterdir()):
+            sub_remote = f"{normalized}/{sub_item.name}"
+            upload_item(ftp, sub_item, sub_remote)
+
+
+def deploy() -> None:
+    host = env_required("OPENBORME_FTP_HOST")
+    user = env_required("OPENBORME_FTP_USER")
+    password = env_required("OPENBORME_FTP_PASS")
+
+    repo_root = Path(__file__).resolve().parent.parent
+    local_web_root = Path(os.getenv("OPENBORME_LOCAL_WEB_ROOT", str(repo_root / "public_html"))).resolve()
+    local_pipeline_root = Path(os.getenv("OPENBORME_LOCAL_PIPELINE_ROOT", str(repo_root / "pipeline"))).resolve()
+
+    if not local_web_root.exists():
+        raise RuntimeError(f"No existe local_web_root: {local_web_root}")
+    if not local_pipeline_root.exists():
+        raise RuntimeError(f"No existe local_pipeline_root: {local_pipeline_root}")
+
+    print(f"Connecting to {host}...")
+    ftp = ftplib.FTP(host, timeout=30)
+    ftp.login(user, password)
+    print("Connected.")
+
     try:
-        print(f"Connecting to {host}...")
-        ftp = ftplib.FTP(host)
-        ftp.login(user, password)
-        print("Connected successfuly.")
-        
-        # 1. Upload everything from public_html/ to root
-        print("Deploying public files...")
-        for item in os.listdir(LOCAL_WEB_ROOT):
-            local_path = os.path.join(LOCAL_WEB_ROOT, item)
-            upload_item(ftp, local_path, item)
-            
-        # 2. Upload pipeline/ to /pipeline
-        print("\nDeploying pipeline files and Database...")
-        try:
-            ftp.mkd("pipeline")
-        except:
-            pass
-        for item in os.listdir(LOCAL_PIPELINE_ROOT):
-            local_path = os.path.join(LOCAL_PIPELINE_ROOT, item)
-            upload_item(ftp, local_path, "pipeline/" + item)
-                
+        print("Deploying public_html -> remote root ...")
+        for item in sorted(local_web_root.iterdir()):
+            upload_item(ftp, item, item.name)
+
+        print("Deploying pipeline -> remote /pipeline ...")
+        ensure_remote_dirs(ftp, "pipeline")
+        for item in sorted(local_pipeline_root.iterdir()):
+            upload_item(ftp, item, f"pipeline/{item.name}")
+    finally:
         ftp.quit()
-        print("Deployment successful.")
-    except Exception as e:
-        print(f"Error during deployment: {e}")
-        sys.exit(1)
+
+    print("Deployment successful.")
+
 
 if __name__ == "__main__":
-    deploy()
+    try:
+        deploy()
+    except Exception as e:
+        print(f"Error during deployment: {e}", file=sys.stderr)
+        sys.exit(1)
